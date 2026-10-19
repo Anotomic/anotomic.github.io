@@ -109,7 +109,7 @@
             border-radius: 16px;
             box-shadow: 0 30px 80px rgba(0,0,0,0.6);
             display: flex;
-            overflow: visible; /* ВАЖЛИВО: дозволяє контенту виходити за межі */
+            overflow: visible;
             position: relative;
         }
 
@@ -179,23 +179,21 @@
 
         .breakout-img {
             position: absolute;
-            /* Налаштування позиції для ефекту виходу */
-            top: -120px; /* Піднімаємо вгору поверх HUD */
-            right: 5%;   /* Трохи правее центру */
-            width: 450px; /* Оптимальний розмір для цього ефекту */
+            top: -120px;
+            right: 5%;
+            width: 450px;
             height: auto;
-            z-index: 2000; /* ВИЩЕ ЗА HUD (1000) */
-            filter: drop-shadow(0 25px 50px rgba(0,0,0,0.9)); /* Глибока тінь */
-            transform: perspective(1000px) rotateY(-10deg) rotateX(5deg); /* Легкий 3D поворот */
+            z-index: 2000;
+            filter: drop-shadow(0 25px 50px rgba(0,0,0,0.9));
+            transform: perspective(1000px) rotateY(-10deg) rotateX(5deg);
             transition: transform 0.5s ease;
-            pointer-events: none; /* Щоб не заважала клікати */
+            pointer-events: none;
         }
 
         .breakout-img:hover {
             transform: perspective(1000px) rotateY(0deg) rotateX(0deg) scale(1.05);
         }
 
-        /* Анімація появи */
         .fade-in-up {
             animation: fadeInUp 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
             opacity: 0;
@@ -231,7 +229,6 @@
             .course-image-area { width: 100%; height: 350px; margin-top: 20px; }
             .course-title { font-size: 36px; }
             
-            /* На мобільних прибираємо ефект виходу */
             .breakout-img { 
                 position: relative; 
                 top: 0; right: 0; 
@@ -267,8 +264,10 @@
     <!-- HOME SECTION -->
     <section id="page-home" class="page-section active-page">
         <div class="hero-container">
-            <div class="slide-bg visible" style="background-image: url('https://images.unsplash.com/photo-1618336753974-aae8e04506aa?q=80&w=2070&auto=format&fit=crop');"></div>
-            <div class="slide-bg" style="background-image: url('https://images.unsplash.com/photo-1633511090164-b43840ea1607?q=80&w=2070&auto=format&fit=crop');"></div>
+            <!-- ВАШІ РОБОТИ ЗАМІСТЬ СТОКОВИХ ФОТО -->
+            <div class="slide-bg visible" style="background-image: url('Mjolnir__Upper_Preview_Serhii_Anotomic_Prytula.jpg');"></div>
+            <div class="slide-bg" style="background-image: url('Odin_Full_Preview_Front_Serhii_Anotomic_Prytula.jpg');"></div>
+            
             <div class="hero-fade-overlay"></div>
             <div class="hero-content-wrapper">
                 <div class="hero-text">
@@ -291,9 +290,7 @@
                     <button class="course-btn" data-key="course_btn">Learn more</button>
                 </div>
                 
-                <!-- ОБЛАСТЬ ДЛЯ ФОТО З ЕФЕКТОМ ВИХОДУ -->
                 <div class="course-image-area">
-                    <!-- ВАЖЛИВО: Файл Course_Zbrush_for_Beginner_Serhii_Prytula.png має лежати в тій самій папці, що й index.html -->
                     <img src="Course_Zbrush_for_Beginner_Serhii_Prytula.png" alt="Zbrush Course Box" class="breakout-img fade-in-up">
                 </div>
             </div>
