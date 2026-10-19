@@ -62,7 +62,7 @@
         .lang-btn { background: none; border: none; color: var(--text-muted); font-weight: 700; cursor: pointer; font-size: 15px; transition: color 0.3s; }
         .lang-btn.active-lang { color: var(--text-main); }
 
-        /* --- HERO SECTION --- */
+        /* --- HERO SECTION (FULL SCREEN & CENTERED) --- */
         .hero-container {
             position: relative; height: 100vh; width: 100%; overflow: hidden;
         }
@@ -73,33 +73,37 @@
             filter: brightness(0.6); z-index: 1;
         }
         .slide-bg.visible { opacity: 1; }
+        
+        /* Градієнт залишаємо тільки праворуч для читабельності тексту */
         .hero-fade-overlay {
-            position: absolute; top: 0; right: 0; bottom: 0; width: 55%;
-            background: linear-gradient(to right, transparent 0%, rgba(10,10,10,0.3) 30%, rgba(10,10,10,0.85) 70%, rgba(10,10,10,0.95) 100%);
+            position: absolute; top: 0; right: 0; bottom: 0; width: 60%;
+            background: linear-gradient(to right, transparent 0%, rgba(10,10,10,0.4) 30%, rgba(10,10,10,0.9) 100%);
             z-index: 2; pointer-events: none;
         }
+        
         .hero-content-wrapper {
             position: absolute; top: 0; right: 0; bottom: 0; width: 50%;
             display: flex; align-items: center; justify-content: center;
             z-index: 3; padding: 0 8%;
         }
-        .hero-text { text-align: left; max-width: 650px; }
+        .hero-text { text-align: center; max-width: 700px; } /* ЦЕНТРОВАНО ТЕКСТ */
         .hero-text h2 { font-size: 20px; color: var(--accent); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 25px; font-weight: 700; line-height: 1.4; }
         .hero-text h1 { font-size: clamp(40px, 5vw, 70px); font-weight: 900; line-height: 1.1; margin-bottom: 20px; text-shadow: 0 10px 40px rgba(0,0,0,0.9); }
         .hero-text p { font-size: 20px; color: #bbb; font-weight: 500; letter-spacing: 1.5px; }
 
-        /* --- COURSE SECTION (RAISED HIGHER) --- */
+        /* --- CURTAIN SECTION (BLACK BACKGROUND) --- */
         .curtain-section {
             position: relative; z-index: 10;
             background-color: var(--bg-color);
             min-height: 100vh;
-            margin-top: -25vh; /* ПІДНЯТО ВИЩЕ (було -10vh) */
-            padding: 80px 20px;
+            margin-top: -10vh; /* Перекриває слайдшоу при скролі */
+            padding: 0 20px;
             display: flex;
-            align-items: center;
+            align-items: center; /* Центрує банер по вертикалі всередині чорної зони */
             justify-content: center;
         }
 
+        /* --- COURSE BANNER (WITH TOP PADDING FOR GOLDEN MIDDLE) --- */
         .course-banner {
             width: 95%;
             max-width: 1400px;
@@ -111,11 +115,15 @@
             display: flex;
             overflow: visible;
             position: relative;
+            
+            /* ЗОЛОТА СЕРЕДИНА: Відступ зверху всередині банера */
+            padding-top: 80px; 
+            align-items: flex-start; /* Вирівнюємо контент по верху через паддінг */
         }
 
         .course-content {
             width: 45%;
-            padding: 50px;
+            padding: 0 50px; /* Бічні відступи залишили */
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -218,16 +226,18 @@
             .nav-spacer { display: none; }
             .nav-links { flex-wrap: wrap; justify-content: center; gap: 20px; }
             .lang-switch { justify-content: center; padding-left: 0; margin-top: 5px; }
-            .hero-fade-overlay { width: 100%; background: linear-gradient(to top, rgba(10,10,10,0.8) 0%, transparent 100%); }
+            
+            /* На мобільних повертаємо градієнт знизу і текст по центру */
+            .hero-fade-overlay { width: 100%; background: linear-gradient(to top, rgba(10,10,10,0.9) 0%, transparent 100%); }
             .hero-content-wrapper { width: 100%; justify-content: center; text-align: center; padding: 0 20px; }
             .hero-text { text-align: center; }
             .hero-text h1 { font-size: 40px; }
             .hero-text h2 { font-size: 18px; }
             
-            .course-banner { flex-direction: column; height: auto; overflow: hidden; margin-top: 0; }
-            .curtain-section { margin-top: 0; padding: 40px 20px; }
-            .course-content { width: 100%; padding: 40px 30px; background: #0a0a0a; }
-            .course-image-area { width: 100%; height: 350px; margin-top: 20px; }
+            .curtain-section { margin-top: 0; padding: 40px 20px; align-items: flex-start; }
+            .course-banner { flex-direction: column; height: auto; padding-top: 30px; overflow: hidden; }
+            .course-content { width: 100%; padding: 30px; background: #0a0a0a; }
+            .course-image-area { width: 100%; height: 300px; margin-top: 20px; }
             .course-title { font-size: 36px; }
             
             .breakout-img { 
@@ -272,14 +282,13 @@
             <div class="hero-content-wrapper">
                 <div class="hero-text">
                     <h2 data-key="hero_sub">Dedicated 3D Character Artist for your game or personal project</h2>
-                    <!-- ОНОВЛЕНО: ТІЛЬКИ ІМ'Я ТА ПРОФЕСІЯ -->
                     <h1>Serhii Prytula</h1>
                     <p data-key="hero_role">Anotomic. Zbrush / 3D Character Artist</p>
                 </div>
             </div>
         </div>
 
-        <!-- COURSE BANNER SECTION -->
+        <!-- CURTAIN & COURSE SECTION -->
         <div class="curtain-section">
             <div class="course-banner">
                 <div class="course-content">
