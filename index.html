@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Serhii "Anotomic" Prytula | 3D Artist</title>
+    <title>Serhii Prytula | 3D Character Artist</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;900&display=swap');
 
@@ -88,12 +88,12 @@
         .hero-text h1 { font-size: clamp(40px, 5vw, 70px); font-weight: 900; line-height: 1.1; margin-bottom: 20px; text-shadow: 0 10px 40px rgba(0,0,0,0.9); }
         .hero-text p { font-size: 20px; color: #bbb; font-weight: 500; letter-spacing: 1.5px; }
 
-        /* --- COURSE SECTION --- */
+        /* --- COURSE SECTION (RAISED HIGHER) --- */
         .curtain-section {
             position: relative; z-index: 10;
             background-color: var(--bg-color);
             min-height: 100vh;
-            margin-top: -10vh;
+            margin-top: -25vh; /* ПІДНЯТО ВИЩЕ (було -10vh) */
             padding: 80px 20px;
             display: flex;
             align-items: center;
@@ -168,7 +168,7 @@
             background: #ff7b4d;
         }
 
-        /* --- BREAKOUT IMAGE STYLES (FINAL POLISH) --- */
+        /* --- BREAKOUT IMAGE STYLES --- */
         .course-image-area {
             width: 55%;
             position: relative;
@@ -179,7 +179,7 @@
 
         .breakout-img {
             position: absolute;
-            top: -60px; /* ФІНАЛЬНЕ НАЛАШТУВАННЯ: ІДЕАЛЬНИЙ БАЛАНС */
+            top: -60px;
             right: 5%;
             width: 480px;
             height: auto;
@@ -224,7 +224,8 @@
             .hero-text h1 { font-size: 40px; }
             .hero-text h2 { font-size: 18px; }
             
-            .course-banner { flex-direction: column; height: auto; overflow: hidden; }
+            .course-banner { flex-direction: column; height: auto; overflow: hidden; margin-top: 0; }
+            .curtain-section { margin-top: 0; padding: 40px 20px; }
             .course-content { width: 100%; padding: 40px 30px; background: #0a0a0a; }
             .course-image-area { width: 100%; height: 350px; margin-top: 20px; }
             .course-title { font-size: 36px; }
@@ -271,8 +272,9 @@
             <div class="hero-content-wrapper">
                 <div class="hero-text">
                     <h2 data-key="hero_sub">Dedicated 3D Character Artist for your game or personal project</h2>
-                    <h1>Serhii "Anotomic" Prytula</h1>
-                    <p data-key="hero_role">Zbrush / 3D Character Artist</p>
+                    <!-- ОНОВЛЕНО: ТІЛЬКИ ІМ'Я ТА ПРОФЕСІЯ -->
+                    <h1>Serhii Prytula</h1>
+                    <p data-key="hero_role">Anotomic. Zbrush / 3D Character Artist</p>
                 </div>
             </div>
         </div>
@@ -330,7 +332,8 @@
         const i18n = {
             uk: { 
                 nav_home: "Головна", nav_port: "Портфоліо", nav_about: "Про мене", nav_blog: "Блог", nav_contact: "Зв'язатися", 
-                hero_sub: "Відданий 3D художник персонажів для вашої гри чи проєкту", hero_role: "Zbrush / 3D Художник Персонажів", 
+                hero_sub: "Відданий 3D художник персонажів для вашої гри чи проєкту", 
+                hero_role: "Anotomic. Zbrush / 3D Художник Персонажів", 
                 course_label: "Курс для початківців", course_title: "Zbrush для початківців", 
                 course_desc: "Опануйте скульптинг у ZBrush легко та впевнено! Покроковий курс для початківців: від основ до вашого першого 3D-портрета персонажа з нуля.",
                 course_btn: "Дізнатися більше",
@@ -341,7 +344,8 @@
             },
             en: { 
                 nav_home: "Home", nav_port: "Portfolio", nav_about: "About", nav_blog: "Blog", nav_contact: "Contact Me", 
-                hero_sub: "Dedicated 3D Character Artist for your game or personal project", hero_role: "Zbrush / 3D Character Artist", 
+                hero_sub: "Dedicated 3D Character Artist for your game or personal project", 
+                hero_role: "Anotomic. Zbrush / 3D Character Artist", 
                 course_label: "Beginners Course", course_title: "Zbrush for Beginners", 
                 course_desc: "Master ZBrush sculpting with confidence! A step-by-step course for beginners: from basics to your first 3D character portrait from scratch.",
                 course_btn: "Learn more",
