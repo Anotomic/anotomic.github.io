@@ -88,12 +88,13 @@
         .hero-text h1 { font-size: clamp(40px, 5vw, 70px); font-weight: 900; line-height: 1.1; margin-bottom: 20px; text-shadow: 0 10px 40px rgba(0,0,0,0.9); }
         .hero-text p { font-size: 20px; color: #bbb; font-weight: 500; letter-spacing: 1.5px; }
 
-        /* --- COURSE SECTION (ADJUSTED OVERLAP) --- */
+        /* --- COURSE SECTION (LOWERED FOR FULL IMAGE VIEW) --- */
         .curtain-section {
             position: relative; z-index: 10;
             background-color: var(--bg-color);
             min-height: 100vh;
-            margin-top: -5vh; /* ЗМЕНШЕНО ПЕРЕКРИТТЯ ДЛЯ БІЛЬШЕ ПРОСТОРУ СЛАЙДШОУ */
+            /* ЗМЕНШЕНО ВІД'ЄМНИЙ ВІДСТУП: ТЕПЕР ФОН ПОЧИНАЄТЬСЯ НИЖЧЕ */
+            margin-top: -2vh; 
             padding: 80px 20px;
             display: flex;
             align-items: center;
@@ -271,9 +272,7 @@
             <div class="hero-content-wrapper">
                 <div class="hero-text">
                     <h2 data-key="hero_sub">Dedicated 3D Character Artist for your game or personal project</h2>
-                    <!-- ОНОВЛЕНО: ТІЛЬКИ ІМ'Я В ЗАГОЛОВКУ -->
                     <h1>Serhii Prytula</h1>
-                    <!-- ОНОВЛЕНО: ANATOMIC У ПІДЗАГОЛОВКУ -->
                     <p data-key="hero_role">Anotomic. Zbrush / 3D Character Artist</p>
                 </div>
             </div>
