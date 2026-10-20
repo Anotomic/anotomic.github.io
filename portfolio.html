@@ -58,7 +58,7 @@
         .portfolio-item-title { font-size: 1.2rem; font-weight: 700; margin-bottom: 5px; color: var(--text-main); }
         .portfolio-item-category { font-size: 0.85rem; color: var(--accent); text-transform: uppercase; letter-spacing: 1px; font-weight: 600; }
 
-        /* --- MODAL LIGHTBOX --- */
+        /* --- MODAL LIGHTBOX (FINAL FIX) --- */
         .modal-overlay { 
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
             background: rgba(0, 0, 0, 0.92); 
@@ -72,6 +72,7 @@
         }
         .modal-overlay.active { display: flex; opacity: 1; }
         
+        /* Зовнішня оболонка - тільки рамка і скрол */
         .modal-content { 
             width: 95%; 
             max-width: 1600px; 
@@ -79,31 +80,36 @@
             background: var(--hud-bg); 
             border: 1px solid var(--hud-border); 
             border-radius: 24px; 
-            padding: 50px; 
+            padding: 0; /* Padding перенесено у wrapper */
             position: relative; 
             overflow-y: auto; 
             box-shadow: 0 30px 80px rgba(0,0,0,0.8); 
             
-            /* Підтримка Firefox */
             scrollbar-width: thin;
             scrollbar-color: var(--accent) rgba(255, 255, 255, 0.03);
         }
+
+        /* Внутрішній враппер для контенту */
+        .modal-inner-wrapper {
+            padding: 50px;
+            min-height: 100%;
+            box-sizing: border-box;
+        }
         
-        /* --- CUSTOM SCROLLBAR (FIXED POSITION) --- */
+        /* --- CUSTOM SCROLLBAR (SHIFTED LEFT) --- */
         .modal-content::-webkit-scrollbar {
             width: 8px;
         }
         .modal-content::-webkit-scrollbar-track {
-            background: rgba(255, 255, 255, 0.03);
-            border-radius: 10px;
-            /* Відступи зверху і знизу, щоб не заходити за rounded corners */
-            margin: 24px 0; 
+            background: transparent;
+            margin: 24px 0;
         }
         .modal-content::-webkit-scrollbar-thumb {
             background: var(--accent);
             border-radius: 10px;
             border: 2px solid transparent;
             background-clip: content-box;
+            margin-right: 16px; /* ЗСУВ СКРОЛБАРУ ЛІВОРУЧ */
         }
         .modal-content::-webkit-scrollbar-thumb:hover {
             background: #ff8c5a;
@@ -136,13 +142,13 @@
         .modal-gallery { 
             display: flex; 
             flex-direction: column; 
-            gap: 60px; /* ЗБІЛЬШЕНО ВІДСТУП МІЖ ФОТО */
+            gap: 60px; 
             align-items: center; 
         }
 
         .modal-img { 
             width: 100%; 
-            max-width: 1500px; /* МАКСИМАЛЬНА ШИРИНА КАРТИНКИ */
+            max-width: 1500px; 
             border-radius: 12px; 
             box-shadow: 0 10px 30px rgba(0,0,0,0.5); 
         }
@@ -155,7 +161,8 @@
             .lang-switch { justify-content: center; padding-left: 0; margin-top: 5px; }
             .portfolio-grid { grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 15px; }
             .portfolio-container { padding-top: 140px; }
-            .modal-content { padding: 30px 20px; width: 98%; }
+            .modal-content { width: 98%; }
+            .modal-inner-wrapper { padding: 30px 20px; }
             .modal-title { font-size: 1.6rem; margin-bottom: 5px; }
             .modal-subtitle { font-size: 0.85rem; margin-bottom: 25px; }
             .modal-gallery { gap: 30px; }
@@ -210,13 +217,17 @@
     <!-- MODAL OVERLAY -->
     <div class="modal-overlay" id="project-modal" onclick="closeModal(event)">
         <div class="modal-content" onclick="event.stopPropagation()">
-            <button class="modal-close" onclick="closeModal()">&times;</button>
-            <h2 class="modal-title" id="modal-title">Project Title</h2>
-            <p class="modal-subtitle" id="modal-subtitle">Category</p>
-            
-            <div class="modal-gallery" id="modal-gallery">
-                <!-- Сюди JS буде вставляти картинки -->
+            <!-- НОВИЙ WRAPPER ДЛЯ КОНТЕНТУ -->
+            <div class="modal-inner-wrapper">
+                <button class="modal-close" onclick="closeModal()">&times;</button>
+                <h2 class="modal-title" id="modal-title">Project Title</h2>
+                <p class="modal-subtitle" id="modal-subtitle">Category</p>
+                
+                <div class="modal-gallery" id="modal-gallery">
+                    <!-- Сюди JS буде вставляти картинки -->
+                </div>
             </div>
+            <!-- КІНЕЦЬ WRAPPER -->
         </div>
     </div>
 
@@ -276,7 +287,6 @@
 
             modalGallery.innerHTML = '';
             
-            // Отримуємо поточну мову для модалки
             const currentLang = localStorage.getItem('site_lang') || 'uk';
             modalTitle.innerText = currentLang === 'uk' ? project.title_ua : project.title_en;
             modalSubtitle.innerText = currentLang === 'uk' ? project.subtitle_ua : project.subtitle_en;
