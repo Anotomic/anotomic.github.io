@@ -58,15 +58,70 @@
         .portfolio-item-title { font-size: 1.2rem; font-weight: 700; margin-bottom: 5px; color: var(--text-main); }
         .portfolio-item-category { font-size: 0.85rem; color: var(--accent); text-transform: uppercase; letter-spacing: 1px; font-weight: 600; }
 
-        /* --- MODAL LIGHTBOX --- */
-        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.9); backdrop-filter: blur(10px); z-index: 2000; display: none; justify-content: center; align-items: center; opacity: 0; transition: opacity 0.3s ease; }
+        /* --- MODAL LIGHTBOX (ОБНОВЛЕНО) --- */
+        .modal-overlay { 
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+            background: rgba(0, 0, 0, 0.92); 
+            backdrop-filter: blur(12px); 
+            z-index: 2000; 
+            display: none; 
+            justify-content: center; 
+            align-items: center; 
+            opacity: 0; 
+            transition: opacity 0.3s ease; 
+        }
         .modal-overlay.active { display: flex; opacity: 1; }
-        .modal-content { width: 90%; max-width: 1400px; max-height: 90vh; background: var(--hud-bg); border: 1px solid var(--hud-border); border-radius: 24px; padding: 40px; position: relative; overflow-y: auto; box-shadow: 0 30px 80px rgba(0,0,0,0.8); }
-        .modal-close { position: absolute; top: 20px; right: 25px; background: none; border: none; color: var(--text-muted); font-size: 2rem; cursor: pointer; transition: color 0.3s; z-index: 10; }
+        
+        .modal-content { 
+            width: 95%; /* Більше ширина для більших картинок */
+            max-width: 1600px; 
+            max-height: 92vh; 
+            background: var(--hud-bg); 
+            border: 1px solid var(--hud-border); 
+            border-radius: 24px; 
+            padding: 50px; /* Більше внутрішній відступ */
+            position: relative; 
+            overflow-y: auto; 
+            box-shadow: 0 30px 80px rgba(0,0,0,0.8); 
+        }
+        
+        .modal-close { 
+            position: absolute; top: 25px; right: 30px; 
+            background: none; border: none; 
+            color: var(--text-muted); font-size: 2.2rem; 
+            cursor: pointer; transition: color 0.3s; z-index: 10; 
+        }
         .modal-close:hover { color: var(--accent); }
-        .modal-title { font-size: 2rem; font-weight: 900; margin-bottom: 30px; color: var(--text-main); text-align: center; }
-        .modal-gallery { display: flex; flex-direction: column; gap: 20px; align-items: center; }
-        .modal-img { width: 100%; max-width: 1000px; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        
+        .modal-title { 
+            font-size: 2.2rem; font-weight: 900; 
+            margin-bottom: 10px; color: var(--text-main); 
+            text-align: center; 
+        }
+        
+        .modal-subtitle {
+            font-size: 1rem;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 40px; /* Відступ до галереї */
+        }
+
+        .modal-gallery { 
+            display: flex; 
+            flex-direction: column; 
+            gap: 40px; /* ЗБІЛЬШЕНО ВІДСТУП МІЖ ФОТО */
+            align-items: center; 
+        }
+
+        .modal-img { 
+            width: 100%; 
+            max-width: 1400px; /* МАКСИМАЛЬНА ШИРИНА КАРТИНКИ */
+            border-radius: 12px; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5); 
+        }
 
         /* Адаптивність */
         @media (max-width: 1000px) {
@@ -76,10 +131,16 @@
             .lang-switch { justify-content: center; padding-left: 0; margin-top: 5px; }
             .portfolio-grid { grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 15px; }
             .portfolio-container { padding-top: 140px; }
-            .modal-content { padding: 20px; width: 95%; }
-            .modal-title { font-size: 1.5rem; margin-bottom: 20px; }
+            .modal-content { padding: 30px 20px; width: 98%; }
+            .modal-title { font-size: 1.6rem; margin-bottom: 5px; }
+            .modal-subtitle { font-size: 0.85rem; margin-bottom: 25px; }
+            .modal-gallery { gap: 25px; }
+            .modal-img { max-width: 100%; }
         }
-        @media (max-width: 600px) { .portfolio-grid { grid-template-columns: 1fr 1fr; } }
+        @media (max-width: 600px) { 
+            .portfolio-grid { grid-template-columns: 1fr 1fr; } 
+            .modal-close { top: 15px; right: 20px; font-size: 1.8rem; }
+        }
     </style>
 </head>
 <body>
@@ -111,22 +172,14 @@
 
         <div class="portfolio-grid">
             <!-- РОБОТА 1: ODIN -->
-            <!-- ЗВЕРНИ УВАГУ НА ШЛЯХ ДО THUMBNAIL В ПАПЦІ Odin -->
             <div class="portfolio-item" onclick="openModal('odin')">
                 <img src="assets/images/portfolio/Odin/Odin-Thumbnail_Serhii_Prytula.jpg" alt="Odin King" class="portfolio-img">
                 <div class="portfolio-overlay">
-                    <div class="portfolio-item-title">Odin King</div>
-                    <div class="portfolio-item-category">Character Sculpting</div>
+                    <!-- ОНОВЛЕНА НАЗВА ТА КАТЕГОРІЯ -->
+                    <div class="portfolio-item-title">Odin - Realms of the Ascended</div>
+                    <div class="portfolio-item-category">Character Game-Ready Production</div>
                 </div>
             </div>
-
-            <!-- ЩОБ ДОДАТИ НОВУ РОБОТУ:
-                 1. Створи папку assets/images/portfolio/NewProjectName/
-                 2. Закинь туди thumbnail.jpg та інші рендери
-                 3. Скопіюй блок .portfolio-item вище
-                 4. Зміни onclick="openModal('newproject')" та шлях до картинки
-                 5. Додай дані проєкту в JS об'єкт projectsData нижче 
-            -->
             
         </div>
     </section>
@@ -135,9 +188,12 @@
     <div class="modal-overlay" id="project-modal" onclick="closeModal(event)">
         <div class="modal-content" onclick="event.stopPropagation()">
             <button class="modal-close" onclick="closeModal()">&times;</button>
+            <!-- ТИТУЛ ТА ПІДЗАГОЛОВОК МОДАЛКИ -->
             <h2 class="modal-title" id="modal-title">Project Title</h2>
+            <p class="modal-subtitle" id="modal-subtitle">Category</p>
+            
             <div class="modal-gallery" id="modal-gallery">
-                <!-- Сюди JS буде вставляти картинки з папки проєкту -->
+                <!-- Сюди JS буде вставляти картинки -->
             </div>
         </div>
     </div>
@@ -163,25 +219,21 @@
 
         // --- ЛОГІКА МОДАЛЬНОГО ВІКНА ---
         
-        // База даних проєктів. 
-        // КОЖЕН ПРОЄКТ МАЄ СВОЮ ОКРЕМУ ПАПКУ В assets/images/portfolio/
+        // База даних проєктів
         const projectsData = {
             'odin': {
-                title: 'Odin King',
+                title: 'Odin - Realms of the Ascended', // ОНОВЛЕНА НАЗВА
+                subtitle: 'Character Game-Ready Production', // ДОДАНО ПІДЗАГОЛОВОК
                 images: [
                     'assets/images/portfolio/Odin/Odin-Full-Preview_Serhii_Prytula.jpg',
                     'assets/images/portfolio/Odin/Gungir_Odin_Serhii_Anotomic_Prytula.jpg'
                 ]
             }
-            // Приклад для наступного проєкту:
-            // 'mjolnir': {
-            //     title: 'Mjolnir Warrior',
-            //     images: ['assets/images/portfolio/Mjolnir/render-01.jpg']
-            // }
         };
 
         const modal = document.getElementById('project-modal');
         const modalTitle = document.getElementById('modal-title');
+        const modalSubtitle = document.getElementById('modal-subtitle'); // НОВИЙ ЕЛЕМЕНТ
         const modalGallery = document.getElementById('modal-gallery');
 
         function openModal(projectId) {
@@ -190,6 +242,7 @@
 
             modalGallery.innerHTML = '';
             modalTitle.innerText = project.title;
+            modalSubtitle.innerText = project.subtitle; // ВСТАНОВЛЮЄМО ПІДЗАГОЛОВОК
 
             project.images.forEach(imgSrc => {
                 const img = document.createElement('img');
