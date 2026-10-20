@@ -27,7 +27,7 @@
             min-height: 100vh;
         }
 
-        /* --- HUD NAVIGATION (КОПІЯ) --- */
+        /* --- HUD NAVIGATION --- */
         .hud-wrapper {
             position: fixed; top: 0; left: 0; right: 0;
             display: flex; justify-content: center; z-index: 1000; pointer-events: none;
@@ -63,17 +63,20 @@
         .lang-btn { background: none; border: none; color: var(--text-muted); font-weight: 700; cursor: pointer; font-size: 15px; transition: color 0.3s; }
         .lang-btn.active-lang { color: var(--text-main); }
 
-        /* --- BLOG SECTION STYLES --- */
+        /* --- BLOG SECTION STYLES (EMPTY STATE) --- */
         .blog-container {
             padding: 160px 20px 80px;
-            max-width: 900px; /* Вужчий контейнер для комфортного читання */
+            max-width: 900px;
             margin: 0 auto;
+            min-height: 60vh; /* Мінімальна висота, щоб не виглядало зламаним */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
         }
 
-        .blog-header {
-            text-align: center;
-            margin-bottom: 60px;
-        }
+        .blog-header { margin-bottom: 0; }
 
         .blog-title {
             font-size: clamp(2rem, 4vw, 3rem);
@@ -86,94 +89,14 @@
             font-size: 1.1rem;
             color: var(--text-muted);
             line-height: 1.6;
+            max-width: 600px;
         }
 
-        /* Список статей */
-        .blog-list {
-            display: flex;
-            flex-direction: column;
-            gap: 30px;
-        }
-
-        .blog-card {
-            background-color: #1e1e1e;
-            border-radius: 20px;
-            overflow: hidden;
-            display: flex;
-            border: 1px solid rgba(255,255,255,0.03);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            cursor: pointer;
-            text-decoration: none;
-            color: inherit;
-        }
-
-        .blog-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.4);
-            border-color: rgba(255, 107, 53, 0.2);
-        }
-
-        .blog-image {
-            width: 35%;
-            min-height: 220px;
-            object-fit: cover;
-            flex-shrink: 0;
-        }
-
-        .blog-content {
-            padding: 30px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            flex: 1;
-        }
-
-        .blog-meta {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            margin-bottom: 12px;
-            font-size: 0.85rem;
-            color: var(--accent);
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .blog-date {
-            color: var(--text-muted);
-            text-transform: none;
-            letter-spacing: 0;
-            font-weight: 400;
-        }
-
-        .blog-card-title {
-            font-size: 1.4rem;
-            font-weight: 700;
-            margin-bottom: 10px;
-            line-height: 1.3;
-            color: var(--text-main);
-        }
-
-        .blog-excerpt {
-            font-size: 1rem;
-            color: var(--text-muted);
-            line-height: 1.6;
+        /* Іконка або декоративний елемент для пустого стану */
+        .empty-state-icon {
+            font-size: 3rem;
+            color: rgba(255, 107, 53, 0.2);
             margin-bottom: 20px;
-        }
-
-        .read-more {
-            font-size: 0.9rem;
-            font-weight: 700;
-            color: var(--accent);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            transition: gap 0.3s ease;
-        }
-
-        .blog-card:hover .read-more {
-            gap: 12px;
         }
 
         /* Адаптивність */
@@ -182,15 +105,7 @@
             .nav-spacer { display: none; }
             .nav-links { flex-wrap: wrap; justify-content: center; gap: 20px; }
             .lang-switch { justify-content: center; padding-left: 0; margin-top: 5px; }
-            
             .blog-container { padding-top: 140px; }
-        }
-
-        @media (max-width: 700px) {
-            .blog-card { flex-direction: column; }
-            .blog-image { width: 100%; min-height: 200px; }
-            .blog-content { padding: 25px; }
-            .blog-card-title { font-size: 1.2rem; }
         }
     </style>
 </head>
@@ -215,44 +130,12 @@
         </nav>
     </div>
 
-    <!-- BLOG CONTENT -->
+    <!-- BLOG CONTENT (EMPTY) -->
     <section class="blog-container">
         <div class="blog-header">
+            <i class="fas fa-pen-nib empty-state-icon"></i>
             <h1 class="blog-title" data-key="blog_title">Блог</h1>
-            <p class="blog-subtitle" data-key="blog_desc">Туторіали, інсайти з індустрії та процес створення персонажів.</p>
-        </div>
-
-        <div class="blog-list">
-            <!-- СТАТТЯ 1 -->
-            <a href="#" class="blog-card">
-                <!-- ЗАМІНИ src НА КАРТИНКУ ДО СТАТТІ -->
-                <img src="Mjolnir__Upper_Preview_Serhii_Anotomic_Prytula.jpg" alt="ZBrush Tips" class="blog-image">
-                <div class="blog-content">
-                    <div class="blog-meta">
-                        <span data-key="cat_tutorial">Tutorial</span>
-                        <span class="blog-date">Oct 15, 2026</span>
-                    </div>
-                    <h2 class="blog-card-title" data-key="post_1_title">5 помилок у ZBrush, які роблять 90% новачків</h2>
-                    <p class="blog-excerpt" data-key="post_1_excerpt">Розбираємо типові технічні та художні помилки на початковому етапі скульптингу та як їх виправити...</p>
-                    <div class="read-more" data-key="read_more">Читати далі <i class="fas fa-arrow-right"></i></div>
-                </div>
-            </a>
-
-            <!-- СТАТТЯ 2 -->
-            <a href="#" class="blog-card">
-                <img src="Odin_Full_Preview_Front_Serhii_Anotomic_Prytula.jpg" alt="Industry Insights" class="blog-image">
-                <div class="blog-content">
-                    <div class="blog-meta">
-                        <span data-key="cat_insights">Industry</span>
-                        <span class="blog-date">Sep 28, 2026</span>
-                    </div>
-                    <h2 class="blog-card-title" data-key="post_2_title">Що студії очікують від 3D-художника у 2026 році</h2>
-                    <p class="blog-excerpt" data-key="post_2_excerpt">Аналіз вимог до портфоліо, soft skills та технічних навичок для Junior/Middle позицій...</p>
-                    <div class="read-more" data-key="read_more">Читати далі <i class="fas fa-arrow-right"></i></div>
-                </div>
-            </a>
-
-            <!-- ДОДАЙ БІЛЬШЕ СТАТЕЙ ТУТ -->
+            <p class="blog-subtitle" data-key="blog_desc">Туторіали, інсайти з індустрії та процес створення персонажів. Скоро тут з'являться перші публікації.</p>
         </div>
     </section>
 
@@ -262,24 +145,12 @@
             uk: { 
                 nav_home: "Головна", nav_port: "Портфоліо", nav_about: "Про мене", nav_blog: "Блог", nav_contact: "Зв'язатися",
                 blog_title: "Блог", 
-                blog_desc: "Туторіали, інсайти з індустрії та процес створення персонажів.",
-                cat_tutorial: "Туторіал", cat_insights: "Індустрія",
-                post_1_title: "5 помилок у ZBrush, які роблять 90% новачків",
-                post_1_excerpt: "Розбираємо типові технічні та художні помилки на початковому етапі скульптингу та як їх виправити...",
-                post_2_title: "Що студії очікують від 3D-художника у 2026 році",
-                post_2_excerpt: "Аналіз вимог до портфоліо, soft skills та технічних навичок для Junior/Middle позицій...",
-                read_more: "Читати далі"
+                blog_desc: "Туторіали, інсайти з індустрії та процес створення персонажів. Скоро тут з'являться перші публікації."
             },
             en: { 
                 nav_home: "Home", nav_port: "Portfolio", nav_about: "About", nav_blog: "Blog", nav_contact: "Contact Me",
                 blog_title: "Blog", 
-                blog_desc: "Tutorials, industry insights, and character creation process.",
-                cat_tutorial: "Tutorial", cat_insights: "Industry",
-                post_1_title: "5 ZBrush Mistakes 90% of Beginners Make",
-                post_1_excerpt: "Breaking down common technical and artistic mistakes in early sculpting stages and how to fix them...",
-                post_2_title: "What Studios Expect from a 3D Artist in 2026",
-                post_2_excerpt: "Analysis of portfolio requirements, soft skills, and technical abilities for Junior/Middle positions...",
-                read_more: "Read more"
+                blog_desc: "Tutorials, industry insights, and character creation process. First posts coming soon."
             }
         };
 
