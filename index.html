@@ -13,7 +13,7 @@
             --text-main: #ffffff;
             --text-muted: #888888;
             --accent: #ff6b35;
-            --hud-bg: rgba(10, 10, 10, 0.7);
+            --hud-bg: rgba(10, 10, 10, 0.6);
             --hud-border: rgba(255, 255, 255, 0.08);
         }
 
@@ -27,7 +27,7 @@
             min-height: 200vh;
         }
 
-        /* --- HUD NAVIGATION (WIDER) --- */
+        /* --- HUD NAVIGATION (БЕЗ ЗМІН) --- */
         .hud-wrapper {
             position: fixed; top: 0; left: 0; right: 0;
             display: flex; justify-content: center; z-index: 1000; pointer-events: none;
@@ -36,14 +36,14 @@
             pointer-events: auto; background: var(--hud-bg);
             backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px);
             border: 1px solid var(--hud-border); border-top: none; 
-            border-radius: 0 0 24px 24px; padding: 22px 40px; 
-            width: 90%; max-width: 1400px; /* ЗБІЛЬШЕНО ШИРИНУ */
+            border-radius: 0 0 24px 24px; padding: 22px 30px; 
+            width: 60%; max-width: 900px;
             display: grid; grid-template-columns: 1fr auto 1fr; align-items: center;
             box-shadow: 0 10px 40px rgba(0,0,0,0.5);
             transition: transform 0.3s ease;
         }
         .nav-spacer { visibility: hidden; }
-        .nav-links { display: flex; list-style: none; gap: 40px; justify-content: center; }
+        .nav-links { display: flex; list-style: none; gap: 35px; justify-content: center; }
         .nav-links a {
             text-decoration: none; color: var(--text-muted); font-size: 15px; font-weight: 700;
             text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s; cursor: pointer; position: relative;
@@ -54,7 +54,7 @@
             background: var(--accent); box-shadow: 0 0 8px var(--accent);
         }
         .btn-contact {
-            border: 1px solid var(--accent); padding: 8px 24px; border-radius: 30px;
+            border: 1px solid var(--accent); padding: 8px 20px; border-radius: 30px;
             color: var(--accent) !important; transition: all 0.3s;
         }
         .btn-contact:hover { background: var(--accent); color: #fff !important; box-shadow: 0 0 15px rgba(255, 107, 53, 0.4); }
@@ -64,9 +64,7 @@
         .lang-btn.active-lang { color: var(--text-main); }
 
         /* --- HERO SECTION --- */
-        .hero-container {
-            position: relative; height: 100vh; width: 100%; overflow: hidden;
-        }
+        .hero-container { position: relative; height: 100vh; width: 100%; overflow: hidden; }
         .slide-bg {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
             background-size: cover; background-position: center;
@@ -91,31 +89,21 @@
 
         /* --- COURSE SECTION --- */
         .curtain-section {
-            position: relative; z-index: 10;
-            background-color: var(--bg-color);
-            min-height: 100vh;
-            margin-top: 0;
-            padding: 80px 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            position: relative; z-index: 10; background-color: var(--bg-color);
+            min-height: 100vh; margin-top: 0; padding: 80px 20px;
+            display: flex; align-items: center; justify-content: center;
         }
         .course-banner {
             width: 95%; max-width: 1400px; height: 400px;
             background: linear-gradient(135deg, #151515 0%, #0d0d0d 100%);
             border: 1px solid rgba(255,255,255,0.05); border-radius: 16px;
-            box-shadow: 0 30px 80px rgba(0,0,0,0.6);
-            display: flex; overflow: visible; position: relative;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.6); display: flex; overflow: visible; position: relative;
         }
         .course-content {
             width: 45%; padding: 50px; display: flex; flex-direction: column;
-            justify-content: center; z-index: 2;
-            background: linear-gradient(to right, #0a0a0a 50%, transparent 100%);
+            justify-content: center; z-index: 2; background: linear-gradient(to right, #0a0a0a 50%, transparent 100%);
         }
-        .course-label {
-            font-size: 14px; color: var(--accent); text-transform: uppercase;
-            letter-spacing: 2px; font-weight: 700; margin-bottom: 12px;
-        }
+        .course-label { font-size: 14px; color: var(--accent); text-transform: uppercase; letter-spacing: 2px; font-weight: 700; margin-bottom: 12px; }
         .course-title { font-size: 42px; font-weight: 900; line-height: 1.1; margin-bottom: 15px; color: #fff; }
         .course-desc { font-size: 17px; color: #999; line-height: 1.5; margin-bottom: 30px; max-width: 95%; }
         .course-btn {
@@ -124,9 +112,7 @@
             width: fit-content; transition: all 0.3s; border: none; cursor: pointer;
         }
         .course-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 20px rgba(255, 107, 53, 0.3); background: #ff7b4d; }
-        .course-image-area {
-            width: 55%; position: relative; display: flex; align-items: center; justify-content: center;
-        }
+        .course-image-area { width: 55%; position: relative; display: flex; align-items: center; justify-content: center; }
         .breakout-img {
             position: absolute; top: -60px; right: 5%; width: 480px; height: auto; z-index: 2000;
             filter: drop-shadow(0 30px 60px rgba(0,0,0,0.9));
@@ -139,81 +125,70 @@
             to { opacity: 1; transform: perspective(1000px) rotateY(-10deg) rotateX(5deg) translateY(0); }
         }
 
-        /* --- ABOUT SECTION WITH BACKGROUND SLIDESHOW --- */
+        /* --- ABOUT SECTION (ОБНОВЛЕНО) --- */
         .about-page-container {
             position: relative;
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 140px 20px 60px;
+            padding: 140px 20px;
             overflow: hidden;
         }
 
-        /* Фоновий слайдер для About */
-        .about-bg-slider {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
+        /* Фонове слайд-шоу для About */
+        .about-bg-slide {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background-size: cover; background-position: center;
+            opacity: 0; transition: opacity 1.5s ease-in-out;
+            filter: brightness(0.3) blur(2px); /* Сильніше затемнення та блюр для читабельності */
             z-index: 0;
         }
-        .about-slide {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background-size: cover;
-            background-position: center;
-            opacity: 0;
-            transition: opacity 1.5s ease-in-out;
-            filter: brightness(0.3) blur(2px); /* Затемнення + легкий блюр для читабельності тексту */
-        }
-        .about-slide.visible { opacity: 1; }
+        .about-bg-slide.visible { opacity: 1; }
 
         .about-card {
             position: relative;
             z-index: 1;
-            background-color: rgba(30, 30, 30, 0.85); /* Напівпрозорий фон картки */
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            border-radius: 24px;
-            padding: 50px;
-            max-width: 1000px;
-            width: 100%;
+            background-color: rgba(30, 30, 30, 0.85); /* Напівпрозорий фон */
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 30px;
+            padding: 60px;
+            width: 95%; /* РОЗТЯГНУТО МАЙЖЕ НА ВЕСЬ ЕКРАН */
+            max-width: 1600px; /* Максимальна ширина для великих моніторів */
             display: flex;
             align-items: center;
-            gap: 50px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+            gap: 60px;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.6);
             border: 1px solid rgba(255,255,255,0.05);
         }
 
         .about-content { flex: 1; }
 
         .about-name {
-            font-size: 2.8rem;
+            font-size: clamp(2rem, 4vw, 3.2rem); /* Адаптивний розмір */
             font-weight: 900;
             margin: 0 0 15px 0;
             line-height: 1.2;
             color: var(--text-main);
         }
-        
+
         .about-role {
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             color: #b0b0b0;
-            margin: 0 0 30px 0;
+            margin: 0 0 35px 0;
             font-weight: 500;
+            letter-spacing: 0.5px;
         }
 
-        .skills-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 12px;
-            margin-bottom: 35px;
-        }
+        .skills-container { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 40px; }
 
         .skill-pill {
             background-color: rgba(42, 42, 42, 0.8);
             color: var(--accent);
-            padding: 10px 20px;
+            padding: 12px 24px;
             border-radius: 50px;
-            font-size: 0.95rem;
+            font-size: 1rem;
             font-weight: 700;
             display: flex;
             align-items: center;
@@ -221,92 +196,57 @@
             border: 1px solid rgba(255, 107, 53, 0.15);
             transition: all 0.3s ease;
         }
+        .skill-pill:hover { border-color: var(--accent); background-color: rgba(255, 107, 53, 0.08); transform: translateY(-2px); }
 
-        .skill-pill:hover {
-            border-color: var(--accent);
-            background-color: rgba(255, 107, 53, 0.1);
-            transform: translateY(-2px);
-        }
-
-        .social-links { display: flex; gap: 25px; }
-
+        .social-links { display: flex; gap: 20px; }
         .social-icon {
-            color: var(--accent);
-            font-size: 1.8rem;
-            text-decoration: none;
+            color: var(--accent); font-size: 1.6rem; text-decoration: none;
             transition: transform 0.2s ease, opacity 0.2s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: rgba(255, 107, 53, 0.08);
+            display: flex; align-items: center; justify-content: center;
+            width: 44px; height: 44px; border-radius: 50%;
+            background: rgba(255, 107, 53, 0.05);
         }
-
-        .social-icon:hover {
-            transform: scale(1.15);
-            opacity: 0.8;
-            background: rgba(255, 107, 53, 0.2);
-        }
+        .social-icon:hover { transform: scale(1.15); opacity: 0.8; background: rgba(255, 107, 53, 0.15); }
 
         .about-image-wrapper {
             flex-shrink: 0;
-            width: 320px;
-            height: 320px;
+            width: 350px;
+            height: 350px;
             position: relative;
         }
-
         .about-avatar {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 50%;
-            border: 4px solid var(--accent);
-            box-shadow: 0 0 30px rgba(255, 107, 53, 0.2);
+            width: 100%; height: 100%; object-fit: cover;
+            border-radius: 50%; border: 4px solid var(--accent);
+            box-shadow: 0 0 40px rgba(255, 107, 53, 0.2);
         }
 
         /* --- OTHER SECTIONS --- */
         .page-section { display: none; min-height: 100vh; width: 100%; animation: fadeIn 0.5s ease forwards; }
         .page-section.active-page { display: block; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-
         .content-placeholder { padding-top: 160px; text-align: center; max-width: 800px; margin: 0 auto; padding: 160px 20px 0; }
         .content-placeholder h2 { font-size: 42px; margin-bottom: 20px; color: var(--accent); }
         .content-placeholder p { font-size: 18px; color: #999; line-height: 1.6; }
 
         /* --- RESPONSIVE --- */
         @media (max-width: 1000px) {
-            .hud-nav { 
-                grid-template-columns: 1fr; 
-                width: 95%; /* На мобільному теж широко */
-                padding: 20px; 
-                gap: 15px; 
-            }
+            .hud-nav { grid-template-columns: 1fr; width: 90%; padding: 20px; gap: 15px; }
             .nav-spacer { display: none; }
             .nav-links { flex-wrap: wrap; justify-content: center; gap: 20px; }
             .lang-switch { justify-content: center; padding-left: 0; margin-top: 5px; }
-            
             .hero-fade-overlay { width: 100%; background: linear-gradient(to top, rgba(10,10,10,0.8) 0%, transparent 100%); }
             .hero-content-wrapper { width: 100%; justify-content: center; text-align: center; padding: 0 20px; }
             .hero-text { text-align: center; }
-            
             .course-banner { flex-direction: column; height: auto; overflow: hidden; }
             .course-content { width: 100%; padding: 40px 30px; background: #0a0a0a; }
             .course-image-area { width: 100%; height: 350px; margin-top: 20px; }
             .breakout-img { position: relative; top: 0; right: 0; width: 60%; transform: none; z-index: 10; animation: none; opacity: 1; }
-
-            .about-card {
-                flex-direction: column-reverse;
-                text-align: center;
-                padding: 30px 20px;
-                gap: 30px;
-                background-color: rgba(30, 30, 30, 0.95); /* Менш прозорий на мобільному для кращої читабельності */
-            }
-            .about-name { font-size: 2rem; }
+            
+            /* About Mobile */
+            .about-card { flex-direction: column-reverse; text-align: center; padding: 30px 20px; gap: 30px; width: 95%; }
             .skills-container { justify-content: center; }
             .social-links { justify-content: center; }
-            .about-image-wrapper { width: 220px; height: 220px; }
+            .about-image-wrapper { width: 240px; height: 240px; }
         }
     </style>
 </head>
@@ -335,7 +275,6 @@
         <div class="hero-container">
             <div class="slide-bg visible" style="background-image: url('Mjolnir__Upper_Preview_Serhii_Anotomic_Prytula.jpg');"></div>
             <div class="slide-bg" style="background-image: url('Odin_Full_Preview_Front_Serhii_Anotomic_Prytula.jpg');"></div>
-            
             <div class="hero-fade-overlay"></div>
             <div class="hero-content-wrapper">
                 <div class="hero-text">
@@ -345,18 +284,14 @@
                 </div>
             </div>
         </div>
-
         <div class="curtain-section">
             <div class="course-banner">
                 <div class="course-content">
                     <span class="course-label" data-key="course_label">Beginners Course</span>
                     <h2 class="course-title" data-key="course_title">Zbrush for Beginners</h2>
-                    <p class="course-desc" data-key="course_desc">
-                        Master ZBrush sculpting with confidence! A step-by-step course for beginners: from basics to your first 3D character portrait from scratch.
-                    </p>
+                    <p class="course-desc" data-key="course_desc">Master ZBrush sculpting with confidence! A step-by-step course for beginners: from basics to your first 3D character portrait from scratch.</p>
                     <button class="course-btn" data-key="course_btn">Learn more</button>
                 </div>
-                
                 <div class="course-image-area">
                     <img src="Course_Zbrush_for_Beginner_Serhii_Prytula.png" alt="Zbrush Course Box" class="breakout-img fade-in-up">
                 </div>
@@ -367,21 +302,17 @@
     <!-- PORTFOLIO SECTION -->
     <section id="page-portfolio" class="page-section"><div class="content-placeholder"><h2 data-key="port_title">Портфоліо</h2><p data-key="port_desc">Тут буде ваша галерея робіт.</p></div></section>
 
-    <!-- ABOUT SECTION (UPDATED WITH BG SLIDESHOW & TRANSLATION) -->
+    <!-- ABOUT SECTION (ОБНОВЛЕНО) -->
     <section id="page-about" class="page-section">
         <div class="about-page-container">
-            <!-- Фоновий слайдер для About -->
-            <div class="about-bg-slider">
-                <!-- ЗАМІНИ ПОСИЛАННЯ НА СВОЇ ФОТО ДЛЯ ФОНУ ABOUT -->
-                <div class="about-slide visible" style="background-image: url('Mjolnir__Upper_Preview_Serhii_Anotomic_Prytula.jpg');"></div>
-                <div class="about-slide" style="background-image: url('Odin_Full_Preview_Front_Serhii_Anotomic_Prytula.jpg');"></div>
-            </div>
-
+            <!-- Фонове слайд-шоу для About -->
+            <div class="about-bg-slide visible" style="background-image: url('Mjolnir__Upper_Preview_Serhii_Anotomic_Prytula.jpg');"></div>
+            <div class="about-bg-slide" style="background-image: url('Odin_Full_Preview_Front_Serhii_Anotomic_Prytula.jpg');"></div>
+            
             <div class="about-card">
                 <div class="about-content">
-                    <!-- Ім'я тепер повністю керується через data-key -->
+                    <!-- Ім'я тепер повністю керується через i18n без дужок -->
                     <h1 class="about-name" data-key="about_name_ua">Сергій В'ячеславович Притула</h1>
-                    
                     <p class="about-role" data-key="about_role">Traditional & Digital 3D Character Sculptor based in Ukraine.</p>
                     
                     <div class="skills-container">
@@ -400,8 +331,8 @@
                 </div>
 
                 <div class="about-image-wrapper">
-                    <!-- ЗАМІНИ ПОСИЛАННЯ НА СВОЄ ФОТО АВАТАРА -->
-                    <img src="Serhii_Prytula.jpg" class="about-avatar">
+                    <!-- ЗАМІНИ НА СВОЄ ФОТО -->
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Serhii Prytula Avatar" class="about-avatar">
                 </div>
             </div>
         </div>
@@ -433,13 +364,69 @@
             if(activeLink) activeLink.classList.add('active-link');
         };
 
-        // Слайдшоу для головної
-        const heroSlides = document.querySelectorAll('.hero-container .slide-bg');
-        let currentHeroSlide = 0;
+        // Головне слайд-шоу
+        const slides = document.querySelectorAll('.hero-container .slide-bg');
+        let currentSlide = 0;
         setInterval(() => {
-            heroSlides[currentHeroSlide].classList.remove('visible');
-            currentHeroSlide = (currentHeroSlide + 1) % heroSlides.length;
-            heroSlides[currentHeroSlide].classList.add('visible');
+            slides[currentSlide].classList.remove('visible');
+            currentSlide = (currentSlide + 1) % slides.length;
+            slides[currentSlide].classList.add('visible');
         }, 5000);
 
-       
+        // Слайд-шоу для About секції
+        const aboutSlides = document.querySelectorAll('.about-bg-slide');
+        let currentAboutSlide = 0;
+        setInterval(() => {
+            aboutSlides[currentAboutSlide].classList.remove('visible');
+            currentAboutSlide = (currentAboutSlide + 1) % aboutSlides.length;
+            aboutSlides[currentAboutSlide].classList.add('visible');
+        }, 5000);
+
+        const i18n = {
+            uk: { 
+                nav_home: "Головна", nav_port: "Портфоліо", nav_about: "Про мене", nav_blog: "Блог", nav_contact: "Зв'язатися", 
+                hero_sub: "Відданий 3D художник персонажів для вашої гри чи проєкту", 
+                hero_role: "Anotomic. Zbrush / 3D Художник Персонажів", 
+                course_label: "Курс для початківців", course_title: "Zbrush для початківців", 
+                course_desc: "Опануйте скульптинг у ZBrush легко та впевнено! Покроковий курс для початківців: від основ до вашого першого 3D-портрета персонажа з нуля.",
+                course_btn: "Дізнатися більше",
+                port_title: "Портфоліо", port_desc: "Тут буде ваша галерея робіт.", 
+                about_name_ua: "Сергій В'ячеславович Притула",
+                about_name_en: "Serhii Viacheslavovych Prytula",
+                about_role: "Traditional & Digital 3D Character Sculptor based in Ukraine.",
+                skill_1: "Character Design", skill_2: "Sculpting", skill_3: "Texturing", skill_4: "Rendering",
+                blog_title: "Блог", blog_desc: "Статті та туторіали.", 
+                contact_title: "Зв'язатися", contact_desc: "Контактна інформація." 
+            },
+            en: { 
+                nav_home: "Home", nav_port: "Portfolio", nav_about: "About", nav_blog: "Blog", nav_contact: "Contact Me", 
+                hero_sub: "Dedicated 3D Character Artist for your game or personal project", 
+                hero_role: "Anotomic. Zbrush / 3D Character Artist", 
+                course_label: "Beginners Course", course_title: "Zbrush for Beginners", 
+                course_desc: "Master ZBrush sculpting with confidence! A step-by-step course for beginners: from basics to your first 3D character portrait from scratch.",
+                course_btn: "Learn more",
+                port_title: "Portfolio", port_desc: "Your gallery of works will be here.", 
+                about_name_ua: "Сергій В'ячеславович Притула",
+                about_name_en: "Serhii Viacheslavovych Prytula",
+                about_role: "Traditional & Digital 3D Character Sculptor based in Ukraine.",
+                skill_1: "Character Design", skill_2: "Sculpting", skill_3: "Texturing", skill_4: "Rendering",
+                blog_title: "Blog", blog_desc: "Articles and tutorials.", 
+                contact_title: "Contact Me", contact_desc: "Contact information." 
+            }
+        };
+
+        function setLang(lang) {
+            localStorage.setItem('site_lang', lang);
+            document.querySelectorAll('[data-key]').forEach(el => { 
+                const key = el.getAttribute('data-key'); 
+                if(i18n[lang][key]) el.innerText = i18n[lang][key]; 
+            });
+            document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active-lang'));
+            document.querySelector(`.lang-btn[onclick="setLang('${lang}')"]`).classList.add('active-lang');
+        }
+
+        const savedLang = localStorage.getItem('site_lang') || 'uk'; setLang(savedLang);
+        const path = window.location.pathname.replace('/', ''); if(path && document.getElementById(`page-${path}`)) navigateTo(path);
+    </script>
+</body>
+</html>
