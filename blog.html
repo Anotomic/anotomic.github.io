@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog | Serhii Prytula</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;900&display=swap');
+
+        :root {
+            --bg-color: #0a0a0a;
+            --text-main: #ffffff;
+            --text-muted: #888888;
+            --accent: #ff6b35;
+            --hud-bg: rgba(10, 10, 10, 0.6);
+            --hud-border: rgba(255, 255, 255, 0.08);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* --- HUD NAVIGATION (КОПІЯ) --- */
+        .hud-wrapper {
+            position: fixed; top: 0; left: 0; right: 0;
+            display: flex; justify-content: center; z-index: 1000; pointer-events: none;
+        }
+        .hud-nav {
+            pointer-events: auto; background: var(--hud-bg);
+            backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px);
+            border: 1px solid var(--hud-border); border-top: none; 
+            border-radius: 0 0 24px 24px; padding: 22px 30px; 
+            width: 60%; max-width: 900px;
+            display: grid; grid-template-columns: 1fr auto 1fr; align-items: center;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+            transition: transform 0.3s ease;
+        }
+        .nav-spacer { visibility: hidden; }
+        .nav-links { display: flex; list-style: none; gap: 35px; justify-content: center; }
+        .nav-links a {
+            text-decoration: none; color: var(--text-muted); font-size: 15px; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s; cursor: pointer; position: relative;
+        }
+        .nav-links a:hover, .nav-links a.active-link { color: var(--text-main); text-shadow: 0 0 12px rgba(255,255,255,0.3); }
+        .nav-links a.active-link::after {
+            content: ''; position: absolute; bottom: -6px; left: 0; width: 100%; height: 2px;
+            background: var(--accent); box-shadow: 0 0 8px var(--accent);
+        }
+        .btn-contact {
+            border: 1px solid var(--accent); padding: 8px 20px; border-radius: 30px;
+            color: var(--accent) !important; transition: all 0.3s;
+        }
+        .btn-contact:hover { background: var(--accent); color: #fff !important; box-shadow: 0 0 15px rgba(255, 107, 53, 0.4); }
+        .btn-contact::after { display: none !important; }
+        .lang-switch { display: flex; gap: 12px; justify-content: flex-end; padding-left: 20px; }
+        .lang-btn { background: none; border: none; color: var(--text-muted); font-weight: 700; cursor: pointer; font-size: 15px; transition: color 0.3s; }
+        .lang-btn.active-lang { color: var(--text-main); }
+
+        /* --- BLOG SECTION STYLES --- */
+        .blog-container {
+            padding: 160px 20px 80px;
+            max-width: 900px; /* Вужчий контейнер для комфортного читання */
+            margin: 0 auto;
+        }
+
+        .blog-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .blog-title {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 900;
+            margin-bottom: 15px;
+            color: var(--text-main);
+        }
+
+        .blog-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        /* Список статей */
+        .blog-list {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .blog-card {
+            background-color: #1e1e1e;
+            border-radius: 20px;
+            overflow: hidden;
+            display: flex;
+            border: 1px solid rgba(255,255,255,0.03);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+            border-color: rgba(255, 107, 53, 0.2);
+        }
+
+        .blog-image {
+            width: 35%;
+            min-height: 220px;
+            object-fit: cover;
+            flex-shrink: 0;
+        }
+
+        .blog-content {
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            flex: 1;
+        }
+
+        .blog-meta {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 12px;
+            font-size: 0.85rem;
+            color: var(--accent);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .blog-date {
+            color: var(--text-muted);
+            text-transform: none;
+            letter-spacing: 0;
+            font-weight: 400;
+        }
+
+        .blog-card-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            line-height: 1.3;
+            color: var(--text-main);
+        }
+
+        .blog-excerpt {
+            font-size: 1rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .read-more {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--accent);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: gap 0.3s ease;
+        }
+
+        .blog-card:hover .read-more {
+            gap: 12px;
+        }
+
+        /* Адаптивність */
+        @media (max-width: 1000px) {
+            .hud-nav { grid-template-columns: 1fr; width: 90%; padding: 20px; gap: 15px; }
+            .nav-spacer { display: none; }
+            .nav-links { flex-wrap: wrap; justify-content: center; gap: 20px; }
+            .lang-switch { justify-content: center; padding-left: 0; margin-top: 5px; }
+            
+            .blog-container { padding-top: 140px; }
+        }
+
+        @media (max-width: 700px) {
+            .blog-card { flex-direction: column; }
+            .blog-image { width: 100%; min-height: 200px; }
+            .blog-content { padding: 25px; }
+            .blog-card-title { font-size: 1.2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HUD NAVIGATION -->
+    <div class="hud-wrapper">
+        <nav class="hud-nav">
+            <div class="nav-spacer"></div>
+            <ul class="nav-links">
+                <li><a href="index.html" id="link-home" data-key="nav_home">Головна</a></li>
+                <li><a href="portfolio.html" id="link-portfolio" data-key="nav_port">Портфоліо</a></li>
+                <li><a href="about.html" id="link-about" data-key="nav_about">Про мене</a></li>
+                <!-- АКТИВНИЙ СТАН НА БЛОГ -->
+                <li><a href="blog.html" id="link-blog" class="active-link" data-key="nav_blog">Блог</a></li>
+                <li><a href="contact.html" id="link-contact" class="btn-contact" data-key="nav_contact">Зв'язатися</a></li>
+            </ul>
+            <div class="lang-switch">
+                <button class="lang-btn active-lang" onclick="setLang('uk')">UA</button>
+                <button class="lang-btn" onclick="setLang('en')">EN</button>
+            </div>
+        </nav>
+    </div>
+
+    <!-- BLOG CONTENT -->
+    <section class="blog-container">
+        <div class="blog-header">
+            <h1 class="blog-title" data-key="blog_title">Блог</h1>
+            <p class="blog-subtitle" data-key="blog_desc">Туторіали, інсайти з індустрії та процес створення персонажів.</p>
+        </div>
+
+        <div class="blog-list">
+            <!-- СТАТТЯ 1 -->
+            <a href="#" class="blog-card">
+                <!-- ЗАМІНИ src НА КАРТИНКУ ДО СТАТТІ -->
+                <img src="Mjolnir__Upper_Preview_Serhii_Anotomic_Prytula.jpg" alt="ZBrush Tips" class="blog-image">
+                <div class="blog-content">
+                    <div class="blog-meta">
+                        <span data-key="cat_tutorial">Tutorial</span>
+                        <span class="blog-date">Oct 15, 2026</span>
+                    </div>
+                    <h2 class="blog-card-title" data-key="post_1_title">5 помилок у ZBrush, які роблять 90% новачків</h2>
+                    <p class="blog-excerpt" data-key="post_1_excerpt">Розбираємо типові технічні та художні помилки на початковому етапі скульптингу та як їх виправити...</p>
+                    <div class="read-more" data-key="read_more">Читати далі <i class="fas fa-arrow-right"></i></div>
+                </div>
+            </a>
+
+            <!-- СТАТТЯ 2 -->
+            <a href="#" class="blog-card">
+                <img src="Odin_Full_Preview_Front_Serhii_Anotomic_Prytula.jpg" alt="Industry Insights" class="blog-image">
+                <div class="blog-content">
+                    <div class="blog-meta">
+                        <span data-key="cat_insights">Industry</span>
+                        <span class="blog-date">Sep 28, 2026</span>
+                    </div>
+                    <h2 class="blog-card-title" data-key="post_2_title">Що студії очікують від 3D-художника у 2026 році</h2>
+                    <p class="blog-excerpt" data-key="post_2_excerpt">Аналіз вимог до портфоліо, soft skills та технічних навичок для Junior/Middle позицій...</p>
+                    <div class="read-more" data-key="read_more">Читати далі <i class="fas fa-arrow-right"></i></div>
+                </div>
+            </a>
+
+            <!-- ДОДАЙ БІЛЬШЕ СТАТЕЙ ТУТ -->
+        </div>
+    </section>
+
+    <!-- SCRIPT ДЛЯ МОВИ -->
+    <script>
+        const i18n = {
+            uk: { 
+                nav_home: "Головна", nav_port: "Портфоліо", nav_about: "Про мене", nav_blog: "Блог", nav_contact: "Зв'язатися",
+                blog_title: "Блог", 
+                blog_desc: "Туторіали, інсайти з індустрії та процес створення персонажів.",
+                cat_tutorial: "Туторіал", cat_insights: "Індустрія",
+                post_1_title: "5 помилок у ZBrush, які роблять 90% новачків",
+                post_1_excerpt: "Розбираємо типові технічні та художні помилки на початковому етапі скульптингу та як їх виправити...",
+                post_2_title: "Що студії очікують від 3D-художника у 2026 році",
+                post_2_excerpt: "Аналіз вимог до портфоліо, soft skills та технічних навичок для Junior/Middle позицій...",
+                read_more: "Читати далі"
+            },
+            en: { 
+                nav_home: "Home", nav_port: "Portfolio", nav_about: "About", nav_blog: "Blog", nav_contact: "Contact Me",
+                blog_title: "Blog", 
+                blog_desc: "Tutorials, industry insights, and character creation process.",
+                cat_tutorial: "Tutorial", cat_insights: "Industry",
+                post_1_title: "5 ZBrush Mistakes 90% of Beginners Make",
+                post_1_excerpt: "Breaking down common technical and artistic mistakes in early sculpting stages and how to fix them...",
+                post_2_title: "What Studios Expect from a 3D Artist in 2026",
+                post_2_excerpt: "Analysis of portfolio requirements, soft skills, and technical abilities for Junior/Middle positions...",
+                read_more: "Read more"
+            }
+        };
+
+        function setLang(lang) {
+            localStorage.setItem('site_lang', lang);
+            document.querySelectorAll('[data-key]').forEach(el => { 
+                const key = el.getAttribute('data-key'); 
+                if(i18n[lang][key]) el.innerText = i18n[lang][key]; 
+            });
+            document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active-lang'));
+            document.querySelector(`.lang-btn[onclick="setLang('${lang}')"]`).classList.add('active-lang');
+        }
+
+        const savedLang = localStorage.getItem('site_lang') || 'uk'; setLang(savedLang);
+    </script>
+</body>
+</html>
