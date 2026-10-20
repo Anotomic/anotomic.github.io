@@ -58,7 +58,7 @@
         .portfolio-item-title { font-size: 1.2rem; font-weight: 700; margin-bottom: 5px; color: var(--text-main); }
         .portfolio-item-category { font-size: 0.85rem; color: var(--accent); text-transform: uppercase; letter-spacing: 1px; font-weight: 600; }
 
-        /* --- MODAL LIGHTBOX (ОБНОВЛЕНО) --- */
+        /* --- MODAL LIGHTBOX --- */
         .modal-overlay { 
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
             background: rgba(0, 0, 0, 0.92); 
@@ -73,16 +73,39 @@
         .modal-overlay.active { display: flex; opacity: 1; }
         
         .modal-content { 
-            width: 95%; /* Більше ширина для більших картинок */
+            width: 95%; 
             max-width: 1600px; 
             max-height: 92vh; 
             background: var(--hud-bg); 
             border: 1px solid var(--hud-border); 
             border-radius: 24px; 
-            padding: 50px; /* Більше внутрішній відступ */
+            padding: 50px; 
             position: relative; 
             overflow-y: auto; 
             box-shadow: 0 30px 80px rgba(0,0,0,0.8); 
+            
+            /* Підтримка Firefox */
+            scrollbar-width: thin;
+            scrollbar-color: var(--accent) rgba(255, 255, 255, 0.03);
+        }
+        
+        /* --- CUSTOM SCROLLBAR (WEBKIT: CHROME, SAFARI, EDGE) --- */
+        .modal-content::-webkit-scrollbar {
+            width: 8px;
+        }
+        .modal-content::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 10px;
+            margin: 10px 0;
+        }
+        .modal-content::-webkit-scrollbar-thumb {
+            background: var(--accent);
+            border-radius: 10px;
+            border: 2px solid transparent;
+            background-clip: content-box;
+        }
+        .modal-content::-webkit-scrollbar-thumb:hover {
+            background: #ff8c5a;
         }
         
         .modal-close { 
@@ -106,19 +129,19 @@
             letter-spacing: 2px;
             font-weight: 600;
             text-align: center;
-            margin-bottom: 40px; /* Відступ до галереї */
+            margin-bottom: 40px;
         }
 
         .modal-gallery { 
             display: flex; 
             flex-direction: column; 
-            gap: 40px; /* ЗБІЛЬШЕНО ВІДСТУП МІЖ ФОТО */
+            gap: 40px; 
             align-items: center; 
         }
 
         .modal-img { 
             width: 100%; 
-            max-width: 1400px; /* МАКСИМАЛЬНА ШИРИНА КАРТИНКИ */
+            max-width: 1400px; 
             border-radius: 12px; 
             box-shadow: 0 10px 30px rgba(0,0,0,0.5); 
         }
@@ -175,7 +198,6 @@
             <div class="portfolio-item" onclick="openModal('odin')">
                 <img src="assets/images/portfolio/Odin/Odin-Thumbnail_Serhii_Prytula.jpg" alt="Odin King" class="portfolio-img">
                 <div class="portfolio-overlay">
-                    <!-- ОНОВЛЕНА НАЗВА ТА КАТЕГОРІЯ -->
                     <div class="portfolio-item-title">Odin - Realms of the Ascended</div>
                     <div class="portfolio-item-category">Character Game-Ready Production</div>
                 </div>
@@ -188,7 +210,6 @@
     <div class="modal-overlay" id="project-modal" onclick="closeModal(event)">
         <div class="modal-content" onclick="event.stopPropagation()">
             <button class="modal-close" onclick="closeModal()">&times;</button>
-            <!-- ТИТУЛ ТА ПІДЗАГОЛОВОК МОДАЛКИ -->
             <h2 class="modal-title" id="modal-title">Project Title</h2>
             <p class="modal-subtitle" id="modal-subtitle">Category</p>
             
@@ -218,12 +239,10 @@
         const savedLang = localStorage.getItem('site_lang') || 'uk'; setLang(savedLang);
 
         // --- ЛОГІКА МОДАЛЬНОГО ВІКНА ---
-        
-        // База даних проєктів
         const projectsData = {
             'odin': {
-                title: 'Odin - Realms of the Ascended', // ОНОВЛЕНА НАЗВА
-                subtitle: 'Character Game-Ready Production', // ДОДАНО ПІДЗАГОЛОВОК
+                title: 'Odin - Realms of the Ascended',
+                subtitle: 'Character Game-Ready Production',
                 images: [
                     'assets/images/portfolio/Odin/Odin-Full-Preview_Serhii_Prytula.jpg',
                     'assets/images/portfolio/Odin/Gungir_Odin_Serhii_Anotomic_Prytula.jpg'
@@ -233,7 +252,7 @@
 
         const modal = document.getElementById('project-modal');
         const modalTitle = document.getElementById('modal-title');
-        const modalSubtitle = document.getElementById('modal-subtitle'); // НОВИЙ ЕЛЕМЕНТ
+        const modalSubtitle = document.getElementById('modal-subtitle');
         const modalGallery = document.getElementById('modal-gallery');
 
         function openModal(projectId) {
@@ -242,7 +261,7 @@
 
             modalGallery.innerHTML = '';
             modalTitle.innerText = project.title;
-            modalSubtitle.innerText = project.subtitle; // ВСТАНОВЛЮЄМО ПІДЗАГОЛОВОК
+            modalSubtitle.innerText = project.subtitle;
 
             project.images.forEach(imgSrc => {
                 const img = document.createElement('img');
