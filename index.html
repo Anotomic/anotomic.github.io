@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Serhii Prytula | 3D Character Artist</title>
-    <!-- Підключаємо іконки FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;900&display=swap');
@@ -14,7 +13,7 @@
             --text-main: #ffffff;
             --text-muted: #888888;
             --accent: #ff6b35;
-            --hud-bg: rgba(10, 10, 10, 0.6);
+            --hud-bg: rgba(10, 10, 10, 0.7);
             --hud-border: rgba(255, 255, 255, 0.08);
         }
 
@@ -28,7 +27,7 @@
             min-height: 200vh;
         }
 
-        /* --- HUD NAVIGATION --- */
+        /* --- HUD NAVIGATION (WIDER) --- */
         .hud-wrapper {
             position: fixed; top: 0; left: 0; right: 0;
             display: flex; justify-content: center; z-index: 1000; pointer-events: none;
@@ -37,14 +36,14 @@
             pointer-events: auto; background: var(--hud-bg);
             backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px);
             border: 1px solid var(--hud-border); border-top: none; 
-            border-radius: 0 0 24px 24px; padding: 22px 30px; 
-            width: 60%; max-width: 900px;
+            border-radius: 0 0 24px 24px; padding: 22px 40px; 
+            width: 90%; max-width: 1400px; /* ЗБІЛЬШЕНО ШИРИНУ */
             display: grid; grid-template-columns: 1fr auto 1fr; align-items: center;
             box-shadow: 0 10px 40px rgba(0,0,0,0.5);
             transition: transform 0.3s ease;
         }
         .nav-spacer { visibility: hidden; }
-        .nav-links { display: flex; list-style: none; gap: 35px; justify-content: center; }
+        .nav-links { display: flex; list-style: none; gap: 40px; justify-content: center; }
         .nav-links a {
             text-decoration: none; color: var(--text-muted); font-size: 15px; font-weight: 700;
             text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s; cursor: pointer; position: relative;
@@ -55,7 +54,7 @@
             background: var(--accent); box-shadow: 0 0 8px var(--accent);
         }
         .btn-contact {
-            border: 1px solid var(--accent); padding: 8px 20px; border-radius: 30px;
+            border: 1px solid var(--accent); padding: 8px 24px; border-radius: 30px;
             color: var(--accent) !important; transition: all 0.3s;
         }
         .btn-contact:hover { background: var(--accent); color: #fff !important; box-shadow: 0 0 15px rgba(255, 107, 53, 0.4); }
@@ -140,19 +139,40 @@
             to { opacity: 1; transform: perspective(1000px) rotateY(-10deg) rotateX(5deg) translateY(0); }
         }
 
-        /* --- ABOUT SECTION STYLES (NEW) --- */
+        /* --- ABOUT SECTION WITH BACKGROUND SLIDESHOW --- */
         .about-page-container {
-            padding-top: 140px; /* Відступ від HUD */
+            position: relative;
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding-left: 20px;
-            padding-right: 20px;
+            padding: 140px 20px 60px;
+            overflow: hidden;
         }
 
+        /* Фоновий слайдер для About */
+        .about-bg-slider {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 0;
+        }
+        .about-slide {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            transition: opacity 1.5s ease-in-out;
+            filter: brightness(0.3) blur(2px); /* Затемнення + легкий блюр для читабельності тексту */
+        }
+        .about-slide.visible { opacity: 1; }
+
         .about-card {
-            background-color: #1e1e1e;
+            position: relative;
+            z-index: 1;
+            background-color: rgba(30, 30, 30, 0.85); /* Напівпрозорий фон картки */
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
             border-radius: 24px;
             padding: 50px;
             max-width: 1000px;
@@ -160,8 +180,8 @@
             display: flex;
             align-items: center;
             gap: 50px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.4);
-            border: 1px solid rgba(255,255,255,0.03);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+            border: 1px solid rgba(255,255,255,0.05);
         }
 
         .about-content { flex: 1; }
@@ -174,15 +194,6 @@
             color: var(--text-main);
         }
         
-        .about-name span {
-            display: block;
-            font-size: 1.2rem;
-            font-weight: 500;
-            color: var(--text-muted);
-            margin-top: 5px;
-            letter-spacing: 0.5px;
-        }
-
         .about-role {
             font-size: 1.2rem;
             color: #b0b0b0;
@@ -198,7 +209,7 @@
         }
 
         .skill-pill {
-            background-color: #2a2a2a;
+            background-color: rgba(42, 42, 42, 0.8);
             color: var(--accent);
             padding: 10px 20px;
             border-radius: 50px;
@@ -207,13 +218,13 @@
             display: flex;
             align-items: center;
             gap: 10px;
-            border: 1px solid rgba(255, 107, 53, 0.1);
+            border: 1px solid rgba(255, 107, 53, 0.15);
             transition: all 0.3s ease;
         }
 
         .skill-pill:hover {
             border-color: var(--accent);
-            background-color: rgba(255, 107, 53, 0.05);
+            background-color: rgba(255, 107, 53, 0.1);
             transform: translateY(-2px);
         }
 
@@ -230,13 +241,13 @@
             width: 40px;
             height: 40px;
             border-radius: 50%;
-            background: rgba(255, 107, 53, 0.05);
+            background: rgba(255, 107, 53, 0.08);
         }
 
         .social-icon:hover {
             transform: scale(1.15);
             opacity: 0.8;
-            background: rgba(255, 107, 53, 0.15);
+            background: rgba(255, 107, 53, 0.2);
         }
 
         .about-image-wrapper {
@@ -252,10 +263,10 @@
             object-fit: cover;
             border-radius: 50%;
             border: 4px solid var(--accent);
-            box-shadow: 0 0 30px rgba(255, 107, 53, 0.15);
+            box-shadow: 0 0 30px rgba(255, 107, 53, 0.2);
         }
 
-        /* --- OTHER SECTIONS PLACEHOLDERS --- */
+        /* --- OTHER SECTIONS --- */
         .page-section { display: none; min-height: 100vh; width: 100%; animation: fadeIn 0.5s ease forwards; }
         .page-section.active-page { display: block; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
@@ -266,7 +277,12 @@
 
         /* --- RESPONSIVE --- */
         @media (max-width: 1000px) {
-            .hud-nav { grid-template-columns: 1fr; width: 90%; padding: 20px; gap: 15px; }
+            .hud-nav { 
+                grid-template-columns: 1fr; 
+                width: 95%; /* На мобільному теж широко */
+                padding: 20px; 
+                gap: 15px; 
+            }
             .nav-spacer { display: none; }
             .nav-links { flex-wrap: wrap; justify-content: center; gap: 20px; }
             .lang-switch { justify-content: center; padding-left: 0; margin-top: 5px; }
@@ -280,12 +296,12 @@
             .course-image-area { width: 100%; height: 350px; margin-top: 20px; }
             .breakout-img { position: relative; top: 0; right: 0; width: 60%; transform: none; z-index: 10; animation: none; opacity: 1; }
 
-            /* About Mobile Responsive */
             .about-card {
                 flex-direction: column-reverse;
                 text-align: center;
                 padding: 30px 20px;
                 gap: 30px;
+                background-color: rgba(30, 30, 30, 0.95); /* Менш прозорий на мобільному для кращої читабельності */
             }
             .about-name { font-size: 2rem; }
             .skills-container { justify-content: center; }
@@ -351,16 +367,21 @@
     <!-- PORTFOLIO SECTION -->
     <section id="page-portfolio" class="page-section"><div class="content-placeholder"><h2 data-key="port_title">Портфоліо</h2><p data-key="port_desc">Тут буде ваша галерея робіт.</p></div></section>
 
-    <!-- ABOUT SECTION (UPDATED) -->
+    <!-- ABOUT SECTION (UPDATED WITH BG SLIDESHOW & TRANSLATION) -->
     <section id="page-about" class="page-section">
         <div class="about-page-container">
+            <!-- Фоновий слайдер для About -->
+            <div class="about-bg-slider">
+                <!-- ЗАМІНИ ПОСИЛАННЯ НА СВОЇ ФОТО ДЛЯ ФОНУ ABOUT -->
+                <div class="about-slide visible" style="background-image: url('Mjolnir__Upper_Preview_Serhii_Anotomic_Prytula.jpg');"></div>
+                <div class="about-slide" style="background-image: url('Odin_Full_Preview_Front_Serhii_Anotomic_Prytula.jpg');"></div>
+            </div>
+
             <div class="about-card">
-                <!-- Ліва частина: Інформація -->
                 <div class="about-content">
-                    <h1 class="about-name">
-                        Сергій В'ячеславович Притула
-                        <span>(Serhii Viacheslavovych Prytula)</span>
-                    </h1>
+                    <!-- Ім'я тепер повністю керується через data-key -->
+                    <h1 class="about-name" data-key="about_name_ua">Сергій В'ячеславович Притула</h1>
+                    
                     <p class="about-role" data-key="about_role">Traditional & Digital 3D Character Sculptor based in Ukraine.</p>
                     
                     <div class="skills-container">
@@ -378,10 +399,9 @@
                     </div>
                 </div>
 
-                <!-- Права частина: Аватар -->
                 <div class="about-image-wrapper">
-                    <!-- ЗАМІНИ ПОСИЛАННЯ НА СВОЄ ФОТО -->
-                    <img src="Serhii_Prytula.jpg" alt="Serhii Prytula Avatar" class="about-avatar">
+                    <!-- ЗАМІНИ ПОСИЛАННЯ НА СВОЄ ФОТО АВАТАРА -->
+                    <img src="Serhii_Prytula.jpg" class="about-avatar">
                 </div>
             </div>
         </div>
@@ -413,55 +433,13 @@
             if(activeLink) activeLink.classList.add('active-link');
         };
 
-        const slides = document.querySelectorAll('.slide-bg');
-        let currentSlide = 0;
+        // Слайдшоу для головної
+        const heroSlides = document.querySelectorAll('.hero-container .slide-bg');
+        let currentHeroSlide = 0;
         setInterval(() => {
-            slides[currentSlide].classList.remove('visible');
-            currentSlide = (currentSlide + 1) % slides.length;
-            slides[currentSlide].classList.add('visible');
+            heroSlides[currentHeroSlide].classList.remove('visible');
+            currentHeroSlide = (currentHeroSlide + 1) % heroSlides.length;
+            heroSlides[currentHeroSlide].classList.add('visible');
         }, 5000);
 
-        const i18n = {
-            uk: { 
-                nav_home: "Головна", nav_port: "Портфоліо", nav_about: "Про мене", nav_blog: "Блог", nav_contact: "Зв'язатися", 
-                hero_sub: "Відданий 3D художник персонажів для вашої гри чи проєкту", 
-                hero_role: "Anotomic. Zbrush / 3D Художник Персонажів", 
-                course_label: "Курс для початківців", course_title: "Zbrush для початківців", 
-                course_desc: "Опануйте скульптинг у ZBrush легко та впевнено! Покроковий курс для початківців: від основ до вашого першого 3D-портрета персонажа з нуля.",
-                course_btn: "Дізнатися більше",
-                port_title: "Портфоліо", port_desc: "Тут буде ваша галерея робіт.", 
-                about_role: "Traditional & Digital 3D Character Sculptor based in Ukraine.",
-                skill_1: "Character Design", skill_2: "Sculpting", skill_3: "Texturing", skill_4: "Rendering",
-                blog_title: "Блог", blog_desc: "Статті та туторіали.", 
-                contact_title: "Зв'язатися", contact_desc: "Контактна інформація." 
-            },
-            en: { 
-                nav_home: "Home", nav_port: "Portfolio", nav_about: "About", nav_blog: "Blog", nav_contact: "Contact Me", 
-                hero_sub: "Dedicated 3D Character Artist for your game or personal project", 
-                hero_role: "Anotomic. Zbrush / 3D Character Artist", 
-                course_label: "Beginners Course", course_title: "Zbrush for Beginners", 
-                course_desc: "Master ZBrush sculpting with confidence! A step-by-step course for beginners: from basics to your first 3D character portrait from scratch.",
-                course_btn: "Learn more",
-                port_title: "Portfolio", port_desc: "Your gallery of works will be here.", 
-                about_role: "Traditional & Digital 3D Character Sculptor based in Ukraine.",
-                skill_1: "Character Design", skill_2: "Sculpting", skill_3: "Texturing", skill_4: "Rendering",
-                blog_title: "Blog", blog_desc: "Articles and tutorials.", 
-                contact_title: "Contact Me", contact_desc: "Contact information." 
-            }
-        };
-
-        function setLang(lang) {
-            localStorage.setItem('site_lang', lang);
-            document.querySelectorAll('[data-key]').forEach(el => { 
-                const key = el.getAttribute('data-key'); 
-                if(i18n[lang][key]) el.innerText = i18n[lang][key]; 
-            });
-            document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active-lang'));
-            document.querySelector(`.lang-btn[onclick="setLang('${lang}')"]`).classList.add('active-lang');
-        }
-
-        const savedLang = localStorage.getItem('site_lang') || 'uk'; setLang(savedLang);
-        const path = window.location.pathname.replace('/', ''); if(path && document.getElementById(`page-${path}`)) navigateTo(path);
-    </script>
-</body>
-</html>
+       
