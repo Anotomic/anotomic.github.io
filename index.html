@@ -27,7 +27,7 @@
             min-height: 200vh;
         }
 
-        /* --- HUD NAVIGATION (БЕЗ ЗМІН) --- */
+        /* --- HUD NAVIGATION --- */
         .hud-wrapper {
             position: fixed; top: 0; left: 0; right: 0;
             display: flex; justify-content: center; z-index: 1000; pointer-events: none;
@@ -125,33 +125,29 @@
             to { opacity: 1; transform: perspective(1000px) rotateY(-10deg) rotateX(5deg) translateY(0); }
         }
 
-        /* --- ABOUT SECTION (ОБНОВЛЕНО) --- */
+        /* --- ABOUT SECTION --- */
         .about-page-container {
             position: relative;
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            /* Збільшено відступ зверху, щоб картка була нижче і видно більше фону */
             padding: 180px 20px 60px; 
             overflow: hidden;
         }
 
-        /* Статичний фон без слайд-шоу */
         .about-static-bg {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            /* ЗАМІНИ НА СВОЮ КАРТИНКУ ДЛЯ ФОНУ ABOUT */
             background-image: url('Mjolnir__Upper_Preview_Serhii_Anotomic_Prytula.jpg'); 
             background-size: cover; 
             background-position: center;
-            filter: brightness(0.4); /* Затемнення для читабельності тексту */
+            filter: brightness(0.4);
             z-index: 0;
         }
 
         .about-card {
             position: relative;
             z-index: 1;
-            /* Прибрано скло, зроблено суцільний темний фон */
             background-color: #1e1e1e; 
             border-radius: 30px;
             padding: 60px;
@@ -243,7 +239,6 @@
             .course-image-area { width: 100%; height: 350px; margin-top: 20px; }
             .breakout-img { position: relative; top: 0; right: 0; width: 60%; transform: none; z-index: 10; animation: none; opacity: 1; }
             
-            /* About Mobile */
             .about-card { flex-direction: column-reverse; text-align: center; padding: 30px 20px; gap: 30px; width: 95%; }
             .skills-container { justify-content: center; }
             .social-links { justify-content: center; }
@@ -304,16 +299,15 @@
     <!-- PORTFOLIO SECTION -->
     <section id="page-portfolio" class="page-section"><div class="content-placeholder"><h2 data-key="port_title">Портфоліо</h2><p data-key="port_desc">Тут буде ваша галерея робіт.</p></div></section>
 
-    <!-- ABOUT SECTION (ОБНОВЛЕНО) -->
+    <!-- ABOUT SECTION -->
     <section id="page-about" class="page-section">
         <div class="about-page-container">
-            <!-- Статичний фон без анімації -->
             <div class="about-static-bg"></div>
             
             <div class="about-card">
                 <div class="about-content">
-                    <h1 class="about-name" data-key="about_name_ua">Сергій В'ячеславович Притула</h1>
-                    <p class="about-role" data-key="about_role">Traditional & Digital 3D Character Sculptor based in Ukraine.</p>
+                    <h1 class="about-name" data-key="about_name">Сергій В'ячеславович Притула</h1>
+                    <p class="about-role" data-key="about_role">Традиційний та цифровий 3D-скульптор персонажів, Україна</p>
                     
                     <div class="skills-container">
                         <div class="skill-pill"><i class="fas fa-paint-brush"></i> <span data-key="skill_1">Character Design</span></div>
@@ -330,7 +324,6 @@
                 </div>
 
                 <div class="about-image-wrapper">
-                    <!-- Твоє реальне фото -->
                     <img src="Serhii_Prytula.jpg" alt="Serhii Prytula Avatar" class="about-avatar">
                 </div>
             </div>
@@ -344,26 +337,41 @@
     <section id="page-contact" class="page-section"><div class="content-placeholder"><h2 data-key="contact_title">Зв'язатися</h2><p data-key="contact_desc">Контактна інформація.</p></div></section>
 
     <script>
+        // Безпечна навігація для уникнення 404
         function navigateTo(pageId) {
+            const targetSection = document.getElementById(`page-${pageId}`);
+            if (!targetSection) {
+                console.warn(`Сторінка "${pageId}" не знайдена. Повернення на головну.`);
+                pageId = 'home';
+            }
+            
             history.pushState({ page: pageId }, '', `/${pageId === 'home' ? '' : pageId}`);
+            
             document.querySelectorAll('.page-section').forEach(sec => sec.classList.remove('active-page'));
             document.getElementById(`page-${pageId}`).classList.add('active-page');
+            
             document.querySelectorAll('.nav-links a').forEach(link => link.classList.remove('active-link'));
             const activeLink = document.getElementById(`link-${pageId}`);
             if(activeLink) activeLink.classList.add('active-link');
-            window.scrollTo(0, 0);
+            
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
+        // Обробка кнопки "Назад" в браузері
         window.onpopstate = function(event) {
             const page = event.state ? event.state.page : 'home';
+            const targetSection = document.getElementById(`page-${page}`);
+            const finalPage = targetSection ? page : 'home';
+            
             document.querySelectorAll('.page-section').forEach(sec => sec.classList.remove('active-page'));
-            document.getElementById(`page-${page}`).classList.add('active-page');
+            document.getElementById(`page-${finalPage}`).classList.add('active-page');
+            
             document.querySelectorAll('.nav-links a').forEach(link => link.classList.remove('active-link'));
-            const activeLink = document.getElementById(`link-${page}`);
+            const activeLink = document.getElementById(`link-${finalPage}`);
             if(activeLink) activeLink.classList.add('active-link');
         };
 
-        // Головне слайд-шоу (тільки для Hero)
+        // Головне слайд-шоу
         const slides = document.querySelectorAll('.hero-container .slide-bg');
         let currentSlide = 0;
         setInterval(() => {
@@ -372,6 +380,7 @@
             slides[currentSlide].classList.add('visible');
         }, 5000);
 
+        // Переклади
         const i18n = {
             uk: { 
                 nav_home: "Головна", nav_port: "Портфоліо", nav_about: "Про мене", nav_blog: "Блог", nav_contact: "Зв'язатися", 
@@ -381,9 +390,8 @@
                 course_desc: "Опануйте скульптинг у ZBrush легко та впевнено! Покроковий курс для початківців: від основ до вашого першого 3D-портрета персонажа з нуля.",
                 course_btn: "Дізнатися більше",
                 port_title: "Портфоліо", port_desc: "Тут буде ваша галерея робіт.", 
-                about_name_ua: "Сергій В'ячеславович Притула",
-                about_name_en: "Serhii Viacheslavovych Prytula",
-                about_role: "Traditional & Digital 3D Character Sculptor based in Ukraine.",
+                about_name: "Сергій В'ячеславович Притула",
+                about_role: "Традиційний та цифровий 3D-скульптор персонажів, Україна",
                 skill_1: "Character Design", skill_2: "Sculpting", skill_3: "Texturing", skill_4: "Rendering",
                 blog_title: "Блог", blog_desc: "Статті та туторіали.", 
                 contact_title: "Зв'язатися", contact_desc: "Контактна інформація." 
@@ -396,8 +404,7 @@
                 course_desc: "Master ZBrush sculpting with confidence! A step-by-step course for beginners: from basics to your first 3D character portrait from scratch.",
                 course_btn: "Learn more",
                 port_title: "Portfolio", port_desc: "Your gallery of works will be here.", 
-                about_name_ua: "Сергій В'ячеславович Притула",
-                about_name_en: "Serhii Viacheslavovych Prytula",
+                about_name: "Serhii Viacheslavovych Prytula",
                 about_role: "Traditional & Digital 3D Character Sculptor based in Ukraine.",
                 skill_1: "Character Design", skill_2: "Sculpting", skill_3: "Texturing", skill_4: "Rendering",
                 blog_title: "Blog", blog_desc: "Articles and tutorials.", 
@@ -416,7 +423,14 @@
         }
 
         const savedLang = localStorage.getItem('site_lang') || 'uk'; setLang(savedLang);
-        const path = window.location.pathname.replace('/', ''); if(path && document.getElementById(`page-${path}`)) navigateTo(path);
+        
+        // Безпечний запуск при завантаженні сторінки
+        const path = window.location.pathname.replace('/', ''); 
+        if(path && document.getElementById(`page-${path}`)) {
+            navigateTo(path);
+        } else if (path) {
+            navigateTo('home');
+        }
     </script>
 </body>
 </html>
