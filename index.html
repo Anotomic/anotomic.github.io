@@ -132,30 +132,31 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 140px 20px;
+            /* Збільшено відступ зверху, щоб картка була нижче і видно більше фону */
+            padding: 180px 20px 60px; 
             overflow: hidden;
         }
 
-        /* Фонове слайд-шоу для About */
-        .about-bg-slide {
+        /* Статичний фон без слайд-шоу */
+        .about-static-bg {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background-size: cover; background-position: center;
-            opacity: 0; transition: opacity 1.5s ease-in-out;
-            filter: brightness(0.3) blur(2px); /* Сильніше затемнення та блюр для читабельності */
+            /* ЗАМІНИ НА СВОЮ КАРТИНКУ ДЛЯ ФОНУ ABOUT */
+            background-image: url('Mjolnir__Upper_Preview_Serhii_Anotomic_Prytula.jpg'); 
+            background-size: cover; 
+            background-position: center;
+            filter: brightness(0.4); /* Затемнення для читабельності тексту */
             z-index: 0;
         }
-        .about-bg-slide.visible { opacity: 1; }
 
         .about-card {
             position: relative;
             z-index: 1;
-            background-color: rgba(30, 30, 30, 0.85); /* Напівпрозорий фон */
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
+            /* Прибрано скло, зроблено суцільний темний фон */
+            background-color: #1e1e1e; 
             border-radius: 30px;
             padding: 60px;
-            width: 95%; /* РОЗТЯГНУТО МАЙЖЕ НА ВЕСЬ ЕКРАН */
-            max-width: 1600px; /* Максимальна ширина для великих моніторів */
+            width: 95%;
+            max-width: 1600px;
             display: flex;
             align-items: center;
             gap: 60px;
@@ -166,7 +167,7 @@
         .about-content { flex: 1; }
 
         .about-name {
-            font-size: clamp(2rem, 4vw, 3.2rem); /* Адаптивний розмір */
+            font-size: clamp(2rem, 4vw, 3.2rem);
             font-weight: 900;
             margin: 0 0 15px 0;
             line-height: 1.2;
@@ -184,7 +185,7 @@
         .skills-container { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 40px; }
 
         .skill-pill {
-            background-color: rgba(42, 42, 42, 0.8);
+            background-color: #2a2a2a;
             color: var(--accent);
             padding: 12px 24px;
             border-radius: 50px;
@@ -247,6 +248,7 @@
             .skills-container { justify-content: center; }
             .social-links { justify-content: center; }
             .about-image-wrapper { width: 240px; height: 240px; }
+            .about-page-container { padding-top: 140px; }
         }
     </style>
 </head>
@@ -305,13 +307,11 @@
     <!-- ABOUT SECTION (ОБНОВЛЕНО) -->
     <section id="page-about" class="page-section">
         <div class="about-page-container">
-            <!-- Фонове слайд-шоу для About -->
-            <div class="about-bg-slide visible" style="background-image: url('Mjolnir__Upper_Preview_Serhii_Anotomic_Prytula.jpg');"></div>
-            <div class="about-bg-slide" style="background-image: url('Odin_Full_Preview_Front_Serhii_Anotomic_Prytula.jpg');"></div>
+            <!-- Статичний фон без анімації -->
+            <div class="about-static-bg"></div>
             
             <div class="about-card">
                 <div class="about-content">
-                    <!-- Ім'я тепер повністю керується через i18n без дужок -->
                     <h1 class="about-name" data-key="about_name_ua">Сергій В'ячеславович Притула</h1>
                     <p class="about-role" data-key="about_role">Traditional & Digital 3D Character Sculptor based in Ukraine.</p>
                     
@@ -323,15 +323,14 @@
                     </div>
 
                     <div class="social-links">
-                        <a href="#" class="social-icon" title="ArtStation"><i class="fab fa-artstation"></i></a>
-                        <a href="#" class="social-icon" title="Instagram"><i class="fab fa-instagram"></i></a>
-                        <a href="#" class="social-icon" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="#" class="social-icon" title="Behance"><i class="fab fa-behance"></i></a>
+                        <a href="https://www.artstation.com/anotomic" target="_blank" class="social-icon" title="ArtStation"><i class="fab fa-artstation"></i></a>
+                        <a href="https://www.instagram.com/anotomic/" target="_blank" class="social-icon" title="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.linkedin.com/in/serhii-prytula-0a96a52a6/" target="_blank" class="social-icon" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
                     </div>
                 </div>
 
                 <div class="about-image-wrapper">
-                    <!-- ЗАМІНИ НА СВОЄ ФОТО -->
+                    <!-- Твоє реальне фото -->
                     <img src="Serhii_Prytula.jpg" alt="Serhii Prytula Avatar" class="about-avatar">
                 </div>
             </div>
@@ -364,22 +363,13 @@
             if(activeLink) activeLink.classList.add('active-link');
         };
 
-        // Головне слайд-шоу
+        // Головне слайд-шоу (тільки для Hero)
         const slides = document.querySelectorAll('.hero-container .slide-bg');
         let currentSlide = 0;
         setInterval(() => {
             slides[currentSlide].classList.remove('visible');
             currentSlide = (currentSlide + 1) % slides.length;
             slides[currentSlide].classList.add('visible');
-        }, 5000);
-
-        // Слайд-шоу для About секції
-        const aboutSlides = document.querySelectorAll('.about-bg-slide');
-        let currentAboutSlide = 0;
-        setInterval(() => {
-            aboutSlides[currentAboutSlide].classList.remove('visible');
-            currentAboutSlide = (currentAboutSlide + 1) % aboutSlides.length;
-            aboutSlides[currentAboutSlide].classList.add('visible');
         }, 5000);
 
         const i18n = {
