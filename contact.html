@@ -42,21 +42,20 @@
         .lang-btn { background: none; border: none; color: var(--text-muted); font-weight: 700; cursor: pointer; font-size: 15px; transition: color 0.3s; }
         .lang-btn.active-lang { color: var(--text-main); }
 
-        /* --- CONTACT SECTION --- */
+        /* --- CONTACT SECTION (SIMPLIFIED) --- */
         .contact-container {
             padding: 160px 20px 80px;
-            max-width: 1000px;
+            max-width: 800px;
             margin: 0 auto;
             min-height: 80vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
+            align-items: center;
+            text-align: center;
         }
 
-        .contact-header {
-            text-align: center;
-            margin-bottom: 60px;
-        }
+        .contact-header { margin-bottom: 50px; }
 
         .contact-title {
             font-size: clamp(2rem, 4vw, 3rem);
@@ -68,125 +67,63 @@
         .contact-subtitle {
             font-size: 1.1rem;
             color: var(--text-muted);
-            max-width: 600px;
-            margin: 0 auto;
             line-height: 1.6;
+            max-width: 500px;
+            margin: 0 auto;
         }
 
-        /* Grid для контактів та форми */
-        .contact-grid {
-            display: grid;
-            grid-template-columns: 1fr 1.5fr;
-            gap: 40px;
-            align-items: start;
-        }
-
-        /* Блок прямих контактів */
-        .direct-contacts {
-            background: #1e1e1e;
-            padding: 40px;
-            border-radius: 24px;
-            border: 1px solid rgba(255,255,255,0.03);
-        }
-
-        .contact-item {
+        /* Cards for contacts */
+        .contact-cards {
             display: flex;
-            align-items: center;
-            gap: 15px;
-            margin-bottom: 25px;
+            gap: 20px;
+            width: 100%;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .contact-card {
+            background: #1e1e1e;
+            border: 1px solid rgba(255,255,255,0.03);
+            border-radius: 20px;
+            padding: 30px;
+            width: 280px;
             text-decoration: none;
             color: var(--text-main);
-            transition: transform 0.2s ease;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
         }
-        .contact-item:last-child { margin-bottom: 0; }
-        .contact-item:hover { transform: translateX(5px); color: var(--accent); }
 
-        .contact-icon {
-            width: 44px;
-            height: 44px;
-            border-radius: 12px;
+        .contact-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+            box-shadow: 0 10px 30px rgba(255, 107, 53, 0.1);
+        }
+
+        .card-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
             background: rgba(255, 107, 53, 0.1);
             color: var(--accent);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.2rem;
-            flex-shrink: 0;
+            font-size: 1.5rem;
+            margin-bottom: 5px;
         }
 
-        .contact-label {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 4px;
-        }
-
-        .contact-value {
-            font-size: 1rem;
-            font-weight: 600;
-        }
-
-        /* Форма */
-        .contact-form {
-            background: #1e1e1e;
-            padding: 40px;
-            border-radius: 24px;
-            border: 1px solid rgba(255,255,255,0.03);
-        }
-
-        .form-group { margin-bottom: 20px; }
-
-        .form-label {
-            display: block;
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 8px;
-            font-weight: 600;
-        }
-
-        .form-input, .form-textarea {
-            width: 100%;
-            background: #0a0a0a;
-            border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 12px;
-            padding: 14px 18px;
-            color: var(--text-main);
-            font-family: inherit;
-            font-size: 1rem;
-            transition: border-color 0.3s ease;
-            outline: none;
-        }
-
-        .form-input:focus, .form-textarea:focus {
-            border-color: var(--accent);
-        }
-
-        .form-textarea {
-            resize: vertical;
-            min-height: 120px;
-        }
-
-        .submit-btn {
-            width: 100%;
-            background: linear-gradient(135deg, var(--accent) 0%, #e55a2b 100%);
-            color: #fff;
-            border: none;
-            padding: 16px;
-            border-radius: 12px;
-            font-size: 1rem;
+        .card-title {
+            font-size: 1.1rem;
             font-weight: 700;
-            cursor: pointer;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-            text-transform: uppercase;
-            letter-spacing: 1px;
         }
 
-        .submit-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(255, 107, 53, 0.3);
+        .card-desc {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            line-height: 1.4;
         }
 
         /* Адаптивність */
@@ -195,9 +132,12 @@
             .nav-spacer { display: none; }
             .nav-links { flex-wrap: wrap; justify-content: center; gap: 20px; }
             .lang-switch { justify-content: center; padding-left: 0; margin-top: 5px; }
-            
             .contact-container { padding-top: 140px; }
-            .contact-grid { grid-template-columns: 1fr; gap: 30px; }
+        }
+
+        @media (max-width: 600px) {
+            .contact-cards { flex-direction: column; align-items: center; }
+            .contact-card { width: 100%; max-width: 320px; }
         }
     </style>
 </head>
@@ -212,7 +152,6 @@
                 <li><a href="portfolio.html" id="link-portfolio" data-key="nav_port">Портфоліо</a></li>
                 <li><a href="about.html" id="link-about" data-key="nav_about">Про мене</a></li>
                 <li><a href="blog.html" id="link-blog" data-key="nav_blog">Блог</a></li>
-                <!-- АКТИВНИЙ СТАН НА КОНТАКТИ -->
                 <li><a href="contact.html" id="link-contact" class="active-link btn-contact" data-key="nav_contact">Зв'язатися</a></li>
             </ul>
             <div class="lang-switch">
@@ -226,56 +165,23 @@
     <section class="contact-container">
         <div class="contact-header">
             <h1 class="contact-title" data-key="contact_title">Зв'язатися</h1>
-            <p class="contact-subtitle" data-key="contact_desc">Маєте проєкт або хочете навчатися? Оберіть зручний спосіб зв'язку.</p>
+            <p class="contact-subtitle" data-key="contact_desc">Найшвидший спосіб обговорити проєкт або навчання — написати мені напряму.</p>
         </div>
 
-        <div class="contact-grid">
-            <!-- ЛІВА КОЛОНКА: Прямі контакти -->
-            <div class="direct-contacts">
-                <a href="mailto:your-email@example.com" class="contact-item">
-                    <div class="contact-icon"><i class="fas fa-envelope"></i></div>
-                    <div>
-                        <div class="contact-label" data-key="label_email">Email</div>
-                        <div class="contact-value">your-email@example.com</div>
-                    </div>
-                </a>
-                
-                <a href="https://t.me/Anotomic" target="_blank" class="contact-item">
-                    <div class="contact-icon"><i class="fab fa-telegram-plane"></i></div>
-                    <div>
-                        <div class="contact-label" data-key="label_telegram">Telegram</div>
-                        <div class="contact-value">@Anotomic</div>
-                    </div>
-                </a>
+        <div class="contact-cards">
+            <!-- TELEGRAM CARD -->
+            <a href="https://t.me/Anotomic" target="_blank" class="contact-card">
+                <div class="card-icon"><i class="fab fa-telegram-plane"></i></div>
+                <div class="card-title" data-key="card_tg_title">Telegram</div>
+                <div class="card-desc" data-key="card_tg_desc">Напишіть мені в особисті. Відповідаю швидко. Можна скидати референси.</div>
+            </a>
 
-                <a href="https://www.artstation.com/anotomic" target="_blank" class="contact-item">
-                    <div class="contact-icon"><i class="fab fa-artstation"></i></div>
-                    <div>
-                        <div class="contact-label">ArtStation</div>
-                        <div class="contact-value">anotomic</div>
-                    </div>
-                </a>
-            </div>
-
-            <!-- ПРАВА КОЛОНКА: Форма -->
-            <form class="contact-form" onsubmit="event.preventDefault(); alert('Дякую! Повідомлення надіслано.');">
-                <div class="form-group">
-                    <label class="form-label" data-key="form_name">Ваше ім'я</label>
-                    <input type="text" class="form-input" required>
-                </div>
-                
-                <div class="form-group">
-                    <label class="form-label" data-key="form_email">Email</label>
-                    <input type="email" class="form-input" required>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-label" data-key="form_message">Повідомлення</label>
-                    <textarea class="form-textarea" required></textarea>
-                </div>
-
-                <button type="submit" class="submit-btn" data-key="form_btn">Надіслати повідомлення</button>
-            </form>
+            <!-- EMAIL CARD -->
+            <a href="mailto:your-email@example.com" class="contact-card">
+                <div class="card-icon"><i class="fas fa-envelope"></i></div>
+                <div class="card-title" data-key="card_email_title">Email</div>
+                <div class="card-desc" data-key="card_email_desc">Для офіційних пропозицій та деталей співпраці.</div>
+            </a>
         </div>
     </section>
 
@@ -285,16 +191,16 @@
             uk: { 
                 nav_home: "Головна", nav_port: "Портфоліо", nav_about: "Про мене", nav_blog: "Блог", nav_contact: "Зв'язатися",
                 contact_title: "Зв'язатися",
-                contact_desc: "Маєте проєкт або хочете навчатися? Оберіть зручний спосіб зв'язку.",
-                label_email: "Email", label_telegram: "Telegram",
-                form_name: "Ваше ім'я", form_email: "Email", form_message: "Повідомлення", form_btn: "Надіслати повідомлення"
+                contact_desc: "Найшвидший спосіб обговорити проєкт або навчання — написати мені напряму.",
+                card_tg_title: "Telegram", card_tg_desc: "Напишіть мені в особисті. Відповідаю швидко. Можна скидати референси.",
+                card_email_title: "Email", card_email_desc: "Для офіційних пропозицій та деталей співпраці."
             },
             en: { 
                 nav_home: "Home", nav_port: "Portfolio", nav_about: "About", nav_blog: "Blog", nav_contact: "Contact Me",
                 contact_title: "Contact Me",
-                contact_desc: "Have a project or want to learn? Choose a convenient way to connect.",
-                label_email: "Email", label_telegram: "Telegram",
-                form_name: "Your Name", form_email: "Email", form_message: "Message", form_btn: "Send Message"
+                contact_desc: "The fastest way to discuss a project or mentorship is to message me directly.",
+                card_tg_title: "Telegram", card_tg_desc: "DM me directly. Fast response. Feel free to send references.",
+                card_email_title: "Email", card_email_desc: "For official proposals and collaboration details."
             }
         };
 
