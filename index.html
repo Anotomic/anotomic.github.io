@@ -28,7 +28,7 @@
             min-height: 200vh;
         }
 
-        /* --- HUD NAVIGATION (КОМПАКТНІША ЧОЛКА) --- */
+        /* --- HUD NAVIGATION --- */
         .hud-wrapper {
             position: fixed; top: 0; left: 0; right: 0;
             display: flex; justify-content: center; z-index: 1000; pointer-events: none;
@@ -37,16 +37,16 @@
             pointer-events: auto; background: var(--hud-bg);
             backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px);
             border: 1px solid var(--hud-border); border-top: none; 
-            border-radius: 0 0 24px 24px; padding: 22px 20px; /* ЗМЕНШЕНО ВНУТРІШНІ ВІДСТУПИ З 30px ДО 20px */
-            width: 65%; max-width: 950px; /* ЗМЕНШЕНО ШИРИНУ З 70%/1050px ДО 65%/950px */
+            border-radius: 0 0 24px 24px; padding: 22px 20px; 
+            width: 65%; max-width: 950px; 
             display: grid; grid-template-columns: 1fr auto 1fr; align-items: center;
             box-shadow: 0 10px 40px rgba(0,0,0,0.5);
             transition: transform 0.3s ease;
         }
         .nav-spacer { visibility: hidden; }
-        .nav-links { display: flex; list-style: none; gap: 24px; justify-content: center; /* ТРОХИ ЗМЕНШЕНО GAP */ }
+        .nav-links { display: flex; list-style: none; gap: 24px; justify-content: center; }
         .nav-links a {
-            text-decoration: none; color: var(--text-muted); font-size: 15px; font-weight: 700; /* ПОВЕРНУТО ОРИГІНАЛЬНИЙ РОЗМІР 15px */
+            text-decoration: none; color: var(--text-muted); font-size: 15px; font-weight: 700; 
             text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s; cursor: pointer; position: relative;
         }
         .nav-links a:hover, .nav-links a.active-link { color: var(--text-main); text-shadow: 0 0 12px rgba(255,255,255,0.3); }
@@ -128,97 +128,42 @@
 
         /* --- ABOUT SECTION --- */
         .about-page-container {
-            position: relative;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 180px 20px 60px; 
-            overflow: hidden;
+            position: relative; min-height: 100vh; display: flex; align-items: center; justify-content: center;
+            padding: 180px 20px 60px; overflow: hidden;
         }
-
         .about-static-bg {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background-image: url('Mjolnir__Upper_Preview_Serhii_Anotomic_Prytula.jpg'); 
-            background-size: cover; 
-            background-position: center;
-            filter: brightness(0.4);
-            z-index: 0;
+            background-image: url('assets/images/hero/Mjolnir__Upper_Preview_Serhii_Anotomic_Prytula.jpg'); 
+            background-size: cover; background-position: center; filter: brightness(0.4); z-index: 0;
         }
-
         .about-card {
-            position: relative;
-            z-index: 1;
-            background-color: #1e1e1e; 
-            border-radius: 30px;
-            padding: 60px;
-            width: 95%;
-            max-width: 1600px;
-            display: flex;
-            align-items: center;
-            gap: 60px;
-            box-shadow: 0 30px 80px rgba(0,0,0,0.6);
-            border: 1px solid rgba(255,255,255,0.05);
+            position: relative; z-index: 1; background-color: #1e1e1e; border-radius: 30px; padding: 60px;
+            width: 95%; max-width: 1600px; display: flex; align-items: center; gap: 60px;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.6); border: 1px solid rgba(255,255,255,0.05);
         }
-
         .about-content { flex: 1; }
-
         .about-name {
-            /* ФІКС ДЛЯ УКРАЇНСЬКОЇ ВЕРСІЇ: ЗАБОРОНА ПЕРЕНОСУ */
-            font-size: clamp(1.8rem, 3.5vw, 2.8rem);
-            font-weight: 900;
-            margin: 0 0 15px 0;
-            line-height: 1.2;
-            color: var(--text-main);
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
+            font-size: clamp(1.8rem, 3.5vw, 2.8rem); font-weight: 900; margin: 0 0 15px 0;
+            line-height: 1.2; color: var(--text-main); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
         }
-
-        .about-role {
-            font-size: 1.3rem;
-            color: #b0b0b0;
-            margin: 0 0 35px 0;
-            font-weight: 500;
-            letter-spacing: 0.5px;
-        }
-
+        .about-role { font-size: 1.3rem; color: #b0b0b0; margin: 0 0 35px 0; font-weight: 500; letter-spacing: 0.5px; }
         .skills-container { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 40px; }
-
         .skill-pill {
-            background-color: #2a2a2a;
-            color: var(--accent);
-            padding: 12px 24px;
-            border-radius: 50px;
-            font-size: 1rem;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            border: 1px solid rgba(255, 107, 53, 0.15);
-            transition: all 0.3s ease;
+            background-color: #2a2a2a; color: var(--accent); padding: 12px 24px; border-radius: 50px;
+            font-size: 1rem; font-weight: 700; display: flex; align-items: center; gap: 10px;
+            border: 1px solid rgba(255, 107, 53, 0.15); transition: all 0.3s ease;
         }
         .skill-pill:hover { border-color: var(--accent); background-color: rgba(255, 107, 53, 0.08); transform: translateY(-2px); }
-
         .social-links { display: flex; gap: 20px; }
         .social-icon {
-            color: var(--accent); font-size: 1.6rem; text-decoration: none;
-            transition: transform 0.2s ease, opacity 0.2s ease;
-            display: flex; align-items: center; justify-content: center;
-            width: 44px; height: 44px; border-radius: 50%;
+            color: var(--accent); font-size: 1.6rem; text-decoration: none; transition: transform 0.2s ease, opacity 0.2s ease;
+            display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: 50%;
             background: rgba(255, 107, 53, 0.05);
         }
         .social-icon:hover { transform: scale(1.15); opacity: 0.8; background: rgba(255, 107, 53, 0.15); }
-
-        .about-image-wrapper {
-            flex-shrink: 0;
-            width: 350px;
-            height: 350px;
-            position: relative;
-        }
+        .about-image-wrapper { flex-shrink: 0; width: 350px; height: 350px; position: relative; }
         .about-avatar {
-            width: 100%; height: 100%; object-fit: cover;
-            border-radius: 50%; border: 4px solid var(--accent);
+            width: 100%; height: 100%; object-fit: cover; border-radius: 50%; border: 4px solid var(--accent);
             box-shadow: 0 0 40px rgba(255, 107, 53, 0.2);
         }
 
@@ -243,7 +188,6 @@
             .course-content { width: 100%; padding: 40px 30px; background: #0a0a0a; }
             .course-image-area { width: 100%; height: 350px; margin-top: 20px; }
             .breakout-img { position: relative; top: 0; right: 0; width: 60%; transform: none; z-index: 10; animation: none; opacity: 1; }
-            
             .about-card { flex-direction: column-reverse; text-align: center; padding: 30px 20px; gap: 30px; width: 95%; }
             .skills-container { justify-content: center; }
             .social-links { justify-content: center; }
@@ -262,7 +206,7 @@
                 <li><a href="index.html" id="link-home" class="active-link" data-key="nav_home">Головна</a></li>
                 <li><a href="portfolio.html" id="link-portfolio" data-key="nav_port">Портфоліо</a></li>
                 <li><a href="about.html" id="link-about" data-key="nav_about">Про мене</a></li>
-                <!-- НОВИЙ БЛОК НАВЧАННЯ -->
+                <!-- ВИПРАВЛЕНО: tutorials.html (з s) -->
                 <li><a href="tutorials.html" id="link-tutorials" data-key="nav_tutorials">Навчання</a></li>
                 <li><a href="blog.html" id="link-blog" data-key="nav_blog">Блог</a></li>
                 <li><a href="contact.html" id="link-contact" class="btn-contact" data-key="nav_contact">Зв'язатися</a></li>
@@ -307,46 +251,36 @@
     <section id="page-portfolio" class="page-section"><div class="content-placeholder"><h2 data-key="port_title">Портфоліо</h2><p data-key="port_desc">Тут буде ваша галерея робіт.</p></div></section>
     <!-- BLOG SECTION -->
     <section id="page-blog" class="page-section"><div class="content-placeholder"><h2 data-key="blog_title">Блог</h2><p data-key="blog_desc">Статті та туторіали.</p></div></section>
-
     <!-- CONTACT SECTION -->
     <section id="page-contact" class="page-section"><div class="content-placeholder"><h2 data-key="contact_title">Зв'язатися</h2><p data-key="contact_desc">Контактна інформація.</p></div></section>
 
     <script>
-        // Безпечна навігація для уникнення 404
         function navigateTo(pageId) {
             const targetSection = document.getElementById(`page-${pageId}`);
             if (!targetSection) {
                 console.warn(`Сторінка "${pageId}" не знайдена. Повернення на головну.`);
                 pageId = 'home';
             }
-            
             history.pushState({ page: pageId }, '', `/${pageId === 'home' ? '' : pageId}`);
-            
             document.querySelectorAll('.page-section').forEach(sec => sec.classList.remove('active-page'));
             document.getElementById(`page-${pageId}`).classList.add('active-page');
-            
             document.querySelectorAll('.nav-links a').forEach(link => link.classList.remove('active-link'));
             const activeLink = document.getElementById(`link-${pageId}`);
             if(activeLink) activeLink.classList.add('active-link');
-            
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // Обробка кнопки "Назад" в браузері
         window.onpopstate = function(event) {
             const page = event.state ? event.state.page : 'home';
             const targetSection = document.getElementById(`page-${page}`);
             const finalPage = targetSection ? page : 'home';
-            
             document.querySelectorAll('.page-section').forEach(sec => sec.classList.remove('active-page'));
             document.getElementById(`page-${finalPage}`).classList.add('active-page');
-            
             document.querySelectorAll('.nav-links a').forEach(link => link.classList.remove('active-link'));
             const activeLink = document.getElementById(`link-${finalPage}`);
             if(activeLink) activeLink.classList.add('active-link');
         };
 
-        // Головне слайд-шоу
         const slides = document.querySelectorAll('.hero-container .slide-bg');
         let currentSlide = 0;
         setInterval(() => {
@@ -355,7 +289,6 @@
             slides[currentSlide].classList.add('visible');
         }, 5000);
 
-        // Переклади
         const i18n = {
             uk: { 
                 nav_home: "Головна", nav_port: "Портфоліо", nav_about: "Про мене", nav_tutorials: "Навчання", nav_blog: "Блог", nav_contact: "Зв'язатися", 
@@ -399,7 +332,6 @@
 
         const savedLang = localStorage.getItem('site_lang') || 'uk'; setLang(savedLang);
         
-        // Безпечний запуск при завантаженні сторінки
         const path = window.location.pathname.replace('/', ''); 
         if(path && document.getElementById(`page-${path}`)) {
             navigateTo(path);
