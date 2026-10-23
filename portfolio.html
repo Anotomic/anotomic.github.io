@@ -59,7 +59,7 @@
         .portfolio-item-title { font-size: 1.2rem; font-weight: 700; margin-bottom: 5px; color: var(--text-main); }
         .portfolio-item-category { font-size: 0.85rem; color: var(--accent); text-transform: uppercase; letter-spacing: 1px; font-weight: 600; }
 
-        /* --- MODAL LIGHTBOX (FINAL FIX) --- */
+        /* --- MODAL LIGHTBOX (WITH DESCRIPTION LAYOUT) --- */
         .modal-overlay { 
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
             background: rgba(0, 0, 0, 0.92); 
@@ -73,7 +73,6 @@
         }
         .modal-overlay.active { display: flex; opacity: 1; }
         
-        /* Зовнішня оболонка - тільки рамка і скрол */
         .modal-content { 
             width: 95%; 
             max-width: 1600px; 
@@ -81,7 +80,7 @@
             background: var(--hud-bg); 
             border: 1px solid var(--hud-border); 
             border-radius: 24px; 
-            padding: 0; /* Padding перенесено у wrapper */
+            padding: 0; 
             position: relative; 
             overflow-y: auto; 
             box-shadow: 0 30px 80px rgba(0,0,0,0.8); 
@@ -90,31 +89,20 @@
             scrollbar-color: var(--accent) rgba(255, 255, 255, 0.03);
         }
 
-        /* Внутрішній враппер для контенту */
         .modal-inner-wrapper {
             padding: 50px;
             min-height: 100%;
             box-sizing: border-box;
         }
         
-        /* --- CUSTOM SCROLLBAR (SHIFTED LEFT) --- */
-        .modal-content::-webkit-scrollbar {
-            width: 8px;
-        }
-        .modal-content::-webkit-scrollbar-track {
-            background: transparent;
-            margin: 24px 0;
-        }
+        /* CUSTOM SCROLLBAR */
+        .modal-content::-webkit-scrollbar { width: 8px; }
+        .modal-content::-webkit-scrollbar-track { background: transparent; margin: 24px 0; }
         .modal-content::-webkit-scrollbar-thumb {
-            background: var(--accent);
-            border-radius: 10px;
-            border: 2px solid transparent;
-            background-clip: content-box;
-            margin-right: 16px; /* ЗСУВ СКРОЛБАРУ ЛІВОРУЧ */
+            background: var(--accent); border-radius: 10px; border: 2px solid transparent;
+            background-clip: content-box; margin-right: 16px;
         }
-        .modal-content::-webkit-scrollbar-thumb:hover {
-            background: #ff8c5a;
-        }
+        .modal-content::-webkit-scrollbar-thumb:hover { background: #ff8c5a; }
         
         .modal-close { 
             position: absolute; top: 25px; right: 30px; 
@@ -131,27 +119,70 @@
         }
         
         .modal-subtitle {
-            font-size: 1rem;
-            color: var(--accent);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            font-weight: 600;
-            text-align: center;
+            font-size: 1rem; color: var(--accent); text-transform: uppercase;
+            letter-spacing: 2px; font-weight: 600; text-align: center;
             margin-bottom: 40px;
+        }
+
+        /* ASYMMETRIC LAYOUT FOR GALLERY + TEXT */
+        .modal-layout {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 50px;
+            align-items: start;
         }
 
         .modal-gallery { 
             display: flex; 
             flex-direction: column; 
-            gap: 60px; 
+            gap: 40px; 
             align-items: center; 
         }
 
         .modal-img { 
             width: 100%; 
-            max-width: 1500px; 
             border-radius: 12px; 
             box-shadow: 0 10px 30px rgba(0,0,0,0.5); 
+        }
+
+        .modal-description {
+            font-size: 0.95rem;
+            line-height: 1.8;
+            color: #b0b0b0;
+            text-align: left;
+        }
+
+        .modal-description p { margin-bottom: 20px; }
+        .modal-description p:last-child { margin-bottom: 0; }
+
+        /* NEW PROJECT TAGS STYLES (LIKE ABOUT SKILLS) */
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .project-tag {
+            background-color: rgba(42, 42, 42, 0.8);
+            color: var(--accent);
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border: 1px solid rgba(255, 107, 53, 0.15);
+            transition: all 0.3s ease;
+        }
+
+        .project-tag:hover {
+            border-color: var(--accent);
+            background-color: rgba(255, 107, 53, 0.08);
+            transform: translateY(-2px);
         }
 
         /* Адаптивність */
@@ -162,11 +193,18 @@
             .lang-switch { justify-content: center; padding-left: 0; margin-top: 5px; }
             .portfolio-grid { grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 15px; }
             .portfolio-container { padding-top: 140px; }
+            
             .modal-content { width: 98%; }
             .modal-inner-wrapper { padding: 30px 20px; }
             .modal-title { font-size: 1.6rem; margin-bottom: 5px; }
             .modal-subtitle { font-size: 0.85rem; margin-bottom: 25px; }
-            .modal-gallery { gap: 30px; }
+            
+            /* На мобільних вертикальний стек */
+            .modal-layout { 
+                grid-template-columns: 1fr; 
+                gap: 30px; 
+            }
+            .modal-gallery { gap: 20px; }
             .modal-img { max-width: 100%; }
         }
         @media (max-width: 600px) { 
@@ -227,17 +265,26 @@
     <!-- MODAL OVERLAY -->
     <div class="modal-overlay" id="project-modal" onclick="closeModal(event)">
         <div class="modal-content" onclick="event.stopPropagation()">
-            <!-- НОВИЙ WRAPPER ДЛЯ КОНТЕНТУ -->
             <div class="modal-inner-wrapper">
                 <button class="modal-close" onclick="closeModal()">&times;</button>
                 <h2 class="modal-title" id="modal-title">Project Title</h2>
                 <p class="modal-subtitle" id="modal-subtitle">Category</p>
                 
-                <div class="modal-gallery" id="modal-gallery">
-                    <!-- Сюди JS буде вставляти картинки -->
+                <!-- ЛЕЙАУТ: ГАЛЕРЕЯ + ОПИС -->
+                <div class="modal-layout">
+                    <div class="modal-gallery" id="modal-gallery">
+                        <!-- Сюди JS буде вставляти картинки -->
+                    </div>
+                    <div class="modal-description" id="modal-desc">
+                        <!-- Сюди JS буде вставляти текст опису -->
+                        
+                        <!-- НОВИЙ БЛОК ДЛЯ ТЕГІВ -->
+                        <div class="project-tags" id="modal-tags">
+                            <!-- Сюди JS буде вставляти теги -->
+                        </div>
+                    </div>
                 </div>
             </div>
-            <!-- КІНЕЦЬ WRAPPER -->
         </div>
     </div>
 
@@ -283,6 +330,13 @@
                 title_en: 'Odin - Realms of the Ascended',
                 subtitle_ua: 'Створення ігрового персонажа',
                 subtitle_en: 'Character Game-Ready Production',
+                description_ua: `<p>Коли команда VisEterna Studio знову звернулася до мене з можливістю працювати над новим персонажем і поділилася концептом, це дало мені свіжий погляд на проєкт та сильне відчуття мотивації.</p>
+<p>В результаті ми змогли наблизити фінальний вигляд персонажа максимально близько до того, як ми спочатку його задумували. Результат навіть перевершив мої власні очікування, встановивши новий якісний бенчмарк для всього проєкту.</p>`,
+                description_en: `<p>When VisEterna Studio Team reached out to me again with an opportunity to work on a new character and shared the concept, it gave me a fresh perspective on the project and a strong sense of motivation.</p>
+<p>As a result, we were able to bring the final look very close to how we originally envisioned the character. The outcome even exceeded my own expectations, setting a new quality benchmark for the project.</p>`,
+                tags: [
+                    { icon: 'fa-user-astronaut', label_ua: 'Character Design', label_en: 'Character Design' }
+                ],
                 images: [
                     'assets/images/portfolio/Odin/Odin-Full-Preview_Serhii_Prytula.jpg',
                     'assets/images/portfolio/Odin/Gungir_Odin_Serhii_Anotomic_Prytula.jpg'
@@ -293,6 +347,21 @@
                 title_en: 'Mjolnir - Realms of the Ascended',
                 subtitle_ua: 'Ігрова зброя',
                 subtitle_en: 'Game-Ready Weapon',
+                description_ua: `<p>Під час роботи над 3D-ассетами для проєкту "Realms of the Ascended" мені випала нагода створити не лише персонажів, а й ключові елементи ігрового спорядження.</p>
+<p>Мені доручили створити нову версію Мйольніра за ідеєю команди VisEterna Studio. Головне завдання полягало в тому, щоб молот відображав символіку, пов'язану з Тором. Наприклад, ударна частина представлена двома козячими головами — Танньйострі та Таннніострі. У скандинавській міфології це козли, які тягнуть колісницю Тора.</p>
+<p>Ідея використання двох козячих голів працює не лише символічно, а й візуально. Бодання — природна поведінка кіз, тому ця форма органічно вписується в дизайн самого Мйольніра.</p>
+<p>Моє завдання полягало в тому, щоб провести ассет через повний game-ready пайплайн — від блокінгу та скульптингу моделі до текстурування й налаштування матеріалу в рушії.</p>
+<p>Додатково ми створили дві "RGBA маски", які дозволяють змінювати кольори окремих частин моделі безпосередньо в грі. Це дає можливість надати практично кожній зоні Мйольніра власний колір, зберігаючи при цьому оригінальну текстуру.</p>
+<p>Це був справді цікавий досвід для мене, тому я хотів поділитися ним з вами.</p>`,
+                description_en: `<p>While working on 3D assets for the project "Realms of the Ascended", I sometimes get the opportunity to work not only on characters, but also on key pieces of in-game equipment.</p>
+<p>I had the opportunity to create a new version of Mjolnir based on an idea proposed by the VisEterna Studio team. The main task was to create a hammer that would reflect the symbolism associated with Thor. For example, the striking part is represented by two goat heads — "Tanngnjóstr and Tanngrisnir". In Norse mythology, they are the goats that pull the chariot of Thor.</p>
+<p>The idea of using two goat heads works not only symbolically, but visually as well. Head-butting is a natural behavior for goats, so this form fits organically into the design of Mjolnir itself.</p>
+<p>My task was to take the asset through the full game-ready pipeline — from blocking and sculpting the model to texturing and setting up the material in the engine.</p>
+<p>Additionally, we created two "RGBA masks" that allow the colors of individual parts of the model to be changed directly in the game. This makes it possible to give virtually every area of Mjolnir its own color, while preserving the original texture and allowing the color variation to be driven by it.</p>
+<p>It was a really interesting experience for me, so I wanted to share it with you.</p>`,
+                tags: [
+                    { icon: 'fa-hammer', label_ua: 'Weapon Design', label_en: 'Weapon Design' }
+                ],
                 images: [
                     'assets/images/portfolio/Mjolnir/Mjolnir_Serhii_Prytula_Render_Production_Preview.jpg',
                     'assets/images/portfolio/Mjolnir/Mjolnir_Upper_Preview_Serhii_Prytula.jpg',
@@ -305,16 +374,34 @@
         const modalTitle = document.getElementById('modal-title');
         const modalSubtitle = document.getElementById('modal-subtitle');
         const modalGallery = document.getElementById('modal-gallery');
+        const modalDesc = document.getElementById('modal-desc');
+        const modalTags = document.getElementById('modal-tags'); // НОВИЙ ЕЛЕМЕНТ
 
         function openModal(projectId) {
             const project = projectsData[projectId];
             if (!project) return;
 
             modalGallery.innerHTML = '';
+            modalDesc.innerHTML = '';
+            modalTags.innerHTML = ''; // Очищаємо попередні теги
             
             const currentLang = localStorage.getItem('site_lang') || 'uk';
             modalTitle.innerText = currentLang === 'uk' ? project.title_ua : project.title_en;
             modalSubtitle.innerText = currentLang === 'uk' ? project.subtitle_ua : project.subtitle_en;
+            
+            // Вставляємо опис
+            modalDesc.innerHTML = currentLang === 'uk' ? project.description_ua : project.description_en;
+
+            // Генеруємо теги
+            if (project.tags) {
+                project.tags.forEach(tag => {
+                    const tagEl = document.createElement('div');
+                    tagEl.className = 'project-tag';
+                    const labelText = currentLang === 'uk' ? tag.label_ua : tag.label_en;
+                    tagEl.innerHTML = `<i class="fas ${tag.icon}"></i> ${labelText}`;
+                    modalTags.appendChild(tagEl);
+                });
+            }
 
             project.images.forEach(imgSrc => {
                 const img = document.createElement('img');
