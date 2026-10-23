@@ -43,12 +43,11 @@
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
             background-size: cover; background-position: center;
             opacity: 0; transition: opacity 1.2s ease-in-out;
-            filter: brightness(0.5) grayscale(0.3); /* Технічний вигляд: трохи темніше та десатурованіше */
+            filter: brightness(0.5) grayscale(0.3);
             z-index: 1;
         }
         .slide-bg.visible { opacity: 1; }
 
-        /* Градієнт справа для читабельності тексту */
         .hero-fade-overlay {
             position: absolute; top: 0; right: 0; bottom: 0; width: 60%;
             background: linear-gradient(to right, transparent 0%, rgba(10,10,10,0.4) 30%, rgba(10,10,10,0.9) 70%, rgba(10,10,10,0.98) 100%);
@@ -131,7 +130,6 @@
     <!-- TUTORIAL HERO CONTENT -->
     <section class="tutorial-hero">
         <!-- СЛАЙД 1: ZBRUSH FOR BEGINNERS -->
-        <!-- ЗАМІНІТЬ URL НА РЕАЛЬНІ ТЕХНІЧНІ РЕНДЕРИ (СІРІ МАТИ, СІТКИ, БЛОКІНГ) -->
         <div class="slide-bg visible" style="background-image: url('assets/images/hero/Mjolnir__Upper_Preview_Serhii_Anotomic_Prytula.jpg');"></div>
         <div class="slide-bg" style="background-image: url('assets/images/portfolio/Mjolnir/Zbrush-Preview-Clay_Serhii_Prytula.jpg');"></div>
         
@@ -141,7 +139,7 @@
             <div class="hero-text">
                 <span class="tutorial-label" data-key="tut_label">Featured Course</span>
                 <h1 class="tutorial-title" data-key="tut_1_title">ZBrush for Beginners</h1>
-                <p class="tutorial-desc" data-key="tut_1_desc">Цей курс ідеально підійде для тих, хто тільки починає свій шлях у 3D та хоче опанувати інструментарій ZBrush з нуля. Низький поріг входження, максимум практики та чіткий roadmap від першого блоку до готового персонажа.</p>
+                <p class="tutorial-desc" data-key="tut_1_desc">Цей курс ідеально підійде для тих, хто тільки починає свій шлях у 3D та хоче опанувати інструментарій ZBrush з нуля. Ми розберемо базові функції та закладемо міцний фундамент, на якому будується створення будь-яких моделей. Кожний етап супроводжується детальними поясненнями, щоб ви не просто повторювали дії, а розуміли логіку процесу.</p>
                 <button class="tutorial-btn" onclick="alert('Перехід на сторінку курсу скоро буде доступний!')">
                     <span data-key="tut_btn">Go to Tutorial</span> <i class="fas fa-arrow-right"></i>
                 </button>
@@ -152,19 +150,19 @@
     <!-- SCRIPTS -->
     <script>
         // --- ПЕРЕЕКЛАДИ ---
-        const i18n =
+        const i18n = {
             uk: { 
                 nav_home: "Головна", nav_port: "Портфоліо", nav_about: "Про мене", nav_tutorial: "Навчання", nav_blog: "Блог", nav_contact: "Зв'язатися",
                 tut_label: "Рекомендований курс",
                 tut_1_title: "ZBrush для початківців",
-                tut_1_desc: "Цей курс ідеально підійде для тих, хто тільки починає свій шлях у 3D та хоче опанувати інструментарій ZBrush з нуля. Низький поріг входження, максимум практики та чіткий roadmap від першого блоку до готового персонажа.",
+                tut_1_desc: "Цей курс ідеально підійде для тих, хто тільки починає свій шлях у 3D та хоче опанувати інструментарій ZBrush з нуля. Ми розберемо базові функції та закладемо міцний фундамент, на якому будується створення будь-яких моделей. Кожний етап супроводжується детальними поясненнями, щоб ви не просто повторювали дії, а розуміли логіку процесу.",
                 tut_btn: "Перейти до курсу"
             },
             en: { 
                 nav_home: "Home", nav_port: "Portfolio", nav_about: "About", nav_tutorial: "Tutorials", nav_blog: "Blog", nav_contact: "Contact Me",
                 tut_label: "Featured Course",
                 tut_1_title: "ZBrush for Beginners",
-                tut_1_desc: "This course is perfect for those just starting their 3D journey and wanting to master ZBrush from scratch. Low entry barrier, maximum practice, and a clear roadmap from the first blockout to a finished character.",
+                tut_1_desc: "This course is perfect for those just starting their 3D journey and wanting to master ZBrush from scratch. We will cover basic functions and build a solid foundation for creating any model. Each step includes detailed explanations so you understand the logic behind the process, not just repeat actions.",
                 tut_btn: "Go to Tutorial"
             }
         };
@@ -187,7 +185,7 @@
             slides[currentSlide].classList.remove('visible');
             currentSlide = (currentSlide + 1) % slides.length;
             slides[currentSlide].classList.add('visible');
-        }, 6000); // Зміна фону кожні 6 секунд
+        }, 6000);
     </script>
 </body>
 </html>
