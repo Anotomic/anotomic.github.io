@@ -25,13 +25,18 @@
             background-color: var(--bg-color);
             color: var(--text-main);
             overflow-x: hidden;
+            /* ФІКС: Завжди показуємо вертикальний скрол, щоб ширина не стрибала між сторінками */
+            overflow-y: scroll; 
             min-height: 200vh;
         }
 
-        /* --- HUD NAVIGATION --- */
+        /* --- HUD NAVIGATION (ВИПРАВЛЕНО ЦЕНТРУВАННЯ) --- */
         .hud-wrapper {
             position: fixed; top: 0; left: 0; right: 0;
             display: flex; justify-content: center; z-index: 1000; pointer-events: none;
+            /* ФІКС: Гарантуємо, що wrapper займає всю ширину вікна без зсувів */
+            width: 100vw;
+            max-width: 100%;
         }
         .hud-nav {
             pointer-events: auto; background: var(--hud-bg);
@@ -206,7 +211,6 @@
                 <li><a href="index.html" id="link-home" class="active-link" data-key="nav_home">Головна</a></li>
                 <li><a href="portfolio.html" id="link-portfolio" data-key="nav_port">Портфоліо</a></li>
                 <li><a href="about.html" id="link-about" data-key="nav_about">Про мене</a></li>
-                <!-- ВИПРАВЛЕНО: tutorials.html (з s) -->
                 <li><a href="tutorials.html" id="link-tutorials" data-key="nav_tutorials">Навчання</a></li>
                 <li><a href="blog.html" id="link-blog" data-key="nav_blog">Блог</a></li>
                 <li><a href="contact.html" id="link-contact" class="btn-contact" data-key="nav_contact">Зв'язатися</a></li>
