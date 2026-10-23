@@ -59,7 +59,7 @@
         .portfolio-item-title { font-size: 1.2rem; font-weight: 700; margin-bottom: 5px; color: var(--text-main); }
         .portfolio-item-category { font-size: 0.85rem; color: var(--accent); text-transform: uppercase; letter-spacing: 1px; font-weight: 600; }
 
-        /* --- MODAL LIGHTBOX (WITH DESCRIPTION LAYOUT) --- */
+        /* --- MODAL LIGHTBOX (UPDATED LAYOUT) --- */
         .modal-overlay { 
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
             background: rgba(0, 0, 0, 0.92); 
@@ -124,10 +124,10 @@
             margin-bottom: 40px;
         }
 
-        /* ASYMMETRIC LAYOUT FOR GALLERY + TEXT */
+        /* UPDATED ASYMMETRIC LAYOUT: 75% GALLERY / 25% TEXT */
         .modal-layout {
             display: grid;
-            grid-template-columns: 2fr 1fr;
+            grid-template-columns: 3fr 1fr; /* 3 частини галерея, 1 частина текст */
             gap: 50px;
             align-items: start;
         }
@@ -146,44 +146,14 @@
         }
 
         .modal-description {
-            font-size: 0.95rem;
-            line-height: 1.8;
+            font-size: 0.9rem; /* Трохи менший шрифт для компактного тексту */
+            line-height: 1.7;
             color: #b0b0b0;
             text-align: left;
         }
 
-        .modal-description p { margin-bottom: 20px; }
+        .modal-description p { margin-bottom: 15px; }
         .modal-description p:last-child { margin-bottom: 0; }
-
-        /* NEW PROJECT TAGS STYLES (LIKE ABOUT SKILLS) */
-        .project-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 12px;
-            margin-top: 30px;
-            padding-top: 20px;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .project-tag {
-            background-color: rgba(42, 42, 42, 0.8);
-            color: var(--accent);
-            padding: 10px 20px;
-            border-radius: 50px;
-            font-size: 0.85rem;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            border: 1px solid rgba(255, 107, 53, 0.15);
-            transition: all 0.3s ease;
-        }
-
-        .project-tag:hover {
-            border-color: var(--accent);
-            background-color: rgba(255, 107, 53, 0.08);
-            transform: translateY(-2px);
-        }
 
         /* Адаптивність */
         @media (max-width: 1000px) {
@@ -206,6 +176,7 @@
             }
             .modal-gallery { gap: 20px; }
             .modal-img { max-width: 100%; }
+            .modal-description { font-size: 0.95rem; }
         }
         @media (max-width: 600px) { 
             .portfolio-grid { grid-template-columns: 1fr 1fr; } 
@@ -277,11 +248,6 @@
                     </div>
                     <div class="modal-description" id="modal-desc">
                         <!-- Сюди JS буде вставляти текст опису -->
-                        
-                        <!-- НОВИЙ БЛОК ДЛЯ ТЕГІВ -->
-                        <div class="project-tags" id="modal-tags">
-                            <!-- Сюди JS буде вставляти теги -->
-                        </div>
                     </div>
                 </div>
             </div>
@@ -334,9 +300,6 @@
 <p>В результаті ми змогли наблизити фінальний вигляд персонажа максимально близько до того, як ми спочатку його задумували. Результат навіть перевершив мої власні очікування, встановивши новий якісний бенчмарк для всього проєкту.</p>`,
                 description_en: `<p>When VisEterna Studio Team reached out to me again with an opportunity to work on a new character and shared the concept, it gave me a fresh perspective on the project and a strong sense of motivation.</p>
 <p>As a result, we were able to bring the final look very close to how we originally envisioned the character. The outcome even exceeded my own expectations, setting a new quality benchmark for the project.</p>`,
-                tags: [
-                    { icon: 'fa-user-astronaut', label_ua: 'Character Design', label_en: 'Character Design' }
-                ],
                 images: [
                     'assets/images/portfolio/Odin/Odin-Full-Preview_Serhii_Prytula.jpg',
                     'assets/images/portfolio/Odin/Gungir_Odin_Serhii_Anotomic_Prytula.jpg'
@@ -359,9 +322,6 @@
 <p>My task was to take the asset through the full game-ready pipeline — from blocking and sculpting the model to texturing and setting up the material in the engine.</p>
 <p>Additionally, we created two "RGBA masks" that allow the colors of individual parts of the model to be changed directly in the game. This makes it possible to give virtually every area of Mjolnir its own color, while preserving the original texture and allowing the color variation to be driven by it.</p>
 <p>It was a really interesting experience for me, so I wanted to share it with you.</p>`,
-                tags: [
-                    { icon: 'fa-hammer', label_ua: 'Weapon Design', label_en: 'Weapon Design' }
-                ],
                 images: [
                     'assets/images/portfolio/Mjolnir/Mjolnir_Serhii_Prytula_Render_Production_Preview.jpg',
                     'assets/images/portfolio/Mjolnir/Mjolnir_Upper_Preview_Serhii_Prytula.jpg',
@@ -375,7 +335,6 @@
         const modalSubtitle = document.getElementById('modal-subtitle');
         const modalGallery = document.getElementById('modal-gallery');
         const modalDesc = document.getElementById('modal-desc');
-        const modalTags = document.getElementById('modal-tags'); // НОВИЙ ЕЛЕМЕНТ
 
         function openModal(projectId) {
             const project = projectsData[projectId];
@@ -383,7 +342,6 @@
 
             modalGallery.innerHTML = '';
             modalDesc.innerHTML = '';
-            modalTags.innerHTML = ''; // Очищаємо попередні теги
             
             const currentLang = localStorage.getItem('site_lang') || 'uk';
             modalTitle.innerText = currentLang === 'uk' ? project.title_ua : project.title_en;
@@ -391,17 +349,6 @@
             
             // Вставляємо опис
             modalDesc.innerHTML = currentLang === 'uk' ? project.description_ua : project.description_en;
-
-            // Генеруємо теги
-            if (project.tags) {
-                project.tags.forEach(tag => {
-                    const tagEl = document.createElement('div');
-                    tagEl.className = 'project-tag';
-                    const labelText = currentLang === 'uk' ? tag.label_ua : tag.label_en;
-                    tagEl.innerHTML = `<i class="fas ${tag.icon}"></i> ${labelText}`;
-                    modalTags.appendChild(tagEl);
-                });
-            }
 
             project.images.forEach(imgSrc => {
                 const img = document.createElement('img');
