@@ -28,7 +28,7 @@
             min-height: 100vh;
         }
 
-        /* --- HUD NAVIGATION --- */
+        /* --- HUD NAVIGATION (УЗГОДЖЕНО З INDEX.HTML) --- */
         .hud-wrapper {
             position: fixed; top: 0; left: 0; right: 0;
             display: flex; justify-content: center; z-index: 1000; pointer-events: none;
@@ -37,14 +37,14 @@
             pointer-events: auto; background: var(--hud-bg);
             backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px);
             border: 1px solid var(--hud-border); border-top: none; 
-            border-radius: 0 0 24px 24px; padding: 22px 30px; 
-            width: 60%; max-width: 900px;
+            border-radius: 0 0 24px 24px; padding: 22px 20px; 
+            width: 65%; max-width: 950px; /* УЗГОДЖЕНО РОЗМІР */
             display: grid; grid-template-columns: 1fr auto 1fr; align-items: center;
             box-shadow: 0 10px 40px rgba(0,0,0,0.5);
             transition: transform 0.3s ease;
         }
         .nav-spacer { visibility: hidden; }
-        .nav-links { display: flex; list-style: none; gap: 35px; justify-content: center; }
+        .nav-links { display: flex; list-style: none; gap: 24px; justify-content: center; } /* УЗГОДЖЕНО GAP */
         .nav-links a {
             text-decoration: none; color: var(--text-muted); font-size: 15px; font-weight: 700;
             text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s; cursor: pointer; position: relative;
@@ -60,7 +60,7 @@
         }
         .btn-contact:hover { background: var(--accent); color: #fff !important; box-shadow: 0 0 15px rgba(255, 107, 53, 0.4); }
         .btn-contact::after { display: none !important; }
-        .lang-switch { display: flex; gap: 12px; justify-content: flex-end; padding-left: 20px; }
+        .lang-switch { display: flex; gap: 12px; justify-content: flex-end; padding-left: 15px; }
         .lang-btn { background: none; border: none; color: var(--text-muted); font-weight: 700; cursor: pointer; font-size: 15px; transition: color 0.3s; }
         .lang-btn.active-lang { color: var(--text-main); }
 
@@ -69,7 +69,7 @@
             padding: 160px 20px 80px;
             max-width: 900px;
             margin: 0 auto;
-            min-height: 60vh; /* Мінімальна висота, щоб не виглядало зламаним */
+            min-height: 60vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -93,7 +93,6 @@
             max-width: 600px;
         }
 
-        /* Іконка або декоративний елемент для пустого стану */
         .empty-state-icon {
             font-size: 3rem;
             color: rgba(255, 107, 53, 0.2);
@@ -120,6 +119,8 @@
                 <li><a href="index.html" id="link-home" data-key="nav_home">Головна</a></li>
                 <li><a href="portfolio.html" id="link-portfolio" data-key="nav_port">Портфоліо</a></li>
                 <li><a href="about.html" id="link-about" data-key="nav_about">Про мене</a></li>
+                <!-- ДОДАНО ВКЛАДКУ НАВЧАННЯ -->
+                <li><a href="tutorials.html" id="link-tutorials" data-key="nav_tutorials">Навчання</a></li>
                 <!-- АКТИВНИЙ СТАН НА БЛОГ -->
                 <li><a href="blog.html" id="link-blog" class="active-link" data-key="nav_blog">Блог</a></li>
                 <li><a href="contact.html" id="link-contact" class="btn-contact" data-key="nav_contact">Зв'язатися</a></li>
@@ -144,12 +145,12 @@
     <script>
         const i18n = {
             uk: { 
-                nav_home: "Головна", nav_port: "Портфоліо", nav_about: "Про мене", nav_blog: "Блог", nav_contact: "Зв'язатися",
+                nav_home: "Головна", nav_port: "Портфоліо", nav_about: "Про мене", nav_tutorials: "Навчання", nav_blog: "Блог", nav_contact: "Зв'язатися",
                 blog_title: "Блог", 
                 blog_desc: "Туторіали, інсайти з індустрії та процес створення персонажів. Скоро тут з'являться перші публікації."
             },
             en: { 
-                nav_home: "Home", nav_port: "Portfolio", nav_about: "About", nav_blog: "Blog", nav_contact: "Contact Me",
+                nav_home: "Home", nav_port: "Portfolio", nav_about: "About", nav_tutorials: "Tutorials", nav_blog: "Blog", nav_contact: "Contact Me",
                 blog_title: "Blog", 
                 blog_desc: "Tutorials, industry insights, and character creation process. First posts coming soon."
             }
