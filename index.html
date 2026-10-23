@@ -28,7 +28,7 @@
             min-height: 200vh;
         }
 
-        /* --- HUD NAVIGATION --- */
+        /* --- HUD NAVIGATION (КОМПАКТНІША ЧОЛКА) --- */
         .hud-wrapper {
             position: fixed; top: 0; left: 0; right: 0;
             display: flex; justify-content: center; z-index: 1000; pointer-events: none;
@@ -37,16 +37,16 @@
             pointer-events: auto; background: var(--hud-bg);
             backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px);
             border: 1px solid var(--hud-border); border-top: none; 
-            border-radius: 0 0 24px 24px; padding: 22px 30px; 
-            width: 60%; max-width: 900px;
+            border-radius: 0 0 24px 24px; padding: 22px 20px; /* ЗМЕНШЕНО ВНУТРІШНІ ВІДСТУПИ З 30px ДО 20px */
+            width: 65%; max-width: 950px; /* ЗМЕНШЕНО ШИРИНУ З 70%/1050px ДО 65%/950px */
             display: grid; grid-template-columns: 1fr auto 1fr; align-items: center;
             box-shadow: 0 10px 40px rgba(0,0,0,0.5);
             transition: transform 0.3s ease;
         }
         .nav-spacer { visibility: hidden; }
-        .nav-links { display: flex; list-style: none; gap: 35px; justify-content: center; }
+        .nav-links { display: flex; list-style: none; gap: 24px; justify-content: center; /* ТРОХИ ЗМЕНШЕНО GAP */ }
         .nav-links a {
-            text-decoration: none; color: var(--text-muted); font-size: 15px; font-weight: 700;
+            text-decoration: none; color: var(--text-muted); font-size: 15px; font-weight: 700; /* ПОВЕРНУТО ОРИГІНАЛЬНИЙ РОЗМІР 15px */
             text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s; cursor: pointer; position: relative;
         }
         .nav-links a:hover, .nav-links a.active-link { color: var(--text-main); text-shadow: 0 0 12px rgba(255,255,255,0.3); }
@@ -60,7 +60,7 @@
         }
         .btn-contact:hover { background: var(--accent); color: #fff !important; box-shadow: 0 0 15px rgba(255, 107, 53, 0.4); }
         .btn-contact::after { display: none !important; }
-        .lang-switch { display: flex; gap: 12px; justify-content: flex-end; padding-left: 20px; }
+        .lang-switch { display: flex; gap: 12px; justify-content: flex-end; padding-left: 15px; }
         .lang-btn { background: none; border: none; color: var(--text-muted); font-weight: 700; cursor: pointer; font-size: 15px; transition: color 0.3s; }
         .lang-btn.active-lang { color: var(--text-main); }
 
@@ -164,11 +164,15 @@
         .about-content { flex: 1; }
 
         .about-name {
-            font-size: clamp(2rem, 4vw, 3.2rem);
+            /* ФІКС ДЛЯ УКРАЇНСЬКОЇ ВЕРСІЇ: ЗАБОРОНА ПЕРЕНОСУ */
+            font-size: clamp(1.8rem, 3.5vw, 2.8rem);
             font-weight: 900;
             margin: 0 0 15px 0;
             line-height: 1.2;
             color: var(--text-main);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
         .about-role {
@@ -258,6 +262,8 @@
                 <li><a href="index.html" id="link-home" class="active-link" data-key="nav_home">Головна</a></li>
                 <li><a href="portfolio.html" id="link-portfolio" data-key="nav_port">Портфоліо</a></li>
                 <li><a href="about.html" id="link-about" data-key="nav_about">Про мене</a></li>
+                <!-- НОВИЙ БЛОК НАВЧАННЯ -->
+                <li><a href="tutorial.html" id="link-tutorial" data-key="nav_tutorial">Навчання</a></li>
                 <li><a href="blog.html" id="link-blog" data-key="nav_blog">Блог</a></li>
                 <li><a href="contact.html" id="link-contact" class="btn-contact" data-key="nav_contact">Зв'язатися</a></li>
             </ul>
@@ -352,7 +358,7 @@
         // Переклади
         const i18n = {
             uk: { 
-                nav_home: "Головна", nav_port: "Портфоліо", nav_about: "Про мене", nav_blog: "Блог", nav_contact: "Зв'язатися", 
+                nav_home: "Головна", nav_port: "Портфоліо", nav_about: "Про мене", nav_tutorial: "Навчання", nav_blog: "Блог", nav_contact: "Зв'язатися", 
                 hero_sub: "Відданий 3D художник персонажів для вашої гри чи проєкту", 
                 hero_role: "Anotomic. Zbrush / 3D Художник Персонажів", 
                 course_label: "Курс для початківців", course_title: "Zbrush для початківців", 
@@ -366,7 +372,7 @@
                 contact_title: "Зв'язатися", contact_desc: "Контактна інформація." 
             },
             en: { 
-                nav_home: "Home", nav_port: "Portfolio", nav_about: "About", nav_blog: "Blog", nav_contact: "Contact Me", 
+                nav_home: "Home", nav_port: "Portfolio", nav_about: "About", nav_tutorial: "Tutorials", nav_blog: "Blog", nav_contact: "Contact Me", 
                 hero_sub: "Dedicated 3D Character Artist for your game or personal project", 
                 hero_role: "Anotomic. Zbrush / 3D Character Artist", 
                 course_label: "Beginners Course", course_title: "Zbrush for Beginners", 
