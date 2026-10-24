@@ -38,7 +38,7 @@
         }
         ::-webkit-scrollbar-thumb:hover { background: #ff8c5a; }
 
-        /* --- HUD NAVIGATION (ОНОВЛЕНО ПІД ЛОГОТИП ЗЛІВА) --- */
+        /* --- HUD NAVIGATION --- */
         .hud-wrapper { 
             position: fixed; top: 0; left: 0; right: 0; 
             display: flex; justify-content: center; z-index: 1000; pointer-events: none; 
@@ -47,18 +47,24 @@
             pointer-events: auto; background: var(--hud-bg); backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px); 
             border: 1px solid var(--hud-border); border-top: none; border-radius: 0 0 24px 24px; 
             padding: 18px 25px; width: 70%; max-width: 1050px; 
-            /* Нова сітка: Логотип | Меню | Мова */
             display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 30px;
             box-shadow: 0 10px 40px rgba(0,0,0,0.5); transition: transform 0.3s ease; 
         }
 
-        /* Стилі для іконки-логотипу */
+        /* --- ЗМІНЕНО ТІЛЬКИ ТУТ: ЗБІЛЬШЕНО РОЗМІР ТА ЗСУНУТО ВПРАВО --- */
         .logo-link { 
-            display: flex; align-items: center; justify-content: center; 
-            transition: transform 0.3s ease; pointer-events: auto;
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            transition: transform 0.3s ease; 
+            pointer-events: auto;
+            padding-left: 15px; /* Зсув іконки трохи вправо */
         }
         .logo-link:hover { transform: scale(1.1); }
-        .logo-link img { height: 32px; width: auto; }
+        .logo-link img { 
+            height: 54px; /* Збільшили розмір іконки для сміливішого вигляду */
+            width: auto; 
+        }
 
         .nav-links { display: flex; list-style: none; gap: 28px; justify-content: center; }
         .nav-links a { text-decoration: none; color: var(--text-muted); font-size: 15px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s; cursor: pointer; position: relative; }
@@ -187,12 +193,15 @@
         /* --- RESPONSIVE --- */
         @media (max-width: 1000px) {
             .hud-nav { 
-                grid-template-columns: auto 1fr; /* Логотип зліва, решта зправа/знизу */
+                grid-template-columns: auto 1fr; 
                 width: 90%; padding: 15px 20px; gap: 15px; 
             }
             .nav-links { flex-wrap: wrap; justify-content: center; gap: 20px; margin-top: 10px; grid-column: 1 / -1; }
             .lang-switch { justify-content: center; margin-top: 5px; grid-column: 1 / -1; }
-            .logo-link { justify-self: start; }
+            
+            /* АДАПТАЦІЯ ЛОГОТИПУ ДЛЯ МОБІЛЬНИХ */
+            .logo-link { justify-self: start; padding-left: 5px; }
+            .logo-link img { height: 42px; }
             
             .hero-fade-overlay { width: 100%; background: linear-gradient(to top, rgba(10,10,10,0.8) 0%, transparent 100%); }
             .hero-content-wrapper { width: 100%; justify-content: center; text-align: center; padding: 0 20px; }
@@ -214,13 +223,11 @@
     <!-- HUD NAVIGATION -->
     <div class="hud-wrapper">
         <nav class="hud-nav">
-            <!-- НОВИЙ ЛОГОТИП ЗЛІВА (Посилання на головну) -->
             <a href="index.html" class="logo-link" title="Головна">
                 <img src="assets/images/favicon/Favicon_Serhii_Prytula.png" alt="Logo">
             </a>
 
             <ul class="nav-links">
-                <!-- ЗАМІНЕНО "ГОЛОВНА" НА "ПОСЛУГИ" -->
                 <li><a href="services.html" id="link-services" class="active-link" data-key="nav_services">Послуги</a></li>
                 <li><a href="portfolio.html" id="link-portfolio" data-key="nav_port">Портфоліо</a></li>
                 <li><a href="about.html" id="link-about" data-key="nav_about">Про мене</a></li>
