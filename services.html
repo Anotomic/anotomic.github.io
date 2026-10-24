@@ -21,7 +21,7 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Montserrat', sans-serif; background-color: var(--bg-color); color: var(--text-main); overflow-x: hidden; min-height: 100vh; }
 
-        /* --- HUD NAVIGATION (ВИПРАВЛЕНО ТА ПОКРАЩЕНО) --- */
+        /* --- HUD NAVIGATION --- */
         .hud-wrapper { position: fixed; top: 0; left: 0; right: 0; display: flex; justify-content: center; z-index: 1000; pointer-events: none; }
         .hud-nav { 
             pointer-events: auto; background: var(--hud-bg); backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px); 
@@ -31,10 +31,20 @@
             box-shadow: 0 10px 40px rgba(0,0,0,0.5); transition: transform 0.3s ease; 
         }
         
-        /* ЗБІЛЬШЕНА ІКОНКА (Тільки вона, текст не чіпаємо) */
-        .logo-link { display: flex; align-items: center; justify-content: center; transition: transform 0.3s ease; pointer-events: auto; }
+        /* --- ЗМІНЕНО ТІЛЬКИ ТУТ: ЗБІЛЬШЕНО РОЗМІР ТА ЗСУНУТО ВПРАВО --- */
+        .logo-link { 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            transition: transform 0.3s ease; 
+            pointer-events: auto;
+            padding-left: 15px; /* Зсув іконки трохи вправо */
+        }
         .logo-link:hover { transform: scale(1.1); }
-        .logo-link img { height: 44px; width: auto; } /* Збільшено з 32px до 44px для сміливішого вигляду */
+        .logo-link img { 
+            height: 54px; /* Збільшили розмір іконки (було 44px) */
+            width: auto; 
+        }
 
         .nav-links { display: flex; list-style: none; gap: 28px; justify-content: center; }
         .nav-links a { text-decoration: none; color: var(--text-muted); font-size: 15px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s; cursor: pointer; position: relative; }
@@ -98,8 +108,9 @@
         /* Адаптивність */
         @media (max-width: 1000px) {
             .hud-nav { grid-template-columns: auto 1fr; width: 90%; padding: 15px 20px; gap: 15px; }
-            .nav-links { display: none; } /* Тут пізніше додамо бургер-меню, як в index */
-            .logo-link img { height: 36px; } /* Трохи менше на мобільному для балансу */
+            .nav-links { display: none; } 
+            .logo-link img { height: 42px; } /* Адаптований розмір для мобільного */
+            .logo-link { padding-left: 5px; }
             
             .service-card { height: auto; min-height: 350px; }
             .card-gradient-overlay { background: linear-gradient(to top, rgba(10,10,10,0.95) 0%, rgba(10,10,10,0.6) 100%); }
@@ -122,8 +133,8 @@
                 <li><a href="portfolio.html" data-key="nav_port">Портфоліо</a></li>
                 <li><a href="about.html" data-key="nav_about">Про мене</a></li>
                 <li><a href="tutorials.html" data-key="nav_tutorials">Навчання</a></li>
-                <li><a href="blog.html" data-key="nav_blog">Блог</a></li> <!-- ПОВЕРНУТО БЛОГ -->
-                <li><a href="contact.html" class="btn-contact" data-key="nav_contact">Зв'язатися</a></li> <!-- ДОДАНО КЛАС btn-contact -->
+                <li><a href="blog.html" data-key="nav_blog">Блог</a></li>
+                <li><a href="contact.html" class="btn-contact" data-key="nav_contact">Зв'язатися</a></li>
             </ul>
             
             <div class="lang-switch">
