@@ -19,20 +19,55 @@
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Montserrat', sans-serif; background-color: var(--bg-color); color: var(--text-main); overflow-x: hidden; min-height: 100vh; }
+        
+        body { 
+            font-family: 'Montserrat', sans-serif; 
+            background-color: var(--bg-color); 
+            color: var(--text-main); 
+            overflow-x: hidden; 
+            scrollbar-gutter: stable; /* ДОДАНО: резервує місце під скролбар */
+            min-height: 100vh; 
+        }
 
-        /* --- HUD NAVIGATION --- */
+        /* --- CUSTOM GLOBAL SCROLLBAR (ЯК В INDEX.HTML) --- */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: transparent; margin: 24px 0; }
+        ::-webkit-scrollbar-thumb {
+            background: var(--accent); border-radius: 10px; border: 2px solid transparent;
+            background-clip: content-box; margin-right: 16px; /* ЗСУВ СКРОЛБАРУ ЛІВОРУЧ */
+        }
+        ::-webkit-scrollbar-thumb:hover { background: #ff8c5a; }
+
+        /* --- HUD NAVIGATION (УЗГОДЖЕНО З INDEX.HTML) --- */
         .hud-wrapper { position: fixed; top: 0; left: 0; right: 0; display: flex; justify-content: center; z-index: 1000; pointer-events: none; }
-        .hud-nav { pointer-events: auto; background: var(--hud-bg); backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px); border: 1px solid var(--hud-border); border-top: none; border-radius: 0 0 24px 24px; padding: 22px 20px; width: 65%; max-width: 950px; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; box-shadow: 0 10px 40px rgba(0,0,0,0.5); transition: transform 0.3s ease; }
-        .nav-spacer { visibility: hidden; }
-        .nav-links { display: flex; list-style: none; gap: 24px; justify-content: center; }
+        .hud-nav { 
+            pointer-events: auto; background: var(--hud-bg); backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px); 
+            border: 1px solid var(--hud-border); border-top: none; border-radius: 0 0 24px 24px; 
+            padding: 18px 25px; width: 70%; max-width: 1050px; 
+            display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 30px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5); transition: transform 0.3s ease; 
+        }
+        
+        /* --- ЗМІНЕНО ТУТ: ЗБІЛЬШЕНО РОЗМІР ТА ЗСУНУТО ВПРАВО --- */
+        .logo-link { 
+            display: flex; align-items: center; justify-content: center; 
+            transition: transform 0.3s ease; pointer-events: auto;
+            padding-left: 15px; /* Зсув іконки трохи вправо */
+        }
+        .logo-link:hover { transform: scale(1.1); }
+        .logo-link img { 
+            height: 54px; /* Збільшили розмір іконки */
+            width: auto; 
+        }
+
+        .nav-links { display: flex; list-style: none; gap: 28px; justify-content: center; }
         .nav-links a { text-decoration: none; color: var(--text-muted); font-size: 15px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s; cursor: pointer; position: relative; }
         .nav-links a:hover, .nav-links a.active-link { color: var(--text-main); text-shadow: 0 0 12px rgba(255,255,255,0.3); }
         .nav-links a.active-link::after { content: ''; position: absolute; bottom: -6px; left: 0; width: 100%; height: 2px; background: var(--accent); box-shadow: 0 0 8px var(--accent); }
         .btn-contact { border: 1px solid var(--accent); padding: 8px 20px; border-radius: 30px; color: var(--accent) !important; transition: all 0.3s; }
         .btn-contact:hover { background: var(--accent); color: #fff !important; box-shadow: 0 0 15px rgba(255, 107, 53, 0.4); }
         .btn-contact::after { display: none !important; }
-        .lang-switch { display: flex; gap: 12px; justify-content: flex-end; padding-left: 15px; }
+        .lang-switch { display: flex; gap: 12px; justify-content: flex-end; }
         .lang-btn { background: none; border: none; color: var(--text-muted); font-weight: 700; cursor: pointer; font-size: 15px; transition: color 0.3s; }
         .lang-btn.active-lang { color: var(--text-main); }
 
@@ -94,10 +129,16 @@
 
         /* Адаптивність */
         @media (max-width: 1000px) {
-            .hud-nav { grid-template-columns: 1fr; width: 90%; padding: 20px; gap: 15px; }
-            .nav-spacer { display: none; }
-            .nav-links { flex-wrap: wrap; justify-content: center; gap: 20px; }
-            .lang-switch { justify-content: center; padding-left: 0; margin-top: 5px; }
+            .hud-nav { 
+                grid-template-columns: auto 1fr; 
+                width: 90%; padding: 15px 20px; gap: 15px; 
+            }
+            .nav-links { flex-wrap: wrap; justify-content: center; gap: 20px; margin-top: 10px; grid-column: 1 / -1; }
+            .lang-switch { justify-content: center; margin-top: 5px; grid-column: 1 / -1; }
+            
+            /* АДАПТАЦІЯ ЛОГОТИПУ ДЛЯ МОБІЛЬНИХ */
+            .logo-link { justify-self: start; padding-left: 5px; }
+            .logo-link img { height: 42px; }
             
             .hero-fade-overlay { width: 100%; background: linear-gradient(to top, rgba(10,10,10,0.9) 0%, transparent 100%); }
             .hero-content-wrapper { width: 100%; justify-content: flex-end; align-items: flex-end; padding: 0 20px 80px; text-align: center; }
@@ -111,16 +152,21 @@
     <!-- HUD NAVIGATION -->
     <div class="hud-wrapper">
         <nav class="hud-nav">
-            <div class="nav-spacer"></div>
+            <!-- ЛОГОТИП ЗЛІВА (Посилання на головну) -->
+            <a href="index.html" class="logo-link" title="Головна">
+                <img src="assets/images/favicon/Favicon_Serhii_Prytula.png" alt="Logo">
+            </a>
+
             <ul class="nav-links">
-                <li><a href="index.html" id="link-home" data-key="nav_home">Головна</a></li>
-                <li><a href="portfolio.html" id="link-portfolio" data-key="nav_port">Портфоліо</a></li>
-                <li><a href="about.html" id="link-about" data-key="nav_about">Про мене</a></li>
-                <!-- ВИПРАВЛЕНО: nav_tutorials для узгодження з index.html -->
+                <!-- ЗАМІНЕНО "ГОЛОВНА" НА "ПОСЛУГИ" ДЛЯ ЄДНОСТІ -->
+                <li><a href="services.html" data-key="nav_services">Послуги</a></li>
+                <li><a href="portfolio.html" data-key="nav_port">Портфоліо</a></li>
+                <li><a href="about.html" data-key="nav_about">Про мене</a></li>
                 <li><a href="tutorials.html" id="link-tutorials" class="active-link" data-key="nav_tutorials">Навчання</a></li>
-                <li><a href="blog.html" id="link-blog" data-key="nav_blog">Блог</a></li>
-                <li><a href="contact.html" id="link-contact" class="btn-contact" data-key="nav_contact">Зв'язатися</a></li>
+                <li><a href="blog.html" data-key="nav_blog">Блог</a></li>
+                <li><a href="contact.html" class="btn-contact" data-key="nav_contact">Зв'язатися</a></li>
             </ul>
+            
             <div class="lang-switch">
                 <button class="lang-btn active-lang" onclick="setLang('uk')">UA</button>
                 <button class="lang-btn" onclick="setLang('en')">EN</button>
@@ -149,17 +195,17 @@
 
     <!-- SCRIPTS -->
     <script>
-        // --- ПЕРЕЕКЛАДИ (УЗГОДЖЕНО З INDEX.HTML) ---
+        // --- ПЕРЕКЛАДИ (ОНОВЛЕНО: nav_services замість nav_home) ---
         const i18n = {
             uk: { 
-                nav_home: "Головна", nav_port: "Портфоліо", nav_about: "Про мене", nav_tutorials: "Навчання", nav_blog: "Блог", nav_contact: "Зв'язатися",
+                nav_services: "Послуги", nav_port: "Портфоліо", nav_about: "Про мене", nav_tutorials: "Навчання", nav_blog: "Блог", nav_contact: "Зв'язатися",
                 tut_label: "Рекомендований курс",
                 tut_1_title: "ZBrush для початківців",
                 tut_1_desc: "Цей курс ідеально підійде для тих, хто тільки починає свій шлях у 3D та хоче опанувати інструментарій ZBrush з нуля. Ми розберемо базові функції та закладемо міцний фундамент, на якому будується створення будь-яких моделей. Кожний етап супроводжується детальними поясненнями, щоб ви не просто повторювали дії, а розуміли логіку процесу.",
                 tut_btn: "Перейти до курсу"
             },
             en: { 
-                nav_home: "Home", nav_port: "Portfolio", nav_about: "About", nav_tutorials: "Tutorials", nav_blog: "Blog", nav_contact: "Contact Me",
+                nav_services: "Services", nav_port: "Portfolio", nav_about: "About", nav_tutorials: "Tutorials", nav_blog: "Blog", nav_contact: "Contact Me",
                 tut_label: "Featured Course",
                 tut_1_title: "ZBrush for Beginners",
                 tut_1_desc: "This course is perfect for those just starting their 3D journey and wanting to master ZBrush from scratch. We will cover basic functions and build a solid foundation for creating any model. Each step includes detailed explanations so you understand the logic behind the process, not just repeat actions.",
@@ -177,7 +223,6 @@
             document.querySelector(`.lang-btn[onclick="setLang('${lang}')"]`).classList.add('active-lang');
         }
         
-        // Завантажуємо збережену мову або встановлюємо українську за замовчуванням
         const savedLang = localStorage.getItem('site_lang') || 'uk'; 
         setLang(savedLang);
 
