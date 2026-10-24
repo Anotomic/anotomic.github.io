@@ -25,10 +25,20 @@
             background-color: var(--bg-color);
             color: var(--text-main);
             overflow-x: hidden;
+            scrollbar-gutter: stable; /* ДОДАНО: резервує місце під скролбар */
             min-height: 100vh;
         }
 
-        /* --- HUD NAVIGATION (СИНХРОНІЗОВАНО З INDEX.HTML) --- */
+        /* --- CUSTOM GLOBAL SCROLLBAR (ЯК В INDEX.HTML) --- */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: transparent; margin: 24px 0; }
+        ::-webkit-scrollbar-thumb {
+            background: var(--accent); border-radius: 10px; border: 2px solid transparent;
+            background-clip: content-box; margin-right: 16px; /* ЗСУВ СКРОЛБАРУ ЛІВОРУЧ */
+        }
+        ::-webkit-scrollbar-thumb:hover { background: #ff8c5a; }
+
+        /* --- HUD NAVIGATION (СИНХРОНІЗОВАНО) --- */
         .hud-wrapper { position: fixed; top: 0; left: 0; right: 0; display: flex; justify-content: center; z-index: 1000; pointer-events: none; }
         .hud-nav { 
             pointer-events: auto; background: var(--hud-bg); backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px); 
@@ -38,13 +48,17 @@
             box-shadow: 0 10px 40px rgba(0,0,0,0.5); transition: transform 0.3s ease; 
         }
         
-        /* Стилі для іконки-логотипу */
+        /* --- ЗМІНЕНО ТУТ: ЗБІЛЬШЕНО РОЗМІР ТА ЗСУНУТО ВПРАВО --- */
         .logo-link { 
             display: flex; align-items: center; justify-content: center; 
             transition: transform 0.3s ease; pointer-events: auto;
+            padding-left: 15px; /* Зсув іконки трохи вправо */
         }
         .logo-link:hover { transform: scale(1.1); }
-        .logo-link img { height: 32px; width: auto; }
+        .logo-link img { 
+            height: 54px; /* Збільшили розмір іконки */
+            width: auto; 
+        }
 
         .nav-links { display: flex; list-style: none; gap: 28px; justify-content: center; }
         .nav-links a { text-decoration: none; color: var(--text-muted); font-size: 15px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s; cursor: pointer; position: relative; }
@@ -93,7 +107,7 @@
 
         .modal-inner-wrapper { padding: 50px; min-height: 100%; box-sizing: border-box; }
         
-        /* CUSTOM SCROLLBAR */
+        /* CUSTOM SCROLLBAR ДЛЯ МОДАЛКИ */
         .modal-content::-webkit-scrollbar { width: 8px; }
         .modal-content::-webkit-scrollbar-track { background: transparent; margin: 24px 0; }
         .modal-content::-webkit-scrollbar-thumb {
@@ -130,7 +144,10 @@
             }
             .nav-links { flex-wrap: wrap; justify-content: center; gap: 20px; margin-top: 10px; grid-column: 1 / -1; }
             .lang-switch { justify-content: center; margin-top: 5px; grid-column: 1 / -1; }
-            .logo-link { justify-self: start; }
+            
+            /* АДАПТАЦІЯ ЛОГОТИПУ ДЛЯ МОБІЛЬНИХ */
+            .logo-link { justify-self: start; padding-left: 5px; }
+            .logo-link img { height: 42px; }
             
             .portfolio-grid { grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 15px; }
             .portfolio-container { padding-top: 140px; }
@@ -156,13 +173,11 @@
     <!-- HUD NAVIGATION -->
     <div class="hud-wrapper">
         <nav class="hud-nav">
-            <!-- ЛОГОТИП ЗЛІВА (Посилання на головну) -->
             <a href="index.html" class="logo-link" title="Головна">
                 <img src="assets/images/favicon/Favicon_Serhii_Prytula.png" alt="Logo">
             </a>
 
             <ul class="nav-links">
-                <!-- ЗАМІНЕНО "ГОЛОВНА" НА "ПОСЛУГИ" -->
                 <li><a href="services.html" data-key="nav_services">Послуги</a></li>
                 <li><a href="portfolio.html" id="link-portfolio" class="active-link" data-key="nav_port">Портфоліо</a></li>
                 <li><a href="about.html" id="link-about" data-key="nav_about">Про мене</a></li>
@@ -226,7 +241,7 @@
 
     <!-- SCRIPTS -->
     <script>
-        // --- ПЕРЕКЛАДИ (ОНОВЛЕНО: nav_services замість nav_home) ---
+        // --- ПЕРЕКЛАДИ ---
         const i18n = {
             uk: { 
                 nav_services: "Послуги", nav_port: "Портфоліо", nav_about: "Про мене", nav_tutorials: "Навчання", nav_blog: "Блог", nav_contact: "Зв'язатися", 
