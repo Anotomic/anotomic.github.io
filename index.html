@@ -25,16 +25,34 @@
             background-color: var(--bg-color);
             color: var(--text-main);
             overflow-x: hidden;
-            /* ФІКС: Завжди резервуємо місце під скролбар, щоб ширина не стрибала */
-            overflow-y: scroll; 
+            /* ФІКС: резервує місце під скролбар, щоб ширина сторінки не стрибала */
+            scrollbar-gutter: stable; 
             min-height: 200vh;
         }
 
-        /* --- HUD NAVIGATION (ТЕПЕР 1 В 1 ЯК В PORTFOLIO.HTML) --- */
+        /* --- CUSTOM GLOBAL SCROLLBAR (ЯК У PORTFOLIO.HTML) --- */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+            margin: 24px 0;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--accent);
+            border-radius: 10px;
+            border: 2px solid transparent;
+            background-clip: content-box;
+            margin-right: 16px; /* ЗСУВ СКРОЛБАРУ ЛІВОРУЧ */
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #ff8c5a;
+        }
+
+        /* --- HUD NAVIGATION --- */
         .hud-wrapper { 
             position: fixed; top: 0; left: 0; right: 0; 
             display: flex; justify-content: center; z-index: 1000; pointer-events: none; 
-            /* width: 100vw; ВИДАЛЕНО - саме це ламало центрування */
         }
         .hud-nav { 
             pointer-events: auto; background: var(--hud-bg); backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px); 
