@@ -57,7 +57,6 @@
         }
         .logo-link:hover { transform: scale(1.1); }
         
-        /* АКТИВНИЙ СТАН ДЛЯ ЛОГОТИПУ (Коли користувач на головній) */
         .logo-link.active-logo img {
             filter: drop-shadow(0 0 12px var(--accent));
         }
@@ -103,19 +102,24 @@
         .hero-text h1 { font-size: clamp(40px, 5vw, 70px); font-weight: 900; line-height: 1.1; margin-bottom: 20px; text-shadow: 0 10px 40px rgba(0,0,0,0.9); }
         .hero-text p { font-size: 20px; color: #bbb; font-weight: 500; letter-spacing: 1.5px; }
 
-        /* --- ABOUT PREVIEW SECTION (НОВА СЕКЦІЯ) --- */
+        /* --- ABOUT PREVIEW SECTION (ФОТО ЗМЕНШЕНО) --- */
         .about-preview {
             position: relative; padding: 120px 20px;
             display: flex; align-items: center; justify-content: center;
             background: linear-gradient(180deg, #0a0a0a 0%, #121212 100%);
         }
         .about-preview-container {
-            max-width: 1400px; width: 100%;
-            display: grid; grid-template-columns: 1fr 1.2fr; gap: 80px; align-items: center;
+            max-width: 1300px; width: 100%;
+            /* ЗМЕНШЕНО КОЛОНКУ З ФОТО: було 1fr 1.2fr, стало 0.8fr 1.2fr */
+            display: grid; grid-template-columns: 0.8fr 1.2fr; gap: 70px; align-items: center;
         }
         .about-preview-image {
             position: relative; aspect-ratio: 3/4; border-radius: 20px; overflow: hidden;
-            background: #1e1e1e; /* Чорний макет */
+            background: #1e1e1e;
+            /* ДОДАНО ОБМЕЖЕННЯ ШИРИНИ ФОТО */
+            max-width: 380px;
+            width: 100%;
+            margin: 0 auto;
             box-shadow: 0 30px 80px rgba(0,0,0,0.6);
             border: 1px solid var(--hud-border);
         }
@@ -132,6 +136,7 @@
         .about-preview-content h2 span { color: var(--accent); }
         .about-preview-content p {
             font-size: 1.1rem; color: #ccc; line-height: 1.7; margin-bottom: 30px;
+            max-width: 95%;
         }
         .about-btn {
             display: inline-flex; align-items: center; gap: 10px;
@@ -145,29 +150,32 @@
             transform: translateY(-2px);
         }
 
-        /* --- SERVICES PREVIEW SECTION (НОВА СЕКЦІЯ) --- */
+        /* --- SERVICES PREVIEW SECTION (БЛОКИ ОПТИМІЗОВАНО) --- */
         .services-preview {
             padding: 120px 20px; background: #0a0a0a;
         }
         .services-preview-header {
-            text-align: center; margin-bottom: 60px;
+            text-align: center; margin-bottom: 50px;
         }
         .services-preview-header h2 {
             font-size: clamp(2rem, 4vw, 3rem); font-weight: 900; margin-bottom: 15px;
             color: var(--text-main);
         }
         .services-preview-header p {
-            font-size: 1.1rem; color: var(--text-muted); max-width: 600px; margin: 0 auto;
+            font-size: 1.05rem; color: var(--text-muted); max-width: 600px; margin: 0 auto;
+            line-height: 1.6;
         }
         
         .services-cards {
-            max-width: 1400px; margin: 0 auto;
-            display: grid; grid-template-columns: 1fr 1fr; gap: 40px;
+            /* ЗМЕНШЕНО ЗАГАЛЬНУ ШИРИНУ ТА ВІДСТУП МІЖ КАРТКАМИ */
+            max-width: 1100px; margin: 0 auto;
+            display: grid; grid-template-columns: 1fr 1fr; gap: 30px;
         }
         .service-preview-card {
-            position: relative; background: #151515; border-radius: 24px; overflow: hidden;
+            position: relative; background: #151515; border-radius: 20px; overflow: hidden;
             border: 1px solid var(--hud-border); transition: all 0.4s ease;
-            min-height: 400px; cursor: pointer; text-decoration: none; color: var(--text-main);
+            /* ЗМЕНШЕНО МІНІМАЛЬНУ ВИСОТУ */
+            min-height: 320px; cursor: pointer; text-decoration: none; color: var(--text-main);
             display: flex; flex-direction: column;
         }
         .service-preview-card:hover {
@@ -176,34 +184,41 @@
         }
         
         .card-visual {
-            height: 200px; background: linear-gradient(135deg, #1a1a1a 0%, #0d0d0d 100%);
+            /* ЗМЕНШЕНО ВИСОТУ ЗОНИ З ІКОНКОЮ */
+            height: 150px; background: linear-gradient(135deg, #1a1a1a 0%, #0d0d0d 100%);
             display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden;
         }
         .card-visual i {
-            font-size: 4rem; color: var(--accent); opacity: 0.8;
+            /* ЗМЕНШЕНО РОЗМІР ІКОНКИ */
+            font-size: 3.2rem; color: var(--accent); opacity: 0.85;
             transition: transform 0.4s ease;
         }
         .service-preview-card:hover .card-visual i {
             transform: scale(1.1) rotate(-5deg);
         }
         
-        .card-text { padding: 30px; flex: 1; display: flex; flex-direction: column; }
+        .card-text { 
+            /* ЗМЕНШЕНО PADDING */
+            padding: 25px; flex: 1; display: flex; flex-direction: column; 
+        }
         .card-text h3 {
-            font-size: 1.6rem; font-weight: 800; margin-bottom: 15px;
+            /* ТРОХИ ЗМЕНШЕНО ЗАГОЛОВОК */
+            font-size: 1.35rem; font-weight: 800; margin-bottom: 12px;
             color: var(--text-main);
         }
         .card-text p {
-            font-size: 1rem; color: #999; line-height: 1.6; margin-bottom: 20px; flex: 1;
+            /* ОПТИМІЗОВАНО РОЗМІР ТЕКСТУ */
+            font-size: 0.92rem; color: #999; line-height: 1.6; margin-bottom: 18px; flex: 1;
         }
         .card-link {
             display: inline-flex; align-items: center; gap: 8px;
-            color: var(--accent); font-weight: 700; font-size: 0.95rem;
+            color: var(--accent); font-weight: 700; font-size: 0.85rem;
             text-transform: uppercase; letter-spacing: 1px;
             transition: gap 0.3s;
         }
         .service-preview-card:hover .card-link { gap: 12px; }
 
-        /* --- COURSE SECTION (ПЕРЕМІЩЕНО НИЖЧЕ) --- */
+        /* --- COURSE SECTION --- */
         .curtain-section {
             position: relative; z-index: 10; background-color: var(--bg-color);
             min-height: 100vh; margin-top: 0; padding: 80px 20px;
@@ -241,7 +256,7 @@
             to { opacity: 1; transform: perspective(1000px) rotateY(-10deg) rotateX(5deg) translateY(0); }
         }
 
-        /* --- OTHER SECTIONS (SPA placeholders) --- */
+        /* --- OTHER SECTIONS --- */
         .page-section { display: none; min-height: 100vh; width: 100%; animation: fadeIn 0.5s ease forwards; }
         .page-section.active-page { display: block; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
@@ -264,12 +279,14 @@
             /* About Preview Mobile */
             .about-preview { padding: 80px 20px; }
             .about-preview-container { grid-template-columns: 1fr; gap: 40px; text-align: center; }
-            .about-preview-image { max-width: 300px; margin: 0 auto; }
+            /* ФОТО ЩЕ КОМПАКТНІШЕ НА МОБІЛЬНОМУ */
+            .about-preview-image { max-width: 280px; }
             .about-preview-content { text-align: center; }
+            .about-preview-content p { max-width: 100%; }
             .about-btn { justify-content: center; }
             
             /* Services Preview Mobile */
-            .services-cards { grid-template-columns: 1fr; gap: 30px; }
+            .services-cards { grid-template-columns: 1fr; gap: 25px; }
             
             /* Course Mobile */
             .course-banner { flex-direction: column; height: auto; overflow: hidden; }
@@ -284,13 +301,11 @@
     <!-- HUD NAVIGATION -->
     <div class="hud-wrapper">
         <nav class="hud-nav">
-            <!-- АКТИВНИЙ ЛОГОТИП (Коли на головній) -->
             <a href="index.html" class="logo-link active-logo" title="Головна">
                 <img src="assets/images/favicon/Favicon_Serhii_Prytula.png" alt="Logo">
             </a>
 
             <ul class="nav-links">
-                <!-- ПРИБРАНО active-link з Services -->
                 <li><a href="services.html" id="link-services" data-key="nav_services">Послуги</a></li>
                 <li><a href="portfolio.html" id="link-portfolio" data-key="nav_port">Портфоліо</a></li>
                 <li><a href="about.html" id="link-about" data-key="nav_about">Про мене</a></li>
@@ -323,7 +338,7 @@
             </div>
         </div>
 
-        <!-- 2. ABOUT PREVIEW (НОВА СЕКЦІЯ) -->
+        <!-- 2. ABOUT PREVIEW -->
         <div class="about-preview">
             <div class="about-preview-container">
                 <div class="about-preview-image">
@@ -340,14 +355,13 @@
             </div>
         </div>
 
-        <!-- 3. SERVICES PREVIEW (НОВА СЕКЦІЯ) -->
+        <!-- 3. SERVICES PREVIEW -->
         <div class="services-preview">
             <div class="services-preview-header">
                 <h2 data-key="services_preview_title">Що я можу для вас зробити?</h2>
                 <p data-key="services_preview_desc">Пропоную професійні послуги з 3D-арту та індивідуальне навчання для тих, хто хоче опанувати це мистецтво.</p>
             </div>
             <div class="services-cards">
-                <!-- Картка 1: Замовлення -->
                 <a href="services.html" class="service-preview-card">
                     <div class="card-visual">
                         <i class="fas fa-user-astronaut"></i>
@@ -362,7 +376,6 @@
                     </div>
                 </a>
 
-                <!-- Картка 2: Навчання -->
                 <a href="services.html" class="service-preview-card">
                     <div class="card-visual">
                         <i class="fas fa-chalkboard-teacher"></i>
@@ -379,7 +392,7 @@
             </div>
         </div>
 
-        <!-- 4. COURSE SECTION (ПЕРЕМІЩЕНО НИЖЧЕ) -->
+        <!-- 4. COURSE SECTION -->
         <div class="curtain-section">
             <div class="course-banner">
                 <div class="course-content">
@@ -396,7 +409,7 @@
 
     </section>
 
-    <!-- ІНШІ СЕКЦІЇ (SPA placeholders, не використовуються при прямому заході на сторінки) -->
+    <!-- ІНШІ СЕКЦІЇ (SPA placeholders) -->
     <section id="page-portfolio" class="page-section"><div style="padding: 160px 20px 0; text-align: center;"><h2>Портфоліо</h2></div></section>
     <section id="page-blog" class="page-section"><div style="padding: 160px 20px 0; text-align: center;"><h2>Блог</h2></div></section>
     <section id="page-contact" class="page-section"><div style="padding: 160px 20px 0; text-align: center;"><h2>Зв'язатися</h2></div></section>
@@ -411,7 +424,7 @@
             slides[currentSlide].classList.add('visible');
         }, 5000);
 
-        // --- I18N (Переклади) ---
+        // --- I18N ---
         const i18n = {
             uk: { 
                 nav_services: "Послуги", nav_port: "Портфоліо", nav_about: "Про мене", nav_tutorials: "Навчання", nav_blog: "Блог", nav_contact: "Зв'язатися", 
