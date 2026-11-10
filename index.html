@@ -102,7 +102,7 @@
         .hero-text h1 { font-size: clamp(40px, 5vw, 70px); font-weight: 900; line-height: 1.1; margin-bottom: 20px; text-shadow: 0 10px 40px rgba(0,0,0,0.9); }
         .hero-text p { font-size: 20px; color: #bbb; font-weight: 500; letter-spacing: 1.5px; }
 
-        /* --- ABOUT PREVIEW SECTION (ФОТО ЗМЕНШЕНО) --- */
+        /* --- ABOUT PREVIEW SECTION --- */
         .about-preview {
             position: relative; padding: 120px 20px;
             display: flex; align-items: center; justify-content: center;
@@ -110,13 +110,11 @@
         }
         .about-preview-container {
             max-width: 1300px; width: 100%;
-            /* ЗМЕНШЕНО КОЛОНКУ З ФОТО: було 1fr 1.2fr, стало 0.8fr 1.2fr */
             display: grid; grid-template-columns: 0.8fr 1.2fr; gap: 70px; align-items: center;
         }
         .about-preview-image {
             position: relative; aspect-ratio: 3/4; border-radius: 20px; overflow: hidden;
             background: #1e1e1e;
-            /* ДОДАНО ОБМЕЖЕННЯ ШИРИНИ ФОТО */
             max-width: 380px;
             width: 100%;
             margin: 0 auto;
@@ -150,7 +148,7 @@
             transform: translateY(-2px);
         }
 
-        /* --- SERVICES PREVIEW SECTION (БЛОКИ ОПТИМІЗОВАНО) --- */
+        /* --- SERVICES PREVIEW SECTION --- */
         .services-preview {
             padding: 120px 20px; background: #0a0a0a;
         }
@@ -167,14 +165,12 @@
         }
         
         .services-cards {
-            /* ЗМЕНШЕНО ЗАГАЛЬНУ ШИРИНУ ТА ВІДСТУП МІЖ КАРТКАМИ */
             max-width: 1100px; margin: 0 auto;
             display: grid; grid-template-columns: 1fr 1fr; gap: 30px;
         }
         .service-preview-card {
             position: relative; background: #151515; border-radius: 20px; overflow: hidden;
             border: 1px solid var(--hud-border); transition: all 0.4s ease;
-            /* ЗМЕНШЕНО МІНІМАЛЬНУ ВИСОТУ */
             min-height: 320px; cursor: pointer; text-decoration: none; color: var(--text-main);
             display: flex; flex-direction: column;
         }
@@ -184,12 +180,10 @@
         }
         
         .card-visual {
-            /* ЗМЕНШЕНО ВИСОТУ ЗОНИ З ІКОНКОЮ */
             height: 150px; background: linear-gradient(135deg, #1a1a1a 0%, #0d0d0d 100%);
             display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden;
         }
         .card-visual i {
-            /* ЗМЕНШЕНО РОЗМІР ІКОНКИ */
             font-size: 3.2rem; color: var(--accent); opacity: 0.85;
             transition: transform 0.4s ease;
         }
@@ -198,16 +192,13 @@
         }
         
         .card-text { 
-            /* ЗМЕНШЕНО PADDING */
             padding: 25px; flex: 1; display: flex; flex-direction: column; 
         }
         .card-text h3 {
-            /* ТРОХИ ЗМЕНШЕНО ЗАГОЛОВОК */
             font-size: 1.35rem; font-weight: 800; margin-bottom: 12px;
             color: var(--text-main);
         }
         .card-text p {
-            /* ОПТИМІЗОВАНО РОЗМІР ТЕКСТУ */
             font-size: 0.92rem; color: #999; line-height: 1.6; margin-bottom: 18px; flex: 1;
         }
         .card-link {
@@ -276,19 +267,15 @@
             .hero-content-wrapper { width: 100%; justify-content: center; text-align: center; padding: 0 20px; }
             .hero-text { text-align: center; }
             
-            /* About Preview Mobile */
             .about-preview { padding: 80px 20px; }
             .about-preview-container { grid-template-columns: 1fr; gap: 40px; text-align: center; }
-            /* ФОТО ЩЕ КОМПАКТНІШЕ НА МОБІЛЬНОМУ */
             .about-preview-image { max-width: 280px; }
             .about-preview-content { text-align: center; }
             .about-preview-content p { max-width: 100%; }
             .about-btn { justify-content: center; }
             
-            /* Services Preview Mobile */
             .services-cards { grid-template-columns: 1fr; gap: 25px; }
             
-            /* Course Mobile */
             .course-banner { flex-direction: column; height: auto; overflow: hidden; }
             .course-content { width: 100%; padding: 40px 30px; background: #0a0a0a; }
             .course-image-area { width: 100%; height: 350px; margin-top: 20px; }
@@ -306,12 +293,13 @@
             </a>
 
             <ul class="nav-links">
-                <li><a href="services.html" id="link-services" data-key="nav_services">Послуги</a></li>
-                <li><a href="portfolio.html" id="link-portfolio" data-key="nav_port">Портфоліо</a></li>
-                <li><a href="about.html" id="link-about" data-key="nav_about">Про мене</a></li>
-                <li><a href="tutorials.html" id="link-tutorials" data-key="nav_tutorials">Навчання</a></li>
-                <li><a href="blog.html" id="link-blog" data-key="nav_blog">Блог</a></li>
-                <li><a href="contact.html" id="link-contact" class="btn-contact" data-key="nav_contact">Зв'язатися</a></li>
+                <!-- ОНОВЛЕНО: додано pages/ -->
+                <li><a href="pages/services.html" id="link-services" data-key="nav_services">Послуги</a></li>
+                <li><a href="pages/portfolio.html" id="link-portfolio" data-key="nav_port">Портфоліо</a></li>
+                <li><a href="pages/about.html" id="link-about" data-key="nav_about">Про мене</a></li>
+                <li><a href="pages/tutorials.html" id="link-tutorials" data-key="nav_tutorials">Навчання</a></li>
+                <li><a href="pages/blog.html" id="link-blog" data-key="nav_blog">Блог</a></li>
+                <li><a href="pages/contact.html" id="link-contact" class="btn-contact" data-key="nav_contact">Зв'язатися</a></li>
             </ul>
             
             <div class="lang-switch">
@@ -347,7 +335,8 @@
                 <div class="about-preview-content">
                     <h2 data-key="about_preview_title">Привіт, я <span>Сергій</span></h2>
                     <p data-key="about_preview_desc">Традиційний та цифровий 3D-скульптор персонажів з України. Я створюю унікальних персонажів, істот та пропси для ігор і кіно. Від першого ескізу до готового game-ready ассету — моя мета перетворити вашу ідею на візуальний шедевр, який запам'ятається.</p>
-                    <a href="about.html" class="about-btn">
+                    <!-- ОНОВЛЕНО: додано pages/ -->
+                    <a href="pages/about.html" class="about-btn">
                         <span data-key="about_preview_btn">Дізнатися більше про мене</span>
                         <i class="fas fa-arrow-right"></i>
                     </a>
@@ -362,7 +351,8 @@
                 <p data-key="services_preview_desc">Пропоную професійні послуги з 3D-арту та індивідуальне навчання для тих, хто хоче опанувати це мистецтво.</p>
             </div>
             <div class="services-cards">
-                <a href="services.html" class="service-preview-card">
+                <!-- ОНОВЛЕНО: додано pages/ -->
+                <a href="pages/services.html" class="service-preview-card">
                     <div class="card-visual">
                         <i class="fas fa-user-astronaut"></i>
                     </div>
@@ -376,7 +366,8 @@
                     </div>
                 </a>
 
-                <a href="services.html" class="service-preview-card">
+                <!-- ОНОВЛЕНО: додано pages/ -->
+                <a href="pages/services.html" class="service-preview-card">
                     <div class="card-visual">
                         <i class="fas fa-chalkboard-teacher"></i>
                     </div>
@@ -399,7 +390,8 @@
                     <span class="course-label" data-key="course_label">Free Course</span>
                     <h2 class="course-title" data-key="course_title">Zbrush for Beginners</h2>
                     <p class="course-desc" data-key="course_desc">Опануйте скульптинг у ZBrush легко та впевнено! Повністю безкоштовний покроковий курс: від основ до вашого першого 3D-портрета персонажа з нуля.</p>
-                    <a href="tutorials.html" class="course-btn" data-key="course_btn">Почати навчання</a>
+                    <!-- ОНОВЛЕНО: додано pages/ -->
+                    <a href="pages/tutorials.html" class="course-btn" data-key="course_btn">Почати навчання</a>
                 </div>
                 <div class="course-image-area">
                     <img src="assets/images/hero/Course_Zbrush_for_Beginner_Serhii_Prytula.png" alt="Zbrush Course Box" class="breakout-img fade-in-up">
