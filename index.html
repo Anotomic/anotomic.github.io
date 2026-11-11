@@ -37,7 +37,6 @@
         }
         ::-webkit-scrollbar-thumb:hover { background: #ff8c5a; }
 
-        /* --- HUD NAVIGATION --- */
         .hud-wrapper { 
             position: fixed; top: 0; left: 0; right: 0; 
             display: flex; justify-content: center; z-index: 1000; pointer-events: none; 
@@ -78,7 +77,6 @@
         .lang-btn { background: none; border: none; color: var(--text-muted); font-weight: 700; cursor: pointer; font-size: 15px; transition: color 0.3s; }
         .lang-btn.active-lang { color: var(--text-main); }
 
-        /* --- HERO SECTION --- */
         .hero-container { position: relative; height: 100vh; width: 100%; overflow: hidden; }
         .slide-bg {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
@@ -102,7 +100,6 @@
         .hero-text h1 { font-size: clamp(40px, 5vw, 70px); font-weight: 900; line-height: 1.1; margin-bottom: 20px; text-shadow: 0 10px 40px rgba(0,0,0,0.9); }
         .hero-text p { font-size: 20px; color: #bbb; font-weight: 500; letter-spacing: 1.5px; }
 
-        /* --- ABOUT PREVIEW SECTION --- */
         .about-preview {
             position: relative; padding: 120px 20px;
             display: flex; align-items: center; justify-content: center;
@@ -148,7 +145,6 @@
             transform: translateY(-2px);
         }
 
-        /* --- SERVICES PREVIEW SECTION --- */
         .services-preview {
             padding: 120px 20px; background: #0a0a0a;
         }
@@ -209,7 +205,6 @@
         }
         .service-preview-card:hover .card-link { gap: 12px; }
 
-        /* --- COURSE SECTION --- */
         .curtain-section {
             position: relative; z-index: 10; background-color: var(--bg-color);
             min-height: 100vh; margin-top: 0; padding: 80px 20px;
@@ -247,12 +242,10 @@
             to { opacity: 1; transform: perspective(1000px) rotateY(-10deg) rotateX(5deg) translateY(0); }
         }
 
-        /* --- OTHER SECTIONS --- */
         .page-section { display: none; min-height: 100vh; width: 100%; animation: fadeIn 0.5s ease forwards; }
         .page-section.active-page { display: block; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* --- RESPONSIVE --- */
         @media (max-width: 1000px) {
             .hud-nav { 
                 grid-template-columns: auto 1fr; 
@@ -293,13 +286,13 @@
             </a>
 
             <ul class="nav-links">
-                <!-- ОНОВЛЕНО: додано pages/ -->
-                <li><a href="pages/services.html" id="link-services" data-key="nav_services">Послуги</a></li>
-                <li><a href="pages/portfolio.html" id="link-portfolio" data-key="nav_port">Портфоліо</a></li>
-                <li><a href="pages/about.html" id="link-about" data-key="nav_about">Про мене</a></li>
-                <li><a href="pages/tutorials.html" id="link-tutorials" data-key="nav_tutorials">Навчання</a></li>
-                <li><a href="pages/blog.html" id="link-blog" data-key="nav_blog">Блог</a></li>
-                <li><a href="pages/contact.html" id="link-contact" class="btn-contact" data-key="nav_contact">Зв'язатися</a></li>
+                <!-- ОНОВЛЕНО: pages/папка/файл.html -->
+                <li><a href="pages/services/services.html" id="link-services" data-key="nav_services">Послуги</a></li>
+                <li><a href="pages/portfolio/portfolio.html" id="link-portfolio" data-key="nav_port">Портфоліо</a></li>
+                <li><a href="pages/about/about.html" id="link-about" data-key="nav_about">Про мене</a></li>
+                <li><a href="pages/tutorials/tutorials.html" id="link-tutorials" data-key="nav_tutorials">Навчання</a></li>
+                <li><a href="pages/blog/blog.html" id="link-blog" data-key="nav_blog">Блог</a></li>
+                <li><a href="pages/contact/contact.html" id="link-contact" class="btn-contact" data-key="nav_contact">Зв'язатися</a></li>
             </ul>
             
             <div class="lang-switch">
@@ -330,13 +323,13 @@
         <div class="about-preview">
             <div class="about-preview-container">
                 <div class="about-preview-image">
-                    <!-- Поки чорний макет (без img) -->
+                    <!-- Поки чорний макет -->
                 </div>
                 <div class="about-preview-content">
                     <h2 data-key="about_preview_title">Привіт, я <span>Сергій</span></h2>
                     <p data-key="about_preview_desc">Традиційний та цифровий 3D-скульптор персонажів з України. Я створюю унікальних персонажів, істот та пропси для ігор і кіно. Від першого ескізу до готового game-ready ассету — моя мета перетворити вашу ідею на візуальний шедевр, який запам'ятається.</p>
-                    <!-- ОНОВЛЕНО: додано pages/ -->
-                    <a href="pages/about.html" class="about-btn">
+                    <!-- ОНОВЛЕНО: pages/about/about.html -->
+                    <a href="pages/about/about.html" class="about-btn">
                         <span data-key="about_preview_btn">Дізнатися більше про мене</span>
                         <i class="fas fa-arrow-right"></i>
                     </a>
@@ -351,8 +344,8 @@
                 <p data-key="services_preview_desc">Пропоную професійні послуги з 3D-арту та індивідуальне навчання для тих, хто хоче опанувати це мистецтво.</p>
             </div>
             <div class="services-cards">
-                <!-- ОНОВЛЕНО: додано pages/ -->
-                <a href="pages/services.html" class="service-preview-card">
+                <!-- ОНОВЛЕНО: pages/services/services.html -->
+                <a href="pages/services/services.html" class="service-preview-card">
                     <div class="card-visual">
                         <i class="fas fa-user-astronaut"></i>
                     </div>
@@ -366,8 +359,8 @@
                     </div>
                 </a>
 
-                <!-- ОНОВЛЕНО: додано pages/ -->
-                <a href="pages/services.html" class="service-preview-card">
+                <!-- ОНОВЛЕНО: pages/services/services.html -->
+                <a href="pages/services/services.html" class="service-preview-card">
                     <div class="card-visual">
                         <i class="fas fa-chalkboard-teacher"></i>
                     </div>
@@ -390,8 +383,8 @@
                     <span class="course-label" data-key="course_label">Free Course</span>
                     <h2 class="course-title" data-key="course_title">Zbrush for Beginners</h2>
                     <p class="course-desc" data-key="course_desc">Опануйте скульптинг у ZBrush легко та впевнено! Повністю безкоштовний покроковий курс: від основ до вашого першого 3D-портрета персонажа з нуля.</p>
-                    <!-- ОНОВЛЕНО: додано pages/ -->
-                    <a href="pages/tutorials.html" class="course-btn" data-key="course_btn">Почати навчання</a>
+                    <!-- ОНОВЛЕНО: pages/tutorials/tutorials.html -->
+                    <a href="pages/tutorials/tutorials.html" class="course-btn" data-key="course_btn">Почати навчання</a>
                 </div>
                 <div class="course-image-area">
                     <img src="assets/images/hero/Course_Zbrush_for_Beginner_Serhii_Prytula.png" alt="Zbrush Course Box" class="breakout-img fade-in-up">
@@ -401,13 +394,11 @@
 
     </section>
 
-    <!-- ІНШІ СЕКЦІЇ (SPA placeholders) -->
     <section id="page-portfolio" class="page-section"><div style="padding: 160px 20px 0; text-align: center;"><h2>Портфоліо</h2></div></section>
     <section id="page-blog" class="page-section"><div style="padding: 160px 20px 0; text-align: center;"><h2>Блог</h2></div></section>
     <section id="page-contact" class="page-section"><div style="padding: 160px 20px 0; text-align: center;"><h2>Зв'язатися</h2></div></section>
 
     <script>
-        // --- SLIDESHOW ---
         const slides = document.querySelectorAll('.hero-container .slide-bg');
         let currentSlide = 0;
         setInterval(() => {
@@ -416,17 +407,14 @@
             slides[currentSlide].classList.add('visible');
         }, 5000);
 
-        // --- I18N ---
         const i18n = {
             uk: { 
                 nav_services: "Послуги", nav_port: "Портфоліо", nav_about: "Про мене", nav_tutorials: "Навчання", nav_blog: "Блог", nav_contact: "Зв'язатися", 
                 hero_sub: "Відданий 3D художник персонажів для вашої гри чи проєкту", 
                 hero_role: "Anotomic. Zbrush / 3D Художник Персонажів", 
-                
                 about_preview_title: "Привіт, я <span>Сергій</span>",
                 about_preview_desc: "Традиційний та цифровий 3D-скульптор персонажів з України. Я створюю унікальних персонажів, істот та пропси для ігор і кіно. Від першого ескізу до готового game-ready ассету — моя мета перетворити вашу ідею на візуальний шедевр, який запам'ятається.",
                 about_preview_btn: "Дізнатися більше про мене",
-                
                 services_preview_title: "Що я можу для вас зробити?",
                 services_preview_desc: "Пропоную професійні послуги з 3D-арту та індивідуальне навчання для тих, хто хоче опанувати це мистецтво.",
                 sp_card1_title: "3D Art на замовлення",
@@ -435,7 +423,6 @@
                 sp_card2_title: "Навчання та Менторство",
                 sp_card2_desc: "Індивідуальне менторство та покрокові курси з ZBrush. Допоможу побудувати портфоліо, зрозуміти пайплайн та підготуватися до роботи в індустрії.",
                 sp_card2_link: "Дивитися навчання",
-                
                 course_label: "Безкоштовний курс", course_title: "Zbrush для початківців", 
                 course_desc: "Опануйте скульптинг у ZBrush легко та впевнено! Повністю безкоштовний покроковий курс: від основ до вашого першого 3D-портрета персонажа з нуля.",
                 course_btn: "Почати навчання"
@@ -444,11 +431,9 @@
                 nav_services: "Services", nav_port: "Portfolio", nav_about: "About", nav_tutorials: "Tutorials", nav_blog: "Blog", nav_contact: "Contact Me", 
                 hero_sub: "Dedicated 3D Character Artist for your game or personal project", 
                 hero_role: "Anotomic. Zbrush / 3D Character Artist", 
-                
                 about_preview_title: "Hi, I'm <span>Serhii</span>",
                 about_preview_desc: "Traditional & Digital 3D Character Sculptor based in Ukraine. I create unique characters, creatures, and props for games and film. From the first sketch to a game-ready asset — my goal is to transform your idea into a memorable visual masterpiece.",
                 about_preview_btn: "Learn more about me",
-                
                 services_preview_title: "What can I do for you?",
                 services_preview_desc: "I offer professional 3D art services and personalized training for those who want to master this craft.",
                 sp_card1_title: "3D Art Commissions",
@@ -457,7 +442,6 @@
                 sp_card2_title: "Teaching & Mentorship",
                 sp_card2_desc: "Individual mentorship and step-by-step ZBrush courses. I'll help you build a portfolio, understand the pipeline, and prepare for a career in the industry.",
                 sp_card2_link: "View education",
-                
                 course_label: "Free Course", course_title: "Zbrush for Beginners", 
                 course_desc: "Master ZBrush sculpting with confidence! A completely free step-by-step course: from basics to your first 3D character portrait from scratch.",
                 course_btn: "Start Learning"
