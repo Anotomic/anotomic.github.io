@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Services | Serhii Prytula</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="icon" type="image/png" href="assets/images/favicon/Favicon_Serhii_Prytula.png">
+    <!-- ОНОВЛЕНО: шлях до favicon (два рівні вгору) -->
+    <link rel="icon" type="image/png" href="../../assets/images/favicon/Favicon_Serhii_Prytula.png">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;900&display=swap');
 
@@ -25,16 +26,15 @@
             background-color: var(--bg-color); 
             color: var(--text-main); 
             overflow-x: hidden; 
-            scrollbar-gutter: stable; /* ДОДАНО: резервує місце під скролбар */
+            scrollbar-gutter: stable;
             min-height: 100vh; 
         }
 
-        /* --- CUSTOM GLOBAL SCROLLBAR (ЯК В INDEX.HTML) --- */
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: transparent; margin: 24px 0; }
         ::-webkit-scrollbar-thumb {
             background: var(--accent); border-radius: 10px; border: 2px solid transparent;
-            background-clip: content-box; margin-right: 16px; /* ЗСУВ СКРОЛБАРУ ЛІВОРУЧ */
+            background-clip: content-box; margin-right: 16px;
         }
         ::-webkit-scrollbar-thumb:hover { background: #ff8c5a; }
 
@@ -121,7 +121,6 @@
             background: rgba(255, 107, 53, 0.15); border-color: var(--accent); color: var(--accent); transform: translateY(-2px);
         }
 
-        /* Адаптивність */
         @media (max-width: 1000px) {
             .hud-nav { grid-template-columns: auto 1fr; width: 90%; padding: 15px 20px; gap: 15px; }
             .nav-links { display: none; } 
@@ -140,17 +139,20 @@
     <!-- HUD NAVIGATION -->
     <div class="hud-wrapper">
         <nav class="hud-nav">
-            <a href="index.html" class="logo-link" title="На головну">
-                <img src="assets/images/favicon/Favicon_Serhii_Prytula.png" alt="Logo">
+            <!-- ОНОВЛЕНО: ../../index.html (два рівні вгору) -->
+            <a href="../../index.html" class="logo-link" title="На головну">
+                <img src="../../assets/images/favicon/Favicon_Serhii_Prytula.png" alt="Logo">
             </a>
             
             <ul class="nav-links">
+                <!-- Активна сторінка - services.html (відносний шлях до самої себе) -->
                 <li><a href="services.html" class="active-link" data-key="nav_services">Послуги</a></li>
-                <li><a href="portfolio.html" data-key="nav_port">Портфоліо</a></li>
-                <li><a href="about.html" data-key="nav_about">Про мене</a></li>
-                <li><a href="tutorials.html" data-key="nav_tutorials">Навчання</a></li>
-                <li><a href="blog.html" data-key="nav_blog">Блог</a></li>
-                <li><a href="contact.html" class="btn-contact" data-key="nav_contact">Зв'язатися</a></li>
+                <!-- ОНОВЛЕНО: ../папка/файл.html (один рівень вгору до pages/, потім в іншу папку) -->
+                <li><a href="../portfolio/portfolio.html" data-key="nav_port">Портфоліо</a></li>
+                <li><a href="../about/about.html" data-key="nav_about">Про мене</a></li>
+                <li><a href="../tutorials/tutorials.html" data-key="nav_tutorials">Навчання</a></li>
+                <li><a href="../blog/blog.html" data-key="nav_blog">Блог</a></li>
+                <li><a href="../contact/contact.html" class="btn-contact" data-key="nav_contact">Зв'язатися</a></li>
             </ul>
             
             <div class="lang-switch">
@@ -168,8 +170,9 @@
         </div>
 
         <!-- БЛОК 1: 3D CHARACTER ART -->
+        <!-- ОНОВЛЕНО: ../../assets/images/... -->
         <div class="service-card">
-            <div class="card-bg" style="background-image: url('assets/images/hero/Odin_Full_Preview_Front_Serhii_Anotomic_Prytula.jpg');"></div>
+            <div class="card-bg" style="background-image: url('../../assets/images/hero/Odin_Full_Preview_Front_Serhii_Anotomic_Prytula.jpg');"></div>
             <div class="card-gradient-overlay"></div>
             <div class="card-content">
                 <i class="fas fa-user-astronaut card-icon"></i>
@@ -192,7 +195,7 @@
 
         <!-- БЛОК 2: PROPS & ENVIRONMENT -->
         <div class="service-card">
-            <div class="card-bg" style="background-image: url('assets/images/portfolio/Mjolnir/Mjolnir_Serhii_Prytula_Render_Production_Preview.jpg');"></div>
+            <div class="card-bg" style="background-image: url('../../assets/images/portfolio/Mjolnir/Mjolnir_Serhii_Prytula_Render_Production_Preview.jpg');"></div>
             <div class="card-gradient-overlay"></div>
             <div class="card-content">
                 <i class="fas fa-cube card-icon"></i>
@@ -209,7 +212,7 @@
 
         <!-- БЛОК 3: MENTORSHIP -->
         <div class="service-card">
-            <div class="card-bg" style="background-image: url('assets/images/hero/Course_Zbrush_for_Beginner_Serhii_Prytula.png'); background-position: center; background-color: #1a1a1a;"></div>
+            <div class="card-bg" style="background-image: url('../../assets/images/hero/Course_Zbrush_for_Beginner_Serhii_Prytula.png'); background-position: center; background-color: #1a1a1a;"></div>
             <div class="card-gradient-overlay"></div>
             <div class="card-content">
                 <i class="fas fa-chalkboard-teacher card-icon"></i>
