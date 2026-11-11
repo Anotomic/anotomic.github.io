@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact | Serhii Prytula</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="icon" type="image/png" href="assets/images/favicon/Favicon_Serhii_Prytula.png">
+    <!-- ОНОВЛЕНО: шлях до favicon (два рівні вгору) -->
+    <link rel="icon" type="image/png" href="../../assets/images/favicon/Favicon_Serhii_Prytula.png">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;900&display=swap');
 
@@ -173,16 +174,19 @@
     <!-- HUD NAVIGATION -->
     <div class="hud-wrapper">
         <nav class="hud-nav">
-            <a href="index.html" class="logo-link" title="Головна">
-                <img src="assets/images/favicon/Favicon_Serhii_Prytula.png" alt="Logo">
+            <!-- ОНОВЛЕНО: ../../index.html (два рівні вгору) -->
+            <a href="../../index.html" class="logo-link" title="Головна">
+                <img src="../../assets/images/favicon/Favicon_Serhii_Prytula.png" alt="Logo">
             </a>
 
             <ul class="nav-links">
-                <li><a href="services.html" data-key="nav_services">Послуги</a></li>
-                <li><a href="portfolio.html" data-key="nav_port">Портфоліо</a></li>
-                <li><a href="about.html" data-key="nav_about">Про мене</a></li>
-                <li><a href="tutorials.html" data-key="nav_tutorials">Навчання</a></li>
-                <li><a href="blog.html" data-key="nav_blog">Блог</a></li>
+                <!-- ОНОВЛЕНО: ../папка/файл.html -->
+                <li><a href="../services/services.html" data-key="nav_services">Послуги</a></li>
+                <li><a href="../portfolio/portfolio.html" data-key="nav_port">Портфоліо</a></li>
+                <li><a href="../about/about.html" data-key="nav_about">Про мене</a></li>
+                <li><a href="../tutorials/tutorials.html" data-key="nav_tutorials">Навчання</a></li>
+                <li><a href="../blog/blog.html" data-key="nav_blog">Блог</a></li>
+                <!-- АКТИВНА СТОРІНКА (сама сторінка - без змін) -->
                 <li><a href="contact.html" id="link-contact" class="active-link btn-contact" data-key="nav_contact">Зв'язатися</a></li>
             </ul>
             
@@ -201,14 +205,14 @@
         </div>
 
         <div class="contact-cards">
-            <!-- TELEGRAM CARD (ОНОВЛЕНО: особистий чат) -->
+            <!-- TELEGRAM CARD -->
             <a href="https://t.me/Phillip_J_Fry_Sculptor" target="_blank" class="contact-card">
                 <div class="card-icon"><i class="fab fa-telegram-plane"></i></div>
                 <div class="card-title" data-key="card_tg_title">Telegram</div>
                 <div class="card-desc" data-key="card_tg_desc">Напишіть мені в особисті. Відповідаю швидко. Можна скидати референси.</div>
             </a>
 
-            <!-- EMAIL CARD (ОНОВЛЕНО: новий email) -->
+            <!-- EMAIL CARD -->
             <a href="mailto:serhii.prytula3d@gmail.com" class="contact-card">
                 <div class="card-icon"><i class="fas fa-envelope"></i></div>
                 <div class="card-title" data-key="card_email_title">Email</div>
