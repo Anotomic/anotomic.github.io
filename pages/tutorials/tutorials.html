@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tutorials | Serhii Prytula</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="icon" type="image/png" href="assets/images/favicon/Favicon_Serhii_Prytula.png">
+    <!-- ОНОВЛЕНО: шлях до favicon (два рівні вгору) -->
+    <link rel="icon" type="image/png" href="../../assets/images/favicon/Favicon_Serhii_Prytula.png">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;900&display=swap');
 
@@ -25,20 +26,19 @@
             background-color: var(--bg-color); 
             color: var(--text-main); 
             overflow-x: hidden; 
-            scrollbar-gutter: stable; /* ДОДАНО: резервує місце під скролбар */
+            scrollbar-gutter: stable;
             min-height: 100vh; 
         }
 
-        /* --- CUSTOM GLOBAL SCROLLBAR (ЯК В INDEX.HTML) --- */
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: transparent; margin: 24px 0; }
         ::-webkit-scrollbar-thumb {
             background: var(--accent); border-radius: 10px; border: 2px solid transparent;
-            background-clip: content-box; margin-right: 16px; /* ЗСУВ СКРОЛБАРУ ЛІВОРУЧ */
+            background-clip: content-box; margin-right: 16px;
         }
         ::-webkit-scrollbar-thumb:hover { background: #ff8c5a; }
 
-        /* --- HUD NAVIGATION (УЗГОДЖЕНО З INDEX.HTML) --- */
+        /* --- HUD NAVIGATION --- */
         .hud-wrapper { position: fixed; top: 0; left: 0; right: 0; display: flex; justify-content: center; z-index: 1000; pointer-events: none; }
         .hud-nav { 
             pointer-events: auto; background: var(--hud-bg); backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px); 
@@ -48,15 +48,14 @@
             box-shadow: 0 10px 40px rgba(0,0,0,0.5); transition: transform 0.3s ease; 
         }
         
-        /* --- ЗМІНЕНО ТУТ: ЗБІЛЬШЕНО РОЗМІР ТА ЗСУНУТО ВПРАВО --- */
         .logo-link { 
             display: flex; align-items: center; justify-content: center; 
             transition: transform 0.3s ease; pointer-events: auto;
-            padding-left: 15px; /* Зсув іконки трохи вправо */
+            padding-left: 15px;
         }
         .logo-link:hover { transform: scale(1.1); }
         .logo-link img { 
-            height: 54px; /* Збільшили розмір іконки */
+            height: 54px;
             width: auto; 
         }
 
@@ -136,7 +135,6 @@
             .nav-links { flex-wrap: wrap; justify-content: center; gap: 20px; margin-top: 10px; grid-column: 1 / -1; }
             .lang-switch { justify-content: center; margin-top: 5px; grid-column: 1 / -1; }
             
-            /* АДАПТАЦІЯ ЛОГОТИПУ ДЛЯ МОБІЛЬНИХ */
             .logo-link { justify-self: start; padding-left: 5px; }
             .logo-link img { height: 42px; }
             
@@ -152,19 +150,19 @@
     <!-- HUD NAVIGATION -->
     <div class="hud-wrapper">
         <nav class="hud-nav">
-            <!-- ЛОГОТИП ЗЛІВА (Посилання на головну) -->
-            <a href="index.html" class="logo-link" title="Головна">
-                <img src="assets/images/favicon/Favicon_Serhii_Prytula.png" alt="Logo">
+            <!-- ОНОВЛЕНО: ../../index.html (два рівні вгору) -->
+            <a href="../../index.html" class="logo-link" title="Головна">
+                <img src="../../assets/images/favicon/Favicon_Serhii_Prytula.png" alt="Logo">
             </a>
 
             <ul class="nav-links">
-                <!-- ЗАМІНЕНО "ГОЛОВНА" НА "ПОСЛУГИ" ДЛЯ ЄДНОСТІ -->
-                <li><a href="services.html" data-key="nav_services">Послуги</a></li>
-                <li><a href="portfolio.html" data-key="nav_port">Портфоліо</a></li>
-                <li><a href="about.html" data-key="nav_about">Про мене</a></li>
+                <!-- ОНОВЛЕНО: ../папка/файл.html -->
+                <li><a href="../services/services.html" data-key="nav_services">Послуги</a></li>
+                <li><a href="../portfolio/portfolio.html" data-key="nav_port">Портфоліо</a></li>
+                <li><a href="../about/about.html" data-key="nav_about">Про мене</a></li>
                 <li><a href="tutorials.html" id="link-tutorials" class="active-link" data-key="nav_tutorials">Навчання</a></li>
-                <li><a href="blog.html" data-key="nav_blog">Блог</a></li>
-                <li><a href="contact.html" class="btn-contact" data-key="nav_contact">Зв'язатися</a></li>
+                <li><a href="../blog/blog.html" data-key="nav_blog">Блог</a></li>
+                <li><a href="../contact/contact.html" class="btn-contact" data-key="nav_contact">Зв'язатися</a></li>
             </ul>
             
             <div class="lang-switch">
@@ -176,8 +174,9 @@
 
     <!-- TUTORIAL HERO CONTENT -->
     <section class="tutorial-hero">
-        <div class="slide-bg visible" style="background-image: url('assets/images/hero/Mjolnir__Upper_Preview_Serhii_Anotomic_Prytula.jpg');"></div>
-        <div class="slide-bg" style="background-image: url('assets/images/portfolio/Mjolnir/Zbrush-Preview-Clay_Serhii_Prytula.jpg');"></div>
+        <!-- ОНОВЛЕНО: ../../assets/images/... у слайд-шоу -->
+        <div class="slide-bg visible" style="background-image: url('../../assets/images/hero/Mjolnir__Upper_Preview_Serhii_Anotomic_Prytula.jpg');"></div>
+        <div class="slide-bg" style="background-image: url('../../assets/images/portfolio/Mjolnir/Zbrush-Preview-Clay_Serhii_Prytula.jpg');"></div>
         
         <div class="hero-fade-overlay"></div>
         
@@ -195,7 +194,6 @@
 
     <!-- SCRIPTS -->
     <script>
-        // --- ПЕРЕКЛАДИ (ОНОВЛЕНО: nav_services замість nav_home) ---
         const i18n = {
             uk: { 
                 nav_services: "Послуги", nav_port: "Портфоліо", nav_about: "Про мене", nav_tutorials: "Навчання", nav_blog: "Блог", nav_contact: "Зв'язатися",
