@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfolio | Serhii Prytula</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- ОНОВЛЕНО: шлях до favicon (два рівні вгору) -->
     <link rel="icon" type="image/png" href="../../assets/images/favicon/Favicon_Serhii_Prytula.png">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;900&display=swap');
@@ -166,13 +165,11 @@
     <!-- HUD NAVIGATION -->
     <div class="hud-wrapper">
         <nav class="hud-nav">
-            <!-- ОНОВЛЕНО: ../../index.html (два рівні вгору) -->
             <a href="../../index.html" class="logo-link" title="Головна">
                 <img src="../../assets/images/favicon/Favicon_Serhii_Prytula.png" alt="Logo">
             </a>
 
             <ul class="nav-links">
-                <!-- ОНОВЛЕНО: ../папка/файл.html -->
                 <li><a href="../services/services.html" data-key="nav_services">Послуги</a></li>
                 <li><a href="portfolio.html" id="link-portfolio" class="active-link" data-key="nav_port">Портфоліо</a></li>
                 <li><a href="../about/about.html" id="link-about" data-key="nav_about">Про мене</a></li>
@@ -197,9 +194,9 @@
 
         <div class="portfolio-grid">
             <!-- РОБОТА 1: ODIN -->
-            <!-- ОНОВЛЕНО: ../../assets/images/portfolio/... -->
+            <!-- НОВИЙ ШЛЯХ: images/Odin/... (локально в папці portfolio) -->
             <div class="portfolio-item" onclick="openModal('odin')">
-                <img src="../../assets/images/portfolio/Odin/Odin-Thumbnail_Serhii_Prytula.jpg" alt="Odin King" class="portfolio-img">
+                <img src="images/Odin/Odin-Thumbnail_Serhii_Prytula.jpg" alt="Odin King" class="portfolio-img">
                 <div class="portfolio-overlay">
                     <div class="portfolio-item-title" data-key="odin_title">Odin - Realms of the Ascended</div>
                     <div class="portfolio-item-category" data-key="odin_cat">Character Game-Ready Production</div>
@@ -207,8 +204,9 @@
             </div>
 
             <!-- РОБОТА 2: MJOLNIR -->
+            <!-- НОВИЙ ШЛЯХ: images/Mjolnir/... (локально в папці portfolio) -->
             <div class="portfolio-item" onclick="openModal('mjolnir')">
-                <img src="../../assets/images/portfolio/Mjolnir/Mjolnir_Thumbnail_Serhii_Anotomic_Prytula_Preview.jpg" alt="Mjolnir Weapon" class="portfolio-img">
+                <img src="images/Mjolnir/Mjolnir_Thumbnail_Serhii_Anotomic_Prytula_Preview.jpg" alt="Mjolnir Weapon" class="portfolio-img">
                 <div class="portfolio-overlay">
                     <div class="portfolio-item-title" data-key="mjolnir_title">Mjolnir - Realms of the Ascended</div>
                     <div class="portfolio-item-category" data-key="mjolnir_cat">Game-Ready Weapon</div>
@@ -271,14 +269,14 @@
             'odin': {
                 title_ua: 'Одін - Царства Вознесених', title_en: 'Odin - Realms of the Ascended',
                 subtitle_ua: 'Створення ігрового персонажа', subtitle_en: 'Character Game-Ready Production',
-                // ОНОВЛЕНО: ../../assets/images/...
-                images: ['../../assets/images/portfolio/Odin/Odin-Full-Preview_Serhii_Prytula.jpg', '../../assets/images/portfolio/Odin/Gungir_Odin_Serhii_Anotomic_Prytula.jpg']
+                // НОВІ ШЛЯХИ: images/Odin/... (локально)
+                images: ['images/Odin/Odin-Full-Preview_Serhii_Prytula.jpg', 'images/Odin/Gungir_Odin_Serhii_Anotomic_Prytula.jpg']
             },
             'mjolnir': {
                 title_ua: 'Мйольнір - Царства Вознесених', title_en: 'Mjolnir - Realms of the Ascended',
                 subtitle_ua: 'Ігрова зброя', subtitle_en: 'Game-Ready Weapon',
-                // ОНОВЛЕНО: ../../assets/images/...
-                images: ['../../assets/images/portfolio/Mjolnir/Mjolnir_Serhii_Prytula_Render_Production_Preview.jpg', '../../assets/images/portfolio/Mjolnir/Mjolnir_Upper_Preview_Serhii_Prytula.jpg', '../../assets/images/portfolio/Mjolnir/Zbrush-Preview-Clay_Serhii_Prytula.jpg']
+                // НОВІ ШЛЯХИ: images/Mjolnir/... (локально)
+                images: ['images/Mjolnir/Mjolnir_Serhii_Prytula_Render_Production_Preview.jpg', 'images/Mjolnir/Mjolnir_Upper_Preview_Serhii_Prytula.jpg', 'images/Mjolnir/Zbrush-Preview-Clay_Serhii_Prytula.jpg']
             }
         };
 
